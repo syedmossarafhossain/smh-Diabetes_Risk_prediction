@@ -604,30 +604,16 @@ with st.sidebar:
 # =========================================================
 
 st.markdown(
-    dedent(
-        """
-        <div class="hero">
-
-            <div class="badge">
-                ● AI POWERED HEALTH ANALYTICS
-            </div>
-
-            <div class="hero-title">
-                🩺 Diabetes Risk Prediction
-            </div>
-
-            <div class="hero-subtitle">
-                Analyze clinical parameters using a Machine
-                Learning model to estimate the probability
-                of diabetes risk.
-            </div>
-
-        </div>
-        """
-    ),
+    '<div class="hero">'
+    '<div class="badge">● AI POWERED HEALTH ANALYTICS</div>'
+    '<div class="hero-title">🩺 Diabetes Risk Prediction</div>'
+    '<div class="hero-subtitle">'
+    'Analyze clinical parameters using a Machine Learning '
+    'model to estimate the probability of diabetes risk.'
+    '</div>'
+    '</div>',
     unsafe_allow_html=True
 )
-
 
 # =========================================================
 # PATIENT INFORMATION
