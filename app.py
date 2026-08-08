@@ -547,21 +547,12 @@ if predict:
     with result_col1:
 
         st.markdown(
-            f"""
-            <div class="metric-card">
-
-                <div class="metric-title">
-                    RISK PROBABILITY
-                </div>
-
-                <div class="metric-value">
-                    {risk_prob:.2f}%
-                </div>
-
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+    '<div class="metric-card">'
+    '<div class="metric-title">RISK PROBABILITY</div>'
+    f'<div class="metric-value">{risk_prob:.2f}%</div>'
+    '</div>',
+    unsafe_allow_html=True
+)
 
 
     with result_col2:
