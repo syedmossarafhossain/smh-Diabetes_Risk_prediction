@@ -558,6 +558,12 @@ prediction_text = (
     else "LOW RISK"
 )
 
+prediction_color = (
+    "#f87171"
+    if int(prediction[0]) == 1
+    else "#34d399"
+)
+
 
 # =========================================================
 # RISK PROBABILITY
@@ -583,7 +589,9 @@ with metric2:
     st.markdown(
         '<div class="metric-card">'
         '<div class="metric-title">PREDICTION</div>'
-        f'<div class="metric-value">{prediction_text}</div>'
+        f'<div class="metric-value" style="color:{prediction_color};">'
+        f'{prediction_text}'
+        '</div>'
         '</div>',
         unsafe_allow_html=True
     )
