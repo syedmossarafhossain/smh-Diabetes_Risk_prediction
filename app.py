@@ -531,52 +531,77 @@ if predict:
     risk_prob = probability[0][1] * 100
 
 
-    # =====================================================
-    # RESULT
-    # =====================================================
+    # =========================================================
+# PREDICTION RESULT
+# =========================================================
+
+st.markdown(
+    '<div class="section-title">'
+    '🎯 Prediction Result'
+    '</div>',
+    unsafe_allow_html=True
+)
+
+metric1, metric2, metric3 = st.columns(
+    3,
+    gap="medium"
+)
+
+
+# =========================================================
+# PREDICTION TEXT
+# =========================================================
+
+prediction_text = (
+    "HIGH RISK"
+    if int(prediction[0]) == 1
+    else "LOW RISK"
+)
+
+
+# =========================================================
+# RISK PROBABILITY
+# =========================================================
+
+with metric1:
 
     st.markdown(
-        '<div class="section-title">🎯 Prediction Result</div>',
+        '<div class="metric-card">'
+        '<div class="metric-title">RISK PROBABILITY</div>'
+        f'<div class="metric-value">{risk_prob:.2f}%</div>'
+        '</div>',
         unsafe_allow_html=True
     )
 
 
-    result_col1, result_col2, result_col3 = st.columns(3)
+# =========================================================
+# PREDICTION
+# =========================================================
+
+with metric2:
+
+    st.markdown(
+        '<div class="metric-card">'
+        '<div class="metric-title">PREDICTION</div>'
+        f'<div class="metric-value">{prediction_text}</div>'
+        '</div>',
+        unsafe_allow_html=True
+    )
 
 
-    with result_col1:
+# =========================================================
+# MODEL
+# =========================================================
 
-        st.markdown(
-    '<div class="metric-card">'
-    '<div class="metric-title">RISK PROBABILITY</div>'
-    f'<div class="metric-value">{risk_prob:.2f}%</div>'
-    '</div>',
-    unsafe_allow_html=True
-)
+with metric3:
 
-
-    with result_col2:
-
-        status = "HIGH RISK" if prediction[0] == 1 else "LOW RISK"
-
-        st.markdown(
-    '<div class="metric-card">'
-    '<div class="metric-title">PREDICTION</div>'
-    f'<div class="metric-value">{prediction_text}</div>'
-    '</div>',
-    unsafe_allow_html=True
-)
-
-
-    with result_col3:
-
-        st.markdown(
-    '<div class="metric-card">'
-    '<div class="metric-title">MODEL</div>'
-    '<div class="metric-value">Random Forest</div>'
-    '</div>',
-    unsafe_allow_html=True
-)
+    st.markdown(
+        '<div class="metric-card">'
+        '<div class="metric-title">MODEL</div>'
+        '<div class="metric-value">Random Forest</div>'
+        '</div>',
+        unsafe_allow_html=True
+    )
 
 
     # =====================================================
