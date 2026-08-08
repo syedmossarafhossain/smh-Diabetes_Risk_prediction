@@ -509,7 +509,7 @@ predict = st.button(
 # PREDICTION
 # =========================================================
 
-if predict:
+if predict_button:
 
     input_data = np.array([[
         pregnancies,
