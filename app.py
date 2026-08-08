@@ -3,7 +3,6 @@ import numpy as np
 import pickle
 import os
 import matplotlib.pyplot as plt
-
 from sklearn.metrics import confusion_matrix
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
@@ -27,8 +26,7 @@ st.set_page_config(
 # CUSTOM CSS
 # =========================================================
 
-st.markdown(
-    """
+st.markdown("""
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
@@ -37,455 +35,225 @@ html, body, [class*="css"] {
     font-family: 'Inter', sans-serif;
 }
 
+/* Main background */
+
 .stApp {
     background:
-        radial-gradient(
-            circle at 10% 10%,
-            rgba(59, 130, 246, 0.12),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 90% 20%,
-            rgba(124, 58, 237, 0.10),
-            transparent 28%
-        ),
-        #080c14;
-
+        radial-gradient(circle at 10% 10%, rgba(59,130,246,0.12), transparent 25%),
+        radial-gradient(circle at 90% 20%, rgba(139,92,246,0.10), transparent 25%),
+        #090d16;
     color: #f8fafc;
 }
 
+
+/* Remove default top spacing */
+
 .block-container {
-    max-width: 1400px;
     padding-top: 2rem;
-    padding-bottom: 4rem;
+    padding-bottom: 3rem;
+    max-width: 1400px;
 }
 
 
-/* =========================================================
-   SIDEBAR
-   ========================================================= */
+/* Sidebar */
 
 section[data-testid="stSidebar"] {
     background: linear-gradient(
         180deg,
-        #0d1422 0%,
-        #080d17 100%
+        #0d1320 0%,
+        #0a0f19 100%
     );
-
     border-right: 1px solid rgba(255,255,255,0.08);
 }
 
-section[data-testid="stSidebar"] h1,
 section[data-testid="stSidebar"] h2,
 section[data-testid="stSidebar"] h3 {
     color: #ffffff;
 }
 
 
-/* =========================================================
-   HERO
-   ========================================================= */
+/* Header */
 
 .hero {
-    padding: 38px 42px;
+    padding: 35px 40px;
     border-radius: 24px;
-
     background:
         linear-gradient(
             135deg,
             rgba(37,99,235,0.22),
-            rgba(124,58,237,0.20)
+            rgba(124,58,237,0.18)
         );
+    border: 1px solid rgba(255,255,255,0.10);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    margin-bottom: 30px;
+}
 
-    border: 1px solid rgba(96,165,250,0.20);
+.hero-title {
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin: 0;
+}
 
-    box-shadow:
-        0 20px 60px rgba(0,0,0,0.25);
-
-    margin-bottom: 34px;
+.hero-subtitle {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #aab4c5;
 }
 
 .badge {
     display: inline-block;
-
     padding: 7px 14px;
-
     border-radius: 50px;
-
-    background: rgba(59,130,246,0.14);
-
-    border: 1px solid rgba(96,165,250,0.30);
-
+    background: rgba(59,130,246,0.15);
+    border: 1px solid rgba(59,130,246,0.35);
     color: #60a5fa;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-    letter-spacing: 0.5px;
-
+    font-size: 13px;
+    font-weight: 600;
     margin-bottom: 15px;
 }
 
-.hero-title {
-    font-size: 44px;
 
-    font-weight: 800;
-
-    letter-spacing: -1.8px;
-
-    line-height: 1.15;
-
-    color: #f8fafc;
-}
-
-.hero-subtitle {
-    margin-top: 12px;
-
-    max-width: 850px;
-
-    color: #aab6c8;
-
-    font-size: 16px;
-
-    line-height: 1.7;
-}
-
-
-/* =========================================================
-   SECTION TITLES
-   ========================================================= */
+/* Section title */
 
 .section-title {
     font-size: 23px;
-
-    font-weight: 750;
-
-    color: #f8fafc;
-
-    margin-top: 24px;
-
+    font-weight: 700;
+    margin-top: 10px;
     margin-bottom: 18px;
 }
 
 
-/* =========================================================
-   INPUT LABELS
-   ========================================================= */
+/* Input cards */
 
-label {
-    font-weight: 600 !important;
-    color: #e5e7eb !important;
+.input-card {
+    background: rgba(20,26,39,0.85);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 18px;
+    padding: 18px;
+    margin-bottom: 14px;
+    transition: 0.2s ease;
+}
+
+.input-card:hover {
+    border-color: rgba(96,165,250,0.45);
+    transform: translateY(-2px);
 }
 
 
-/* =========================================================
-   INPUT BOXES
-   ========================================================= */
+/* Streamlit input */
 
 div[data-baseweb="input"] {
-    background: #171c28 !important;
-
+    background: #171d2a !important;
     border-radius: 12px !important;
-
     border: 1px solid rgba(255,255,255,0.08) !important;
-
-    min-height: 48px;
 }
 
 div[data-baseweb="input"]:focus-within {
     border-color: #3b82f6 !important;
-
-    box-shadow:
-        0 0 0 2px rgba(59,130,246,0.15);
-}
-
-input {
-    color: #f8fafc !important;
+    box-shadow: 0 0 0 2px rgba(59,130,246,0.15);
 }
 
 
-/* =========================================================
-   SELECT / DROPDOWN
-   ========================================================= */
-
-div[data-baseweb="select"] > div {
-    background: #171c28 !important;
-
-    border-radius: 12px !important;
-
-    border: 1px solid rgba(255,255,255,0.08) !important;
-}
-
-
-/* =========================================================
-   PREDICT BUTTON
-   ========================================================= */
+/* Buttons */
 
 .stButton > button {
     width: 100%;
-
-    min-height: 54px;
-
+    height: 52px;
     border-radius: 14px;
-
-    border: 0;
-
-    background:
-        linear-gradient(
-            135deg,
-            #2563eb,
-            #7c3aed
-        );
-
+    border: none;
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #7c3aed
+    );
     color: white;
-
     font-size: 16px;
-
     font-weight: 700;
-
-    box-shadow:
-        0 12px 30px rgba(37,99,235,0.25);
-
+    box-shadow: 0 10px 30px rgba(37,99,235,0.25);
     transition: all 0.2s ease;
 }
 
 .stButton > button:hover {
     transform: translateY(-2px);
-
-    box-shadow:
-        0 16px 38px rgba(37,99,235,0.35);
-
-    color: white;
+    box-shadow: 0 15px 35px rgba(37,99,235,0.35);
 }
 
 
-/* =========================================================
-   METRIC CARDS
-   ========================================================= */
+/* Prediction card */
 
-.metric-box {
-    background:
-        linear-gradient(
-            145deg,
-            rgba(20,27,41,0.96),
-            rgba(14,20,32,0.96)
-        );
+.result-card {
+    padding: 30px;
+    border-radius: 22px;
+    background: linear-gradient(
+        135deg,
+        rgba(15,23,42,0.95),
+        rgba(30,41,59,0.85)
+    );
+    border: 1px solid rgba(255,255,255,0.10);
+    text-align: center;
+    margin-top: 20px;
+}
 
-    border: 1px solid rgba(255,255,255,0.09);
+.risk-number {
+    font-size: 52px;
+    font-weight: 800;
+    margin: 10px 0;
+}
 
+.risk-label {
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+
+/* Metric cards */
+
+.metric-card {
+    padding: 20px;
     border-radius: 18px;
-
-    padding: 22px;
-
-    min-height: 115px;
-
-    width: 100%;
-
-    box-sizing: border-box;
-
-    box-shadow:
-        0 10px 35px rgba(0,0,0,0.18);
+    background: rgba(20,26,39,0.85);
+    border: 1px solid rgba(255,255,255,0.08);
 }
 
 .metric-title {
     color: #94a3b8;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-    letter-spacing: 0.8px;
-
-    text-transform: uppercase;
-
-    margin-bottom: 9px;
+    font-size: 13px;
 }
 
 .metric-value {
-    color: #f8fafc;
-
     font-size: 25px;
-
-    font-weight: 800;
-
-    line-height: 1.2;
-
-    word-break: break-word;
+    font-weight: 700;
+    margin-top: 5px;
 }
 
 
-/* =========================================================
-   RESULT CARD
-   ========================================================= */
-
-.result-card {
-    margin-top: 22px;
-
-    padding: 34px;
-
-    border-radius: 24px;
-
-    text-align: center;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(18,27,43,0.98),
-            rgba(12,18,30,0.98)
-        );
-
-    border: 1px solid rgba(255,255,255,0.09);
-
-    box-shadow:
-        0 20px 55px rgba(0,0,0,0.25);
-}
-
-.result-icon {
-    font-size: 48px;
-
-    margin-bottom: 8px;
-}
-
-.risk-number {
-    font-size: 56px;
-
-    line-height: 1;
-
-    font-weight: 800;
-
-    margin: 10px 0;
-}
-
-.low-risk {
-    color: #34d399;
-}
-
-.high-risk {
-    color: #f87171;
-}
-
-.result-title {
-    font-size: 23px;
-
-    font-weight: 800;
-
-    margin-top: 10px;
-}
-
-.result-description {
-    color: #94a3b8;
-
-    max-width: 650px;
-
-    margin: 10px auto 0;
-
-    line-height: 1.6;
-}
-
-
-/* =========================================================
-   INFORMATION CARD
-   ========================================================= */
-
-.info-card {
-    padding: 20px;
-
-    border-radius: 18px;
-
-    background:
-        rgba(20,27,41,0.85);
-
-    border: 1px solid rgba(255,255,255,0.08);
-}
-
-
-/* =========================================================
-   DISCLAIMER
-   ========================================================= */
-
-.disclaimer {
-    margin-top: 28px;
-
-    padding: 17px 20px;
-
-    border-radius: 15px;
-
-    background:
-        rgba(245,158,11,0.07);
-
-    border:
-        1px solid rgba(245,158,11,0.18);
-
-    color: #cbd5e1;
-
-    font-size: 13px;
-
-    line-height: 1.6;
-}
-
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
+/* Footer */
 
 .footer {
-    margin-top: 50px;
-
-    padding-top: 22px;
-
-    border-top:
-        1px solid rgba(255,255,255,0.08);
-
     text-align: center;
-
+    margin-top: 45px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.08);
     color: #64748b;
-
     font-size: 12px;
 }
 
 
-/* =========================================================
-   PROGRESS BAR
-   ========================================================= */
+/* Disclaimer */
 
-div[data-testid="stProgressBar"] {
-    margin-top: 10px;
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 768px) {
-
-    .hero {
-        padding: 28px 24px;
-    }
-
-    .hero-title {
-        font-size: 31px;
-    }
-
-    .hero-subtitle {
-        font-size: 14px;
-    }
-
-    .risk-number {
-        font-size: 45px;
-    }
-
-    .metric-value {
-        font-size: 20px;
-    }
-
+.disclaimer {
+    padding: 15px 18px;
+    border-radius: 14px;
+    background: rgba(245,158,11,0.08);
+    border: 1px solid rgba(245,158,11,0.20);
+    color: #cbd5e1;
+    font-size: 13px;
+    margin-top: 20px;
 }
 
 </style>
-""",
-    unsafe_allow_html=True
-)
+""", unsafe_allow_html=True)
 
 
 # =========================================================
@@ -506,41 +274,11 @@ scaler_path = os.path.join(
     "scaler.pkl"
 )
 
+with open(model_path, "rb") as f:
+    model = pickle.load(f)
 
-try:
-
-    with open(model_path, "rb") as f:
-        model = pickle.load(f)
-
-    with open(scaler_path, "rb") as f:
-        scaler = pickle.load(f)
-
-except FileNotFoundError:
-
-    st.error(
-        "❌ Model files were not found. "
-        "Please check the Model folder."
-    )
-
-    st.code(
-        """
-Model/
-├── diabetes_model.pkl
-└── scaler.pkl
-        """
-    )
-
-    st.stop()
-
-except Exception as e:
-
-    st.error(
-        "❌ Unable to load the machine learning model."
-    )
-
-    st.exception(e)
-
-    st.stop()
+with open(scaler_path, "rb") as f:
+    scaler = pickle.load(f)
 
 
 # =========================================================
@@ -549,34 +287,20 @@ except Exception as e:
 
 with st.sidebar:
 
-    st.markdown(
-        """
-        <h2>🩺 Diabetes AI</h2>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown("## 🩺 Diabetes AI")
 
     st.markdown(
         """
-        <div class="info-card">
-
-            <div style="
-                font-size:17px;
-                font-weight:700;
-                margin-bottom:8px;
-            ">
-                AI Risk Assessment
-            </div>
-
-            <div style="
-                color:#94a3b8;
-                font-size:13px;
-                line-height:1.6;
-            ">
-                Machine Learning powered diabetes
-                risk estimation.
-            </div>
-
+        <div style="
+            padding:15px;
+            border-radius:15px;
+            background:rgba(59,130,246,0.08);
+            border:1px solid rgba(59,130,246,0.15);
+        ">
+        <b>AI Risk Assessment</b><br>
+        <span style="color:#94a3b8;font-size:13px;">
+        Machine Learning powered diabetes risk estimation.
+        </span>
         </div>
         """,
         unsafe_allow_html=True
@@ -586,90 +310,75 @@ with st.sidebar:
 
     st.markdown("### 🤖 Model")
 
-    st.markdown("**Algorithm**")
+    st.write("**Algorithm**")
     st.caption("Random Forest Classifier")
 
-    st.markdown("**Model Accuracy**")
+    st.write("**Model Accuracy**")
     st.caption("82%")
 
-    st.markdown("**Input Features**")
+    st.write("**Input Features**")
     st.caption("8 clinical parameters")
 
     st.markdown("---")
 
     st.markdown("### 📌 Features")
 
-    st.markdown(
-        """
-        - 🤰 Pregnancy history
-        - 🧪 Glucose level
-        - ❤️ Blood pressure
-        - 📏 Skin thickness
-        - 💉 Insulin level
-        - ⚖️ BMI
-        - 🧬 Diabetes pedigree
-        - 🎂 Age
-        """
-    )
+    st.markdown("""
+    - Pregnancy history
+    - Glucose level
+    - Blood pressure
+    - Skin thickness
+    - Insulin level
+    - BMI
+    - Diabetes pedigree
+    - Age
+    """)
 
     st.markdown("---")
 
-    st.caption("Diabetes AI Risk Prediction")
-    st.caption("Machine Learning Project")
+    st.caption("AI Diabetes Risk Prediction")
+    st.caption("Educational / Research Project")
 
 
 # =========================================================
-# HERO SECTION
+# HERO
+# =========================================================
+
+st.markdown("""
+<div class="hero">
+
+    <div class="badge">
+        ● AI POWERED HEALTH ANALYTICS
+    </div>
+
+    <div class="hero-title">
+        🩺 Diabetes Risk Prediction
+    </div>
+
+    <div class="hero-subtitle">
+        Analyze clinical parameters using a Machine Learning model
+        to estimate the probability of diabetes risk.
+    </div>
+
+</div>
+""", unsafe_allow_html=True)
+
+
+# =========================================================
+# INPUT SECTION
 # =========================================================
 
 st.markdown(
-    """
-    <div class="hero">
-
-        <div class="badge">
-            ● AI POWERED HEALTH ANALYTICS
-        </div>
-
-        <div class="hero-title">
-            🩺 Diabetes Risk Prediction
-        </div>
-
-        <div class="hero-subtitle">
-            Analyze clinical parameters using a Machine Learning
-            model to estimate the probability of diabetes risk.
-        </div>
-
-    </div>
-    """,
+    '<div class="section-title">📋 Patient Information</div>',
     unsafe_allow_html=True
 )
 
+col1, col2 = st.columns(2, gap="large")
 
-# =========================================================
-# PATIENT INFORMATION
-# =========================================================
-
-st.markdown(
-    """
-    <div class="section-title">
-        📋 Patient Information
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
-
-col1, col2 = st.columns(
-    2,
-    gap="large"
-)
-
-
-# =========================================================
-# LEFT INPUTS
-# =========================================================
 
 with col1:
+
+    st.markdown('<div class="input-card">', unsafe_allow_html=True)
 
     pregnancies = st.number_input(
         "🤰 Pregnancies",
@@ -703,12 +412,12 @@ with col1:
         step=1.0
     )
 
+    st.markdown('</div>', unsafe_allow_html=True)
 
-# =========================================================
-# RIGHT INPUTS
-# =========================================================
 
 with col2:
+
+    st.markdown('<div class="input-card">', unsafe_allow_html=True)
 
     insulin = st.number_input(
         "💉 Insulin Level",
@@ -742,20 +451,17 @@ with col2:
         step=1
     )
 
+    st.markdown('</div>', unsafe_allow_html=True)
+
 
 # =========================================================
 # FEATURE OVERVIEW
 # =========================================================
 
 st.markdown(
-    """
-    <div class="section-title">
-        📊 Clinical Data Overview
-    </div>
-    """,
+    '<div class="section-title">📊 Clinical Data Overview</div>',
     unsafe_allow_html=True
 )
-
 
 features = [
     pregnancies,
@@ -779,32 +485,19 @@ labels = [
     "Age"
 ]
 
-
-fig = plt.figure(
-    figsize=(12, 4)
-)
+fig = plt.figure(figsize=(12, 4))
 
 plt.bar(
     labels,
     features
 )
 
-plt.xticks(
-    rotation=30,
-    ha="right"
-)
-
-plt.grid(
-    axis="y",
-    alpha=0.15
-)
+plt.xticks(rotation=30)
+plt.grid(axis="y", alpha=0.15)
 
 plt.tight_layout()
 
-st.pyplot(
-    fig,
-    use_container_width=True
-)
+st.pyplot(fig, use_container_width=True)
 
 plt.close(fig)
 
@@ -813,13 +506,10 @@ plt.close(fig)
 # PREDICT BUTTON
 # =========================================================
 
-st.markdown(
-    "<br>",
-    unsafe_allow_html=True
-)
+st.markdown("<br>", unsafe_allow_html=True)
 
-predict_button = st.button(
-    "🔍  Analyze Diabetes Risk"
+predict = st.button(
+    "🔍 Analyze Diabetes Risk"
 )
 
 
@@ -827,131 +517,49 @@ predict_button = st.button(
 # PREDICTION
 # =========================================================
 
-if predict_button:
+if predict:
 
-    # =====================================================
-    # CREATE INPUT DATA
-    # =====================================================
+    input_data = np.array([[
+        pregnancies,
+        glucose,
+        bp,
+        skin,
+        insulin,
+        bmi,
+        dpf,
+        age
+    ]])
 
-    input_data = np.array(
-        [[
-            pregnancies,
-            glucose,
-            bp,
-            skin,
-            insulin,
-            bmi,
-            dpf,
-            age
-        ]],
-        dtype=float
-    )
+    scaled_data = scaler.transform(input_data)
 
+    prediction = model.predict(scaled_data)
 
-    # =====================================================
-    # SCALE INPUT
-    # =====================================================
+    probability = model.predict_proba(scaled_data)
 
-    try:
-
-        scaled_data = scaler.transform(
-            input_data
-        )
-
-    except Exception as e:
-
-        st.error(
-            "❌ Error while scaling input data."
-        )
-
-        st.exception(e)
-
-        st.stop()
+    risk_prob = probability[0][1] * 100
 
 
     # =====================================================
-    # MODEL PREDICTION
-    # =====================================================
-
-    try:
-
-        prediction = model.predict(
-            scaled_data
-        )
-
-        probability = model.predict_proba(
-            scaled_data
-        )
-
-    except Exception as e:
-
-        st.error(
-            "❌ Error while making prediction."
-        )
-
-        st.exception(e)
-
-        st.stop()
-
-
-    # =====================================================
-    # RISK PROBABILITY
-    # =====================================================
-
-    risk_prob = (
-        probability[0][1] * 100
-    )
-
-
-    # =====================================================
-    # PREDICTION TEXT
-    # =====================================================
-
-    prediction_value = int(
-        prediction[0]
-    )
-
-    if prediction_value == 1:
-
-        prediction_text = "HIGH RISK"
-
-    else:
-
-        prediction_text = "LOW RISK"
-
-
-    # =====================================================
-    # PREDICTION RESULT
+    # RESULT
     # =====================================================
 
     st.markdown(
-        """
-        <div class="section-title">
-            🎯 Prediction Result
-        </div>
-        """,
+        '<div class="section-title">🎯 Prediction Result</div>',
         unsafe_allow_html=True
     )
 
 
-    metric1, metric2, metric3 = st.columns(
-        3,
-        gap="medium"
-    )
+    result_col1, result_col2, result_col3 = st.columns(3)
 
 
-    # =====================================================
-    # METRIC 1
-    # =====================================================
-
-    with metric1:
+    with result_col1:
 
         st.markdown(
             f"""
-            <div class="metric-box">
+            <div class="metric-card">
 
                 <div class="metric-title">
-                    Risk Probability
+                    RISK PROBABILITY
                 </div>
 
                 <div class="metric-value">
@@ -964,22 +572,20 @@ if predict_button:
         )
 
 
-    # =====================================================
-    # METRIC 2
-    # =====================================================
+    with result_col2:
 
-    with metric2:
+        status = "HIGH RISK" if prediction[0] == 1 else "LOW RISK"
 
         st.markdown(
             f"""
-            <div class="metric-box">
+            <div class="metric-card">
 
                 <div class="metric-title">
-                    Prediction
+                    PREDICTION
                 </div>
 
                 <div class="metric-value">
-                    {prediction_text}
+                    {status}
                 </div>
 
             </div>
@@ -988,18 +594,14 @@ if predict_button:
         )
 
 
-    # =====================================================
-    # METRIC 3
-    # =====================================================
-
-    with metric3:
+    with result_col3:
 
         st.markdown(
             """
-            <div class="metric-box">
+            <div class="metric-card">
 
                 <div class="metric-title">
-                    Model
+                    MODEL
                 </div>
 
                 <div class="metric-value">
@@ -1013,31 +615,34 @@ if predict_button:
 
 
     # =====================================================
-    # MAIN RESULT CARD
+    # RISK RESULT
     # =====================================================
 
-    if prediction_value == 1:
+    if prediction[0] == 1:
 
         st.markdown(
             f"""
             <div class="result-card">
 
-                <div class="result-icon">
+                <div style="font-size:45px;">
                     ⚠️
                 </div>
 
-                <div class="risk-number high-risk">
+                <div class="risk-number">
                     {risk_prob:.1f}%
                 </div>
 
-                <div class="result-title">
+                <div style="
+                    font-size:22px;
+                    font-weight:700;
+                    color:#f87171;
+                ">
                     Higher Diabetes Risk
                 </div>
 
-                <div class="result-description">
-                    The machine learning model estimates
-                    an elevated diabetes risk based on
-                    the provided clinical parameters.
+                <div class="risk-label">
+                    The model estimates an elevated probability
+                    based on the provided parameters.
                 </div>
 
             </div>
@@ -1051,22 +656,25 @@ if predict_button:
             f"""
             <div class="result-card">
 
-                <div class="result-icon">
+                <div style="font-size:45px;">
                     ✅
                 </div>
 
-                <div class="risk-number low-risk">
+                <div class="risk-number">
                     {risk_prob:.1f}%
                 </div>
 
-                <div class="result-title">
+                <div style="
+                    font-size:22px;
+                    font-weight:700;
+                    color:#34d399;
+                ">
                     Lower Diabetes Risk
                 </div>
 
-                <div class="result-description">
-                    The machine learning model estimates
-                    a lower diabetes risk based on
-                    the provided clinical parameters.
+                <div class="risk-label">
+                    The model estimates a lower probability
+                    based on the provided parameters.
                 </div>
 
             </div>
@@ -1076,46 +684,25 @@ if predict_button:
 
 
     # =====================================================
-    # RISK PROGRESS
+    # PROBABILITY BAR
     # =====================================================
 
-    st.markdown(
-        "<br>",
-        unsafe_allow_html=True
-    )
+    st.markdown("<br>", unsafe_allow_html=True)
 
     st.progress(
-        min(
-            max(
-                risk_prob / 100,
-                0
-            ),
-            1
-        ),
-        text=f"Estimated Diabetes Risk: {risk_prob:.2f}%"
+        min(risk_prob / 100, 1.0),
+        text=f"Estimated Risk: {risk_prob:.2f}%"
     )
 
 
     # =====================================================
-    # MODEL PERFORMANCE
+    # CONFUSION MATRIX
     # =====================================================
 
     st.markdown(
-        """
-        <div class="section-title">
-            📌 Model Performance
-        </div>
-        """,
+        '<div class="section-title">📌 Model Performance</div>',
         unsafe_allow_html=True
     )
-
-
-    # -----------------------------------------------------
-    # DEMONSTRATION DATA
-    # -----------------------------------------------------
-
-    # Replace these values with your actual test-set
-    # predictions if you want a real confusion matrix.
 
     y_true = [
         0, 1, 0, 1, 0,
@@ -1127,66 +714,37 @@ if predict_button:
         0, 0, 0, 1, 1
     ]
 
-
-    # =====================================================
-    # CONFUSION MATRIX
-    # =====================================================
-
     cm = confusion_matrix(
         y_true,
         y_pred
     )
 
+    fig2 = plt.figure(figsize=(6, 4))
 
-    fig2 = plt.figure(
-        figsize=(6, 4)
-    )
+    plt.imshow(cm)
 
-    plt.imshow(
-        cm
-    )
-
-    plt.title(
-        "Confusion Matrix"
-    )
-
-    plt.xlabel(
-        "Predicted Label"
-    )
-
-    plt.ylabel(
-        "Actual Label"
-    )
+    plt.title("Confusion Matrix")
 
     plt.xticks(
         [0, 1],
-        ["No Diabetes", "Diabetes"]
+        ["Predicted 0", "Predicted 1"]
     )
 
     plt.yticks(
         [0, 1],
-        ["No Diabetes", "Diabetes"]
+        ["Actual 0", "Actual 1"]
     )
 
-
-    # =====================================================
-    # CONFUSION MATRIX VALUES
-    # =====================================================
-
     for i in range(2):
-
         for j in range(2):
 
             plt.text(
                 j,
                 i,
-                str(cm[i, j]),
+                cm[i, j],
                 ha="center",
-                va="center",
-                fontsize=14,
-                fontweight="bold"
+                va="center"
             )
-
 
     plt.tight_layout()
 
@@ -1203,32 +761,19 @@ if predict_button:
     # =====================================================
 
     st.markdown(
-        """
-        <div class="section-title">
-            📄 Prediction Report
-        </div>
-        """,
+        '<div class="section-title">📄 Prediction Report</div>',
         unsafe_allow_html=True
     )
 
-
     pdf_buffer = BytesIO()
-
 
     doc = SimpleDocTemplate(
         pdf_buffer
     )
 
-
     styles = getSampleStyleSheet()
 
-
     elements = []
-
-
-    # =====================================================
-    # PDF TITLE
-    # =====================================================
 
     elements.append(
         Paragraph(
@@ -1237,33 +782,9 @@ if predict_button:
         )
     )
 
-
     elements.append(
-        Spacer(
-            1,
-            0.4 * inch
-        )
+        Spacer(1, 0.4 * inch)
     )
-
-
-    # =====================================================
-    # PATIENT INFORMATION
-    # =====================================================
-
-    elements.append(
-        Paragraph(
-            "<b>Patient Information</b>",
-            styles["Heading2"]
-        )
-    )
-
-    elements.append(
-        Spacer(
-            1,
-            0.15 * inch
-        )
-    )
-
 
     elements.append(
         Paragraph(
@@ -1274,7 +795,7 @@ if predict_button:
 
     elements.append(
         Paragraph(
-            f"Glucose Level: {glucose}",
+            f"Glucose: {glucose}",
             styles["Normal"]
         )
     )
@@ -1295,7 +816,7 @@ if predict_button:
 
     elements.append(
         Paragraph(
-            f"Insulin Level: {insulin}",
+            f"Insulin: {insulin}",
             styles["Normal"]
         )
     )
@@ -1321,42 +842,17 @@ if predict_button:
         )
     )
 
-
     elements.append(
-        Spacer(
-            1,
-            0.3 * inch
-        )
+        Spacer(1, 0.3 * inch)
     )
-
-
-    # =====================================================
-    # PREDICTION INFORMATION
-    # =====================================================
-
-    elements.append(
-        Paragraph(
-            "<b>Prediction Result</b>",
-            styles["Heading2"]
-        )
-    )
-
-    elements.append(
-        Spacer(
-            1,
-            0.15 * inch
-        )
-    )
-
 
     elements.append(
         Paragraph(
             f"Prediction: "
-            f"{'High Risk' if prediction_value == 1 else 'Low Risk'}",
+            f"{'High Risk' if prediction[0] == 1 else 'Low Risk'}",
             styles["Normal"]
         )
     )
-
 
     elements.append(
         Paragraph(
@@ -1365,60 +861,9 @@ if predict_button:
         )
     )
 
-
-    elements.append(
-        Paragraph(
-            "Model: Random Forest Classifier",
-            styles["Normal"]
-        )
-    )
-
-
-    elements.append(
-        Paragraph(
-            "Model Accuracy: 82%",
-            styles["Normal"]
-        )
-    )
-
-
-    elements.append(
-        Spacer(
-            1,
-            0.3 * inch
-        )
-    )
-
-
-    # =====================================================
-    # DISCLAIMER IN PDF
-    # =====================================================
-
-    elements.append(
-        Paragraph(
-            "<b>Disclaimer:</b> This report is generated by "
-            "an educational Machine Learning application and "
-            "should not be considered a medical diagnosis.",
-            styles["Normal"]
-        )
-    )
-
-
-    # =====================================================
-    # BUILD PDF
-    # =====================================================
-
-    doc.build(
-        elements
-    )
-
+    doc.build(elements)
 
     pdf_buffer.seek(0)
-
-
-    # =====================================================
-    # DOWNLOAD BUTTON
-    # =====================================================
 
     st.download_button(
         label="📥 Download Prediction Report",
@@ -1436,11 +881,10 @@ st.markdown(
     """
     <div class="disclaimer">
 
-        ⚠️ <b>Important:</b>
-        This application is an educational Machine Learning
-        project and should not be considered a medical diagnosis.
-        Please consult a qualified healthcare professional
-        for medical advice.
+    ⚠️ <b>Important:</b>
+    This application is an educational Machine Learning project.
+    Its prediction should not be considered a medical diagnosis.
+    Please consult a qualified healthcare professional for medical advice.
 
     </div>
     """,
@@ -1456,9 +900,8 @@ st.markdown(
     """
     <div class="footer">
 
-        🩺 Diabetes AI Risk Prediction
-        &nbsp; • &nbsp;
-        Machine Learning Healthcare Project
+    🩺 Diabetes Risk Prediction &nbsp; • &nbsp;
+    Machine Learning Healthcare Project
 
     </div>
     """,
