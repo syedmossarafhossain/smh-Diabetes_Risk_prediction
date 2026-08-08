@@ -500,7 +500,7 @@ plt.close(fig)
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-predict = st.button(
+predict_button = st.button(
     "🔍 Analyze Diabetes Risk"
 )
 
@@ -510,6 +510,10 @@ predict = st.button(
 # =========================================================
 
 if predict_button:
+
+    # -----------------------------------------------------
+    # CREATE INPUT DATA
+    # -----------------------------------------------------
 
     input_data = np.array([[
         pregnancies,
@@ -522,7 +526,17 @@ if predict_button:
         age
     ]])
 
+
+    # -----------------------------------------------------
+    # SCALE INPUT
+    # -----------------------------------------------------
+
     scaled_data = scaler.transform(input_data)
+
+
+    # -----------------------------------------------------
+    # MAKE PREDICTION
+    # -----------------------------------------------------
 
     prediction = model.predict(scaled_data)
 
@@ -531,97 +545,116 @@ if predict_button:
     risk_prob = probability[0][1] * 100
 
 
-    # =========================================================
-# PREDICTION RESULT
-# =========================================================
+    # =====================================================
+    # PREDICTION TEXT & COLOR
+    # =====================================================
 
-st.markdown(
-    '<div class="section-title">'
-    '🎯 Prediction Result'
-    '</div>',
-    unsafe_allow_html=True
-)
+    prediction_text = (
+        "HIGH RISK"
+        if int(prediction[0]) == 1
+        else "LOW RISK"
+    )
 
-metric1, metric2, metric3 = st.columns(
-    3,
-    gap="medium"
-)
-
-
-# =========================================================
-# PREDICTION TEXT
-# =========================================================
-
-prediction_text = (
-    "HIGH RISK"
-    if int(prediction[0]) == 1
-    else "LOW RISK"
-)
-
-prediction_color = (
-    "#f87171"
-    if int(prediction[0]) == 1
-    else "#34d399"
-)
+    prediction_color = (
+        "#f87171"
+        if int(prediction[0]) == 1
+        else "#34d399"
+    )
 
 
-# =========================================================
-# RISK PROBABILITY
-# =========================================================
-
-with metric1:
+    # =====================================================
+    # PREDICTION RESULT
+    # =====================================================
 
     st.markdown(
-        '<div class="metric-card">'
-        '<div class="metric-title">RISK PROBABILITY</div>'
-        f'<div class="metric-value">{risk_prob:.2f}%</div>'
+        '<div class="section-title">'
+        '🎯 Prediction Result'
         '</div>',
         unsafe_allow_html=True
     )
 
 
-# =========================================================
-# PREDICTION
-# =========================================================
+    # =====================================================
+    # METRIC COLUMNS
+    # =====================================================
 
-with metric2:
-
-    st.markdown(
-        '<div class="metric-card">'
-        '<div class="metric-title">PREDICTION</div>'
-        f'<div class="metric-value" style="color:{prediction_color};">'
-        f'{prediction_text}'
-        '</div>'
-        '</div>',
-        unsafe_allow_html=True
+    metric1, metric2, metric3 = st.columns(
+        3,
+        gap="medium"
     )
 
 
-# =========================================================
-# MODEL
-# =========================================================
+    # =====================================================
+    # RISK PROBABILITY
+    # =====================================================
 
-with metric3:
+    with metric1:
 
-    st.markdown(
-        '<div class="metric-card">'
-        '<div class="metric-title">MODEL</div>'
-        '<div class="metric-value">Random Forest</div>'
-        '</div>',
-        unsafe_allow_html=True
-    )
+        st.markdown(
+            '<div class="metric-card">'
+            '<div class="metric-title">'
+            'RISK PROBABILITY'
+            '</div>'
+            f'<div class="metric-value">'
+            f'{risk_prob:.2f}%'
+            '</div>'
+            '</div>',
+            unsafe_allow_html=True
+        )
+
+
+    # =====================================================
+    # PREDICTION
+    # =====================================================
+
+    with metric2:
+
+        st.markdown(
+            '<div class="metric-card">'
+            '<div class="metric-title">'
+            'PREDICTION'
+            '</div>'
+            f'<div class="metric-value" '
+            f'style="color:{prediction_color};">'
+            f'{prediction_text}'
+            '</div>'
+            '</div>',
+            unsafe_allow_html=True
+        )
+
+
+    # =====================================================
+    # MODEL
+    # =====================================================
+
+    with metric3:
+
+        st.markdown(
+            '<div class="metric-card">'
+            '<div class="metric-title">'
+            'MODEL'
+            '</div>'
+            '<div class="metric-value">'
+            'Random Forest'
+            '</div>'
+            '</div>',
+            unsafe_allow_html=True
+        )
+
 
     # =====================================================
     # PROBABILITY BAR
     # =====================================================
 
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    st.progress(
-        min(risk_prob / 100, 1.0),
-        text=f"Estimated Risk: {risk_prob:.2f}%"
+    st.markdown(
+        "<br>",
+        unsafe_allow_html=True
     )
 
+    st.progress(
+        min(max(risk_prob / 100, 0.0), 1.0),
+        text=f"Estimated Risk: {risk_prob:.2f}%"
+    )
 
     # =====================================================
     # CONFUSION MATRIX
