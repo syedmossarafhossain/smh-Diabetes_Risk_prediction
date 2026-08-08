@@ -605,72 +605,66 @@ with metric3:
 
 
     # =====================================================
-    # RISK RESULT
-    # =====================================================
+# RISK RESULT
+# =====================================================
 
-    if prediction[0] == 1:
+if int(prediction[0]) == 1:
 
-        st.markdown(
-            f"""
-            <div class="result-card">
+    st.markdown(
+        f'<div class="result-card">'
+        '<div style="font-size:45px;">'
+        '⚠️'
+        '</div>'
 
-                <div style="font-size:45px;">
-                    ⚠️
-                </div>
+        f'<div class="risk-number high-risk">'
+        f'{risk_prob:.1f}%'
+        '</div>'
 
-                <div class="risk-number">
-                    {risk_prob:.1f}%
-                </div>
+        '<div style="'
+        'font-size:22px;'
+        'font-weight:700;'
+        'color:#f87171;'
+        '">'
+        'Higher Diabetes Risk'
+        '</div>'
 
-                <div style="
-                    font-size:22px;
-                    font-weight:700;
-                    color:#f87171;
-                ">
-                    Higher Diabetes Risk
-                </div>
+        '<div class="risk-label">'
+        'The model estimates an elevated probability '
+        'based on the provided parameters.'
+        '</div>'
 
-                <div class="risk-label">
-                    The model estimates an elevated probability
-                    based on the provided parameters.
-                </div>
+        '</div>',
+        unsafe_allow_html=True
+    )
 
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+else:
 
-    else:
+    st.markdown(
+        f'<div class="result-card">'
+        '<div style="font-size:45px;">'
+        '✅'
+        '</div>'
 
-        st.markdown(
-            f"""
-            <div class="result-card">
+        f'<div class="risk-number low-risk">'
+        f'{risk_prob:.1f}%'
+        '</div>'
 
-                <div style="font-size:45px;">
-                    ✅
-                </div>
+        '<div style="'
+        'font-size:22px;'
+        'font-weight:700;'
+        'color:#34d399;'
+        '">'
+        'Lower Diabetes Risk'
+        '</div>'
 
-                <div class="risk-number">
-                    {risk_prob:.1f}%
-                </div>
+        '<div class="risk-label">'
+        'The model estimates a lower probability '
+        'based on the provided parameters.'
+        '</div>'
 
-                <div style="
-                    font-size:22px;
-                    font-weight:700;
-                    color:#34d399;
-                ">
-                    Lower Diabetes Risk
-                </div>
-
-                <div class="risk-label">
-                    The model estimates a lower probability
-                    based on the provided parameters.
-                </div>
-
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+        '</div>',
+        unsafe_allow_html=True
+    )
 
 
     # =====================================================
