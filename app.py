@@ -863,82 +863,40 @@ if predict_button:
     )
 
 
-    # =====================================================
-    # PREDICTION RESULT
-    # =====================================================
+    # =========================================================
+# PREDICTION RESULT
+# =========================================================
 
-    st.markdown(
-        """
-        <div class="section-title">
-            🎯 Prediction Result
-        </div>
-        """,
-        unsafe_allow_html=True
+st.markdown("## 🎯 Prediction Result")
+
+metric1, metric2, metric3 = st.columns(3)
+
+# Risk Probability
+with metric1:
+    st.metric(
+        label="📊 Risk Probability",
+        value=f"{risk_prob:.2f}%"
     )
 
-
-    metric1, metric2, metric3 = st.columns(
-        3,
-        gap="medium"
+# Prediction
+with metric2:
+    prediction_text = (
+        "HIGH RISK"
+        if prediction[0] == 1
+        else "LOW RISK"
     )
 
+    st.metric(
+        label="🎯 Prediction",
+        value=prediction_text
+    )
 
-    # -----------------------------------------------------
-    # RISK PROBABILITY
-    # -----------------------------------------------------
-
-    with metric1:
-
-        st.markdown(
-            dedent(
-                f"""
-                <div class="metric-box">
-
-                    <div class="metric-title">
-                        Risk Probability
-                    </div>
-
-                    <div class="metric-value">
-                        {risk_prob:.2f}%
-                    </div>
-
-                </div>
-                """
-            ),
-            unsafe_allow_html=True
-        )
-
-
-    # -----------------------------------------------------
-    # PREDICTION
-    # -----------------------------------------------------
-
-    with metric2:
-
-        prediction_text = (
-            "HIGH RISK"
-            if prediction[0] == 1
-            else "LOW RISK"
-        )
-
-        st.markdown(
-            dedent(
-                f"""
-                <div class="metric-box">
-
-                    <div class="metric-title">
-                        Prediction
-                    </div>
-
-                    <div class="metric-value">
-                        {prediction_text}
-                    </div>
-
-                </div>
-                """
-            ),
-            unsafe_allow_html=True
-        )
+# Model
+with metric3:
+    st.metric(
+        label="🤖 Model",
+        value="Random Forest"
+    )
 
 
     # -----------------------------------------------------
