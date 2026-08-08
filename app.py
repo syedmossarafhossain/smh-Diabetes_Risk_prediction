@@ -758,141 +758,176 @@ if predict_button:
     plt.close(fig2)
 
 
-    # =====================================================
-    # PDF REPORT
-    # =====================================================
+    # =========================================================
+# PDF REPORT
+# =========================================================
 
-    st.markdown(
-        '<div class="section-title">📄 Prediction Report</div>',
-        unsafe_allow_html=True
-    )
+st.markdown(
+    '<div class="section-title">'
+    '📄 Prediction Report'
+    '</div>',
+    unsafe_allow_html=True
+)
 
-    pdf_buffer = BytesIO()
+pdf_buffer = BytesIO()
 
-    doc = SimpleDocTemplate(
-        pdf_buffer
-    )
+doc = SimpleDocTemplate(
+    pdf_buffer
+)
 
-    styles = getSampleStyleSheet()
+styles = getSampleStyleSheet()
 
-    elements = []
+elements = []
 
-    elements.append(
-        Paragraph(
-            "<b>Diabetes Risk Prediction Report</b>",
-            styles["Title"]
-        )
-    )
 
-    elements.append(
-        Spacer(1, 0.4 * inch)
-    )
+# =========================================================
+# PDF TITLE
+# =========================================================
 
-    # ADD
-    elements.append(
+elements.append(
     Paragraph(
-        f"Patient Name: {patient_name if patient_name else 'Not Provided'}",
+        "<b>Diabetes Risk Prediction Report</b>",
+        styles["Title"]
+    )
+)
+
+elements.append(
+    Spacer(
+        1,
+        0.4 * inch
+    )
+)
+
+
+# =========================================================
+# PATIENT INFORMATION
+# =========================================================
+
+elements.append(
+    Paragraph(
+        f"<b>Patient Name:</b> "
+        f"{patient_name if patient_name else 'Not Provided'}",
         styles["Normal"]
     )
 )
 
 elements.append(
     Paragraph(
-        f"Assessment Date: {prediction_date}",
+        f"<b>Assessment Date:</b> {prediction_date}",
         styles["Normal"]
     )
 )
 
 elements.append(
-    Spacer(1, 0.2 * inch)
+    Spacer(
+        1,
+        0.25 * inch
+    )
 )
 
-    elements.append(
-        Paragraph(
-            f"Pregnancies: {pregnancies}",
-            styles["Normal"]
-        )
+
+# =========================================================
+# CLINICAL INFORMATION
+# =========================================================
+
+elements.append(
+    Paragraph(
+        f"Pregnancies: {pregnancies}",
+        styles["Normal"]
     )
+)
 
-    elements.append(
-        Paragraph(
-            f"Glucose: {glucose}",
-            styles["Normal"]
-        )
+elements.append(
+    Paragraph(
+        f"Glucose Level: {glucose}",
+        styles["Normal"]
     )
+)
 
-    elements.append(
-        Paragraph(
-            f"Blood Pressure: {bp}",
-            styles["Normal"]
-        )
+elements.append(
+    Paragraph(
+        f"Blood Pressure: {bp}",
+        styles["Normal"]
     )
+)
 
-    elements.append(
-        Paragraph(
-            f"Skin Thickness: {skin}",
-            styles["Normal"]
-        )
+elements.append(
+    Paragraph(
+        f"Skin Thickness: {skin}",
+        styles["Normal"]
     )
+)
 
-    elements.append(
-        Paragraph(
-            f"Insulin: {insulin}",
-            styles["Normal"]
-        )
+elements.append(
+    Paragraph(
+        f"Insulin Level: {insulin}",
+        styles["Normal"]
     )
+)
 
-    elements.append(
-        Paragraph(
-            f"BMI: {bmi}",
-            styles["Normal"]
-        )
+elements.append(
+    Paragraph(
+        f"BMI: {bmi}",
+        styles["Normal"]
     )
+)
 
-    elements.append(
-        Paragraph(
-            f"Diabetes Pedigree Function: {dpf}",
-            styles["Normal"]
-        )
+elements.append(
+    Paragraph(
+        f"Diabetes Pedigree Function: {dpf}",
+        styles["Normal"]
     )
+)
 
-    elements.append(
-        Paragraph(
-            f"Age: {age}",
-            styles["Normal"]
-        )
+elements.append(
+    Paragraph(
+        f"Age: {age}",
+        styles["Normal"]
     )
+)
 
-    elements.append(
-        Spacer(1, 0.3 * inch)
+
+elements.append(
+    Spacer(
+        1,
+        0.3 * inch
     )
+)
 
-    elements.append(
-        Paragraph(
-            f"Prediction: "
-            f"{'High Risk' if prediction[0] == 1 else 'Low Risk'}",
-            styles["Normal"]
-        )
+
+# =========================================================
+# PREDICTION
+# =========================================================
+
+elements.append(
+    Paragraph(
+        f"<b>Prediction:</b> "
+        f"{'High Risk' if int(prediction[0]) == 1 else 'Low Risk'}",
+        styles["Normal"]
     )
+)
 
-    elements.append(
-        Paragraph(
-            f"Risk Probability: {risk_prob:.2f}%",
-            styles["Normal"]
-        )
+elements.append(
+    Paragraph(
+        f"<b>Risk Probability:</b> {risk_prob:.2f}%",
+        styles["Normal"]
     )
+)
 
-    doc.build(elements)
-
-    pdf_buffer.seek(0)
-
-    st.download_button(
-        label="📥 Download Prediction Report",
-        data=pdf_buffer,
-        file_name="Diabetes_Prediction_Report.pdf",
-        mime="application/pdf"
+elements.append(
+    Paragraph(
+        "<b>Model:</b> Random Forest",
+        styles["Normal"]
     )
+)
 
+
+elements.append(
+    Spacer(
+        1,
+        0.3 * inch
+    )
+)
 
 # =========================================================
 # DISCLAIMER
