@@ -8,6 +8,7 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
 from io import BytesIO
+from textwrap import dedent
 
 
 # =========================================================
@@ -26,7 +27,8 @@ st.set_page_config(
 # CUSTOM CSS
 # =========================================================
 
-st.markdown("""
+st.markdown(
+    """
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
@@ -35,225 +37,434 @@ html, body, [class*="css"] {
     font-family: 'Inter', sans-serif;
 }
 
-/* Main background */
-
 .stApp {
     background:
-        radial-gradient(circle at 10% 10%, rgba(59,130,246,0.12), transparent 25%),
-        radial-gradient(circle at 90% 20%, rgba(139,92,246,0.10), transparent 25%),
-        #090d16;
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(59, 130, 246, 0.12),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(124, 58, 237, 0.10),
+            transparent 28%
+        ),
+        #080c14;
     color: #f8fafc;
 }
 
-
-/* Remove default top spacing */
-
 .block-container {
-    padding-top: 2rem;
-    padding-bottom: 3rem;
     max-width: 1400px;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
 }
 
 
-/* Sidebar */
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
 
 section[data-testid="stSidebar"] {
     background: linear-gradient(
         180deg,
-        #0d1320 0%,
-        #0a0f19 100%
+        #0d1422 0%,
+        #080d17 100%
     );
+
     border-right: 1px solid rgba(255,255,255,0.08);
 }
 
+section[data-testid="stSidebar"] h1,
 section[data-testid="stSidebar"] h2,
 section[data-testid="stSidebar"] h3 {
     color: #ffffff;
 }
 
 
-/* Header */
+/* =========================================================
+   HERO
+   ========================================================= */
 
 .hero {
-    padding: 35px 40px;
+    padding: 38px 42px;
     border-radius: 24px;
+
     background:
         linear-gradient(
             135deg,
             rgba(37,99,235,0.22),
-            rgba(124,58,237,0.18)
+            rgba(124,58,237,0.20)
         );
-    border: 1px solid rgba(255,255,255,0.10);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-    margin-bottom: 30px;
-}
 
-.hero-title {
-    font-size: 42px;
-    font-weight: 800;
-    letter-spacing: -1.5px;
-    margin: 0;
-}
+    border: 1px solid rgba(96,165,250,0.20);
 
-.hero-subtitle {
-    margin-top: 10px;
-    font-size: 16px;
-    color: #aab4c5;
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.25);
+
+    margin-bottom: 34px;
 }
 
 .badge {
     display: inline-block;
+
     padding: 7px 14px;
+
     border-radius: 50px;
-    background: rgba(59,130,246,0.15);
-    border: 1px solid rgba(59,130,246,0.35);
+
+    background: rgba(59,130,246,0.14);
+
+    border: 1px solid rgba(96,165,250,0.30);
+
     color: #60a5fa;
-    font-size: 13px;
-    font-weight: 600;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+
     margin-bottom: 15px;
 }
 
+.hero-title {
+    font-size: 44px;
 
-/* Section title */
+    font-weight: 800;
+
+    letter-spacing: -1.8px;
+
+    line-height: 1.15;
+
+    color: #f8fafc;
+}
+
+.hero-subtitle {
+    margin-top: 12px;
+
+    max-width: 850px;
+
+    color: #aab6c8;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   SECTION TITLES
+   ========================================================= */
 
 .section-title {
     font-size: 23px;
-    font-weight: 700;
-    margin-top: 10px;
+
+    font-weight: 750;
+
+    color: #f8fafc;
+
+    margin-top: 24px;
+
     margin-bottom: 18px;
 }
 
 
-/* Input cards */
+/* =========================================================
+   INPUT LABELS
+   ========================================================= */
 
-.input-card {
-    background: rgba(20,26,39,0.85);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 18px;
-    padding: 18px;
-    margin-bottom: 14px;
-    transition: 0.2s ease;
-}
-
-.input-card:hover {
-    border-color: rgba(96,165,250,0.45);
-    transform: translateY(-2px);
+label {
+    font-weight: 600 !important;
+    color: #e5e7eb !important;
 }
 
 
-/* Streamlit input */
+/* =========================================================
+   INPUT BOXES
+   ========================================================= */
 
 div[data-baseweb="input"] {
-    background: #171d2a !important;
+    background: #171c28 !important;
+
     border-radius: 12px !important;
+
     border: 1px solid rgba(255,255,255,0.08) !important;
+
+    min-height: 48px;
 }
 
 div[data-baseweb="input"]:focus-within {
     border-color: #3b82f6 !important;
-    box-shadow: 0 0 0 2px rgba(59,130,246,0.15);
+
+    box-shadow:
+        0 0 0 2px rgba(59,130,246,0.15);
 }
 
 
-/* Buttons */
+/* =========================================================
+   SELECT / NUMBER INPUT
+   ========================================================= */
+
+input {
+    color: #f8fafc !important;
+}
+
+
+/* =========================================================
+   PREDICT BUTTON
+   ========================================================= */
 
 .stButton > button {
     width: 100%;
-    height: 52px;
+
+    min-height: 54px;
+
     border-radius: 14px;
-    border: none;
-    background: linear-gradient(
-        135deg,
-        #2563eb,
-        #7c3aed
-    );
+
+    border: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
+
     color: white;
+
     font-size: 16px;
+
     font-weight: 700;
-    box-shadow: 0 10px 30px rgba(37,99,235,0.25);
+
+    box-shadow:
+        0 12px 30px rgba(37,99,235,0.25);
+
     transition: all 0.2s ease;
 }
 
 .stButton > button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 15px 35px rgba(37,99,235,0.35);
+
+    box-shadow:
+        0 16px 38px rgba(37,99,235,0.35);
+
+    color: white;
 }
 
 
-/* Prediction card */
+/* =========================================================
+   METRIC CARDS
+   ========================================================= */
 
-.result-card {
-    padding: 30px;
-    border-radius: 22px;
-    background: linear-gradient(
-        135deg,
-        rgba(15,23,42,0.95),
-        rgba(30,41,59,0.85)
-    );
-    border: 1px solid rgba(255,255,255,0.10);
-    text-align: center;
-    margin-top: 20px;
-}
+.metric-box {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20,27,41,0.96),
+            rgba(14,20,32,0.96)
+        );
 
-.risk-number {
-    font-size: 52px;
-    font-weight: 800;
-    margin: 10px 0;
-}
+    border: 1px solid rgba(255,255,255,0.09);
 
-.risk-label {
-    color: #94a3b8;
-    font-size: 14px;
-}
-
-
-/* Metric cards */
-
-.metric-card {
-    padding: 20px;
     border-radius: 18px;
-    background: rgba(20,26,39,0.85);
-    border: 1px solid rgba(255,255,255,0.08);
+
+    padding: 22px;
+
+    min-height: 115px;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,0.18);
 }
 
 .metric-title {
     color: #94a3b8;
-    font-size: 13px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 9px;
 }
 
 .metric-value {
+    color: #f8fafc;
+
     font-size: 25px;
-    font-weight: 700;
-    margin-top: 5px;
+
+    font-weight: 800;
 }
 
 
-/* Footer */
+/* =========================================================
+   RESULT CARD
+   ========================================================= */
+
+.result-card {
+    margin-top: 22px;
+
+    padding: 34px;
+
+    border-radius: 24px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(18,27,43,0.98),
+            rgba(12,18,30,0.98)
+        );
+
+    border: 1px solid rgba(255,255,255,0.09);
+
+    box-shadow:
+        0 20px 55px rgba(0,0,0,0.25);
+}
+
+.result-icon {
+    font-size: 48px;
+
+    margin-bottom: 8px;
+}
+
+.risk-number {
+    font-size: 56px;
+
+    line-height: 1;
+
+    font-weight: 800;
+
+    margin: 10px 0;
+}
+
+.low-risk {
+    color: #34d399;
+}
+
+.high-risk {
+    color: #f87171;
+}
+
+.result-title {
+    font-size: 23px;
+
+    font-weight: 800;
+
+    margin-top: 10px;
+}
+
+.result-description {
+    color: #94a3b8;
+
+    max-width: 650px;
+
+    margin: 10px auto 0;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   INFORMATION CARD
+   ========================================================= */
+
+.info-card {
+    padding: 20px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(20,27,41,0.85);
+
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+
+/* =========================================================
+   DISCLAIMER
+   ========================================================= */
+
+.disclaimer {
+    margin-top: 28px;
+
+    padding: 17px 20px;
+
+    border-radius: 15px;
+
+    background:
+        rgba(245,158,11,0.07);
+
+    border:
+        1px solid rgba(245,158,11,0.18);
+
+    color: #cbd5e1;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
 
 .footer {
+    margin-top: 50px;
+
+    padding-top: 22px;
+
+    border-top:
+        1px solid rgba(255,255,255,0.08);
+
     text-align: center;
-    margin-top: 45px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255,255,255,0.08);
+
     color: #64748b;
+
     font-size: 12px;
 }
 
 
-/* Disclaimer */
+/* =========================================================
+   PROGRESS BAR
+   ========================================================= */
 
-.disclaimer {
-    padding: 15px 18px;
-    border-radius: 14px;
-    background: rgba(245,158,11,0.08);
-    border: 1px solid rgba(245,158,11,0.20);
-    color: #cbd5e1;
-    font-size: 13px;
-    margin-top: 20px;
+div[data-testid="stProgressBar"] > div {
+    border-radius: 20px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .hero {
+        padding: 28px 24px;
+    }
+
+    .hero-title {
+        font-size: 31px;
+    }
+
+    .hero-subtitle {
+        font-size: 14px;
+    }
+
+    .risk-number {
+        font-size: 45px;
+    }
+
 }
 
 </style>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True
+)
 
 
 # =========================================================
@@ -274,11 +485,41 @@ scaler_path = os.path.join(
     "scaler.pkl"
 )
 
-with open(model_path, "rb") as f:
-    model = pickle.load(f)
 
-with open(scaler_path, "rb") as f:
-    scaler = pickle.load(f)
+try:
+
+    with open(model_path, "rb") as f:
+        model = pickle.load(f)
+
+    with open(scaler_path, "rb") as f:
+        scaler = pickle.load(f)
+
+except FileNotFoundError:
+
+    st.error(
+        "❌ Model files were not found. "
+        "Please check the Model folder."
+    )
+
+    st.code(
+        """
+Model/
+├── diabetes_model.pkl
+└── scaler.pkl
+        """
+    )
+
+    st.stop()
+
+except Exception as e:
+
+    st.error(
+        "❌ Unable to load the machine learning model."
+    )
+
+    st.exception(e)
+
+    st.stop()
 
 
 # =========================================================
@@ -287,22 +528,38 @@ with open(scaler_path, "rb") as f:
 
 with st.sidebar:
 
-    st.markdown("## 🩺 Diabetes AI")
-
     st.markdown(
         """
-        <div style="
-            padding:15px;
-            border-radius:15px;
-            background:rgba(59,130,246,0.08);
-            border:1px solid rgba(59,130,246,0.15);
-        ">
-        <b>AI Risk Assessment</b><br>
-        <span style="color:#94a3b8;font-size:13px;">
-        Machine Learning powered diabetes risk estimation.
-        </span>
-        </div>
+        <h2>🩺 Diabetes AI</h2>
         """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+        dedent(
+            """
+            <div class="info-card">
+
+                <div style="
+                    font-size:17px;
+                    font-weight:700;
+                    margin-bottom:8px;
+                ">
+                    AI Risk Assessment
+                </div>
+
+                <div style="
+                    color:#94a3b8;
+                    font-size:13px;
+                    line-height:1.6;
+                ">
+                    Machine Learning powered diabetes
+                    risk estimation.
+                </div>
+
+            </div>
+            """
+        ),
         unsafe_allow_html=True
     )
 
@@ -310,75 +567,89 @@ with st.sidebar:
 
     st.markdown("### 🤖 Model")
 
-    st.write("**Algorithm**")
+    st.markdown("**Algorithm**")
     st.caption("Random Forest Classifier")
 
-    st.write("**Model Accuracy**")
+    st.markdown("**Model Accuracy**")
     st.caption("82%")
 
-    st.write("**Input Features**")
+    st.markdown("**Input Features**")
     st.caption("8 clinical parameters")
 
     st.markdown("---")
 
     st.markdown("### 📌 Features")
 
-    st.markdown("""
-    - Pregnancy history
-    - Glucose level
-    - Blood pressure
-    - Skin thickness
-    - Insulin level
-    - BMI
-    - Diabetes pedigree
-    - Age
-    """)
+    st.markdown(
+        """
+        - 🤰 Pregnancy history
+        - 🧪 Glucose level
+        - ❤️ Blood pressure
+        - 📏 Skin thickness
+        - 💉 Insulin level
+        - ⚖️ BMI
+        - 🧬 Diabetes pedigree
+        - 🎂 Age
+        """
+    )
 
     st.markdown("---")
 
-    st.caption("AI Diabetes Risk Prediction")
-    st.caption("Educational / Research Project")
+    st.caption("Diabetes AI Risk Prediction")
+    st.caption("Machine Learning Project")
 
 
 # =========================================================
-# HERO
-# =========================================================
-
-st.markdown("""
-<div class="hero">
-
-    <div class="badge">
-        ● AI POWERED HEALTH ANALYTICS
-    </div>
-
-    <div class="hero-title">
-        🩺 Diabetes Risk Prediction
-    </div>
-
-    <div class="hero-subtitle">
-        Analyze clinical parameters using a Machine Learning model
-        to estimate the probability of diabetes risk.
-    </div>
-
-</div>
-""", unsafe_allow_html=True)
-
-
-# =========================================================
-# INPUT SECTION
+# HERO SECTION
 # =========================================================
 
 st.markdown(
-    '<div class="section-title">📋 Patient Information</div>',
+    dedent(
+        """
+        <div class="hero">
+
+            <div class="badge">
+                ● AI POWERED HEALTH ANALYTICS
+            </div>
+
+            <div class="hero-title">
+                🩺 Diabetes Risk Prediction
+            </div>
+
+            <div class="hero-subtitle">
+                Analyze clinical parameters using a Machine
+                Learning model to estimate the probability
+                of diabetes risk.
+            </div>
+
+        </div>
+        """
+    ),
+    unsafe_allow_html=True
+)
+
+
+# =========================================================
+# PATIENT INFORMATION
+# =========================================================
+
+st.markdown(
+    """
+    <div class="section-title">
+        📋 Patient Information
+    </div>
+    """,
     unsafe_allow_html=True
 )
 
 col1, col2 = st.columns(2, gap="large")
 
 
-with col1:
+# =========================================================
+# LEFT INPUTS
+# =========================================================
 
-    st.markdown('<div class="input-card">', unsafe_allow_html=True)
+with col1:
 
     pregnancies = st.number_input(
         "🤰 Pregnancies",
@@ -412,12 +683,12 @@ with col1:
         step=1.0
     )
 
-    st.markdown('</div>', unsafe_allow_html=True)
 
+# =========================================================
+# RIGHT INPUTS
+# =========================================================
 
 with col2:
-
-    st.markdown('<div class="input-card">', unsafe_allow_html=True)
 
     insulin = st.number_input(
         "💉 Insulin Level",
@@ -451,17 +722,20 @@ with col2:
         step=1
     )
 
-    st.markdown('</div>', unsafe_allow_html=True)
-
 
 # =========================================================
 # FEATURE OVERVIEW
 # =========================================================
 
 st.markdown(
-    '<div class="section-title">📊 Clinical Data Overview</div>',
+    """
+    <div class="section-title">
+        📊 Clinical Data Overview
+    </div>
+    """,
     unsafe_allow_html=True
 )
+
 
 features = [
     pregnancies,
@@ -485,6 +759,7 @@ labels = [
     "Age"
 ]
 
+
 fig = plt.figure(figsize=(12, 4))
 
 plt.bar(
@@ -492,12 +767,22 @@ plt.bar(
     features
 )
 
-plt.xticks(rotation=30)
-plt.grid(axis="y", alpha=0.15)
+plt.xticks(
+    rotation=30,
+    ha="right"
+)
+
+plt.grid(
+    axis="y",
+    alpha=0.15
+)
 
 plt.tight_layout()
 
-st.pyplot(fig, use_container_width=True)
+st.pyplot(
+    fig,
+    use_container_width=True
+)
 
 plt.close(fig)
 
@@ -508,8 +793,8 @@ plt.close(fig)
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-predict = st.button(
-    "🔍 Analyze Diabetes Risk"
+predict_button = st.button(
+    "🔍  Analyze Diabetes Risk"
 )
 
 
@@ -517,192 +802,281 @@ predict = st.button(
 # PREDICTION
 # =========================================================
 
-if predict:
+if predict_button:
 
-    input_data = np.array([[
-        pregnancies,
-        glucose,
-        bp,
-        skin,
-        insulin,
-        bmi,
-        dpf,
-        age
-    ]])
+    # -----------------------------------------------------
+    # CREATE INPUT
+    # -----------------------------------------------------
 
-    scaled_data = scaler.transform(input_data)
+    input_data = np.array(
+        [[
+            pregnancies,
+            glucose,
+            bp,
+            skin,
+            insulin,
+            bmi,
+            dpf,
+            age
+        ]]
+    )
 
-    prediction = model.predict(scaled_data)
 
-    probability = model.predict_proba(scaled_data)
+    # -----------------------------------------------------
+    # SCALE INPUT
+    # -----------------------------------------------------
 
-    risk_prob = probability[0][1] * 100
+    try:
+
+        scaled_data = scaler.transform(
+            input_data
+        )
+
+    except Exception as e:
+
+        st.error(
+            "❌ Error while scaling input data."
+        )
+
+        st.exception(e)
+
+        st.stop()
+
+
+    # -----------------------------------------------------
+    # PREDICTION
+    # -----------------------------------------------------
+
+    try:
+
+        prediction = model.predict(
+            scaled_data
+        )
+
+        probability = model.predict_proba(
+            scaled_data
+        )
+
+    except Exception as e:
+
+        st.error(
+            "❌ Error while making prediction."
+        )
+
+        st.exception(e)
+
+        st.stop()
+
+
+    # -----------------------------------------------------
+    # RISK PROBABILITY
+    # -----------------------------------------------------
+
+    risk_prob = (
+        probability[0][1] * 100
+    )
 
 
     # =====================================================
-    # RESULT
+    # PREDICTION RESULT
     # =====================================================
 
     st.markdown(
-        '<div class="section-title">🎯 Prediction Result</div>',
+        """
+        <div class="section-title">
+            🎯 Prediction Result
+        </div>
+        """,
         unsafe_allow_html=True
     )
 
 
-    result_col1, result_col2, result_col3 = st.columns(3)
+    metric1, metric2, metric3 = st.columns(
+        3,
+        gap="medium"
+    )
 
 
-    with result_col1:
+    # -----------------------------------------------------
+    # RISK PROBABILITY
+    # -----------------------------------------------------
+
+    with metric1:
 
         st.markdown(
-            f"""
-            <div class="metric-card">
+            dedent(
+                f"""
+                <div class="metric-box">
 
-                <div class="metric-title">
-                    RISK PROBABILITY
+                    <div class="metric-title">
+                        Risk Probability
+                    </div>
+
+                    <div class="metric-value">
+                        {risk_prob:.2f}%
+                    </div>
+
                 </div>
-
-                <div class="metric-value">
-                    {risk_prob:.2f}%
-                </div>
-
-            </div>
-            """,
+                """
+            ),
             unsafe_allow_html=True
         )
 
 
-    with result_col2:
+    # -----------------------------------------------------
+    # PREDICTION
+    # -----------------------------------------------------
 
-        status = "HIGH RISK" if prediction[0] == 1 else "LOW RISK"
+    with metric2:
+
+        prediction_text = (
+            "HIGH RISK"
+            if prediction[0] == 1
+            else "LOW RISK"
+        )
 
         st.markdown(
-            f"""
-            <div class="metric-card">
+            dedent(
+                f"""
+                <div class="metric-box">
 
-                <div class="metric-title">
-                    PREDICTION
+                    <div class="metric-title">
+                        Prediction
+                    </div>
+
+                    <div class="metric-value">
+                        {prediction_text}
+                    </div>
+
                 </div>
-
-                <div class="metric-value">
-                    {status}
-                </div>
-
-            </div>
-            """,
+                """
+            ),
             unsafe_allow_html=True
         )
 
 
-    with result_col3:
+    # -----------------------------------------------------
+    # MODEL
+    # -----------------------------------------------------
+
+    with metric3:
 
         st.markdown(
-            """
-            <div class="metric-card">
+            dedent(
+                """
+                <div class="metric-box">
 
-                <div class="metric-title">
-                    MODEL
+                    <div class="metric-title">
+                        Model
+                    </div>
+
+                    <div class="metric-value">
+                        Random Forest
+                    </div>
+
                 </div>
-
-                <div class="metric-value">
-                    Random Forest
-                </div>
-
-            </div>
-            """,
+                """
+            ),
             unsafe_allow_html=True
         )
 
 
     # =====================================================
-    # RISK RESULT
+    # MAIN RESULT CARD
     # =====================================================
 
     if prediction[0] == 1:
 
         st.markdown(
-            f"""
-            <div class="result-card">
+            dedent(
+                f"""
+                <div class="result-card">
 
-                <div style="font-size:45px;">
-                    ⚠️
+                    <div class="result-icon">
+                        ⚠️
+                    </div>
+
+                    <div class="risk-number high-risk">
+                        {risk_prob:.1f}%
+                    </div>
+
+                    <div class="result-title">
+                        Higher Diabetes Risk
+                    </div>
+
+                    <div class="result-description">
+                        The machine learning model estimates
+                        an elevated diabetes risk based on
+                        the provided clinical parameters.
+                    </div>
+
                 </div>
-
-                <div class="risk-number">
-                    {risk_prob:.1f}%
-                </div>
-
-                <div style="
-                    font-size:22px;
-                    font-weight:700;
-                    color:#f87171;
-                ">
-                    Higher Diabetes Risk
-                </div>
-
-                <div class="risk-label">
-                    The model estimates an elevated probability
-                    based on the provided parameters.
-                </div>
-
-            </div>
-            """,
+                """
+            ),
             unsafe_allow_html=True
         )
 
     else:
 
         st.markdown(
-            f"""
-            <div class="result-card">
+            dedent(
+                f"""
+                <div class="result-card">
 
-                <div style="font-size:45px;">
-                    ✅
+                    <div class="result-icon">
+                        ✅
+                    </div>
+
+                    <div class="risk-number low-risk">
+                        {risk_prob:.1f}%
+                    </div>
+
+                    <div class="result-title">
+                        Lower Diabetes Risk
+                    </div>
+
+                    <div class="result-description">
+                        The machine learning model estimates
+                        a lower diabetes risk based on
+                        the provided clinical parameters.
+                    </div>
+
                 </div>
-
-                <div class="risk-number">
-                    {risk_prob:.1f}%
-                </div>
-
-                <div style="
-                    font-size:22px;
-                    font-weight:700;
-                    color:#34d399;
-                ">
-                    Lower Diabetes Risk
-                </div>
-
-                <div class="risk-label">
-                    The model estimates a lower probability
-                    based on the provided parameters.
-                </div>
-
-            </div>
-            """,
+                """
+            ),
             unsafe_allow_html=True
         )
 
 
     # =====================================================
-    # PROBABILITY BAR
+    # RISK PROGRESS
     # =====================================================
 
     st.markdown("<br>", unsafe_allow_html=True)
 
     st.progress(
-        min(risk_prob / 100, 1.0),
-        text=f"Estimated Risk: {risk_prob:.2f}%"
+        min(max(risk_prob / 100, 0), 1),
+        text=f"Estimated Diabetes Risk: {risk_prob:.2f}%"
     )
 
 
     # =====================================================
-    # CONFUSION MATRIX
+    # MODEL PERFORMANCE
     # =====================================================
 
     st.markdown(
-        '<div class="section-title">📌 Model Performance</div>',
+        """
+        <div class="section-title">
+            📌 Model Performance
+        </div>
+        """,
         unsafe_allow_html=True
     )
+
+
+    # IMPORTANT:
+    # These are demonstration values.
+    # Replace with your real test-set values.
 
     y_true = [
         0, 1, 0, 1, 0,
@@ -714,37 +1088,56 @@ if predict:
         0, 0, 0, 1, 1
     ]
 
+
     cm = confusion_matrix(
         y_true,
         y_pred
     )
 
-    fig2 = plt.figure(figsize=(6, 4))
+
+    fig2 = plt.figure(
+        figsize=(6, 4)
+    )
 
     plt.imshow(cm)
 
-    plt.title("Confusion Matrix")
+    plt.title(
+        "Confusion Matrix"
+    )
+
+    plt.xlabel(
+        "Predicted Label"
+    )
+
+    plt.ylabel(
+        "Actual Label"
+    )
 
     plt.xticks(
         [0, 1],
-        ["Predicted 0", "Predicted 1"]
+        ["No Diabetes", "Diabetes"]
     )
 
     plt.yticks(
         [0, 1],
-        ["Actual 0", "Actual 1"]
+        ["No Diabetes", "Diabetes"]
     )
 
+
     for i in range(2):
+
         for j in range(2):
 
             plt.text(
                 j,
                 i,
-                cm[i, j],
+                str(cm[i, j]),
                 ha="center",
-                va="center"
+                va="center",
+                fontsize=14,
+                fontweight="bold"
             )
+
 
     plt.tight_layout()
 
@@ -761,19 +1154,27 @@ if predict:
     # =====================================================
 
     st.markdown(
-        '<div class="section-title">📄 Prediction Report</div>',
+        """
+        <div class="section-title">
+            📄 Prediction Report
+        </div>
+        """,
         unsafe_allow_html=True
     )
 
+
     pdf_buffer = BytesIO()
+
 
     doc = SimpleDocTemplate(
         pdf_buffer
     )
 
+
     styles = getSampleStyleSheet()
 
     elements = []
+
 
     elements.append(
         Paragraph(
@@ -782,9 +1183,16 @@ if predict:
         )
     )
 
+
     elements.append(
-        Spacer(1, 0.4 * inch)
+        Spacer(
+            1,
+            0.4 * inch
+        )
     )
+
+
+    # Patient data
 
     elements.append(
         Paragraph(
@@ -795,7 +1203,7 @@ if predict:
 
     elements.append(
         Paragraph(
-            f"Glucose: {glucose}",
+            f"Glucose Level: {glucose}",
             styles["Normal"]
         )
     )
@@ -816,7 +1224,7 @@ if predict:
 
     elements.append(
         Paragraph(
-            f"Insulin: {insulin}",
+            f"Insulin Level: {insulin}",
             styles["Normal"]
         )
     )
@@ -842,9 +1250,16 @@ if predict:
         )
     )
 
+
     elements.append(
-        Spacer(1, 0.3 * inch)
+        Spacer(
+            1,
+            0.3 * inch
+        )
     )
+
+
+    # Prediction
 
     elements.append(
         Paragraph(
@@ -854,6 +1269,7 @@ if predict:
         )
     )
 
+
     elements.append(
         Paragraph(
             f"Risk Probability: {risk_prob:.2f}%",
@@ -861,9 +1277,14 @@ if predict:
         )
     )
 
-    doc.build(elements)
+
+    doc.build(
+        elements
+    )
+
 
     pdf_buffer.seek(0)
+
 
     st.download_button(
         label="📥 Download Prediction Report",
@@ -878,16 +1299,19 @@ if predict:
 # =========================================================
 
 st.markdown(
-    """
-    <div class="disclaimer">
+    dedent(
+        """
+        <div class="disclaimer">
 
-    ⚠️ <b>Important:</b>
-    This application is an educational Machine Learning project.
-    Its prediction should not be considered a medical diagnosis.
-    Please consult a qualified healthcare professional for medical advice.
+            ⚠️ <b>Important:</b>
+            This application is an educational Machine Learning
+            project and should not be considered a medical diagnosis.
+            Please consult a qualified healthcare professional
+            for medical advice.
 
-    </div>
-    """,
+        </div>
+        """
+    ),
     unsafe_allow_html=True
 )
 
@@ -897,13 +1321,16 @@ st.markdown(
 # =========================================================
 
 st.markdown(
-    """
-    <div class="footer">
+    dedent(
+        """
+        <div class="footer">
 
-    🩺 Diabetes Risk Prediction &nbsp; • &nbsp;
-    Machine Learning Healthcare Project
+            🩺 Diabetes AI Risk Prediction
+            &nbsp; • &nbsp;
+            Machine Learning Healthcare Project
 
-    </div>
-    """,
+        </div>
+        """
+    ),
     unsafe_allow_html=True
 )
