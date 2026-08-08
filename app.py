@@ -360,17 +360,58 @@ st.markdown(
 # INPUT SECTION
 # =========================================================
 
+# =========================================================
+# PATIENT INFORMATION
+# =========================================================
+
 st.markdown(
     '<div class="section-title">📋 Patient Information</div>',
     unsafe_allow_html=True
 )
 
-col1, col2 = st.columns(2, gap="large")
+# Patient details
+patient_col1, patient_col2 = st.columns(
+    2,
+    gap="large"
+)
+
+with patient_col1:
+
+    patient_name = st.text_input(
+        "👤 Patient Name",
+        placeholder="Enter patient name"
+    )
+
+with patient_col2:
+
+    prediction_date = st.date_input(
+        "📅 Assessment Date"
+    )
+
+
+# =========================================================
+# CLINICAL PARAMETERS
+# =========================================================
+
+st.markdown(
+    '<div class="section-title">'
+    '🧪 Clinical Parameters'
+    '</div>',
+    unsafe_allow_html=True
+)
+
+col1, col2 = st.columns(
+    2,
+    gap="large"
+)
+
+
+# =========================================================
+# LEFT INPUTS
+# =========================================================
 
 
 with col1:
-
-    st.markdown('<div class="input-card">', unsafe_allow_html=True)
 
     pregnancies = st.number_input(
         "🤰 Pregnancies",
@@ -746,6 +787,25 @@ if predict_button:
     elements.append(
         Spacer(1, 0.4 * inch)
     )
+
+    # ADD
+    elements.append(
+    Paragraph(
+        f"Patient Name: {patient_name if patient_name else 'Not Provided'}",
+        styles["Normal"]
+    )
+)
+
+elements.append(
+    Paragraph(
+        f"Assessment Date: {prediction_date}",
+        styles["Normal"]
+    )
+)
+
+elements.append(
+    Spacer(1, 0.2 * inch)
+)
 
     elements.append(
         Paragraph(
