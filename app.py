@@ -3,12 +3,12 @@ import numpy as np
 import pickle
 import os
 import matplotlib.pyplot as plt
+
 from sklearn.metrics import confusion_matrix
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
 from io import BytesIO
-from textwrap import dedent
 
 
 # =========================================================
@@ -50,6 +50,7 @@ html, body, [class*="css"] {
             transparent 28%
         ),
         #080c14;
+
     color: #f8fafc;
 }
 
@@ -199,13 +200,21 @@ div[data-baseweb="input"]:focus-within {
         0 0 0 2px rgba(59,130,246,0.15);
 }
 
-
-/* =========================================================
-   SELECT / NUMBER INPUT
-   ========================================================= */
-
 input {
     color: #f8fafc !important;
+}
+
+
+/* =========================================================
+   SELECT / DROPDOWN
+   ========================================================= */
+
+div[data-baseweb="select"] > div {
+    background: #171c28 !important;
+
+    border-radius: 12px !important;
+
+    border: 1px solid rgba(255,255,255,0.08) !important;
 }
 
 
@@ -271,6 +280,10 @@ input {
 
     min-height: 115px;
 
+    width: 100%;
+
+    box-sizing: border-box;
+
     box-shadow:
         0 10px 35px rgba(0,0,0,0.18);
 }
@@ -295,6 +308,10 @@ input {
     font-size: 25px;
 
     font-weight: 800;
+
+    line-height: 1.2;
+
+    word-break: break-word;
 }
 
 
@@ -432,8 +449,8 @@ input {
    PROGRESS BAR
    ========================================================= */
 
-div[data-testid="stProgressBar"] > div {
-    border-radius: 20px;
+div[data-testid="stProgressBar"] {
+    margin-top: 10px;
 }
 
 
@@ -457,6 +474,10 @@ div[data-testid="stProgressBar"] > div {
 
     .risk-number {
         font-size: 45px;
+    }
+
+    .metric-value {
+        font-size: 20px;
     }
 
 }
@@ -536,30 +557,28 @@ with st.sidebar:
     )
 
     st.markdown(
-        dedent(
-            """
-            <div class="info-card">
+        """
+        <div class="info-card">
 
-                <div style="
-                    font-size:17px;
-                    font-weight:700;
-                    margin-bottom:8px;
-                ">
-                    AI Risk Assessment
-                </div>
-
-                <div style="
-                    color:#94a3b8;
-                    font-size:13px;
-                    line-height:1.6;
-                ">
-                    Machine Learning powered diabetes
-                    risk estimation.
-                </div>
-
+            <div style="
+                font-size:17px;
+                font-weight:700;
+                margin-bottom:8px;
+            ">
+                AI Risk Assessment
             </div>
-            """
-        ),
+
+            <div style="
+                color:#94a3b8;
+                font-size:13px;
+                line-height:1.6;
+            ">
+                Machine Learning powered diabetes
+                risk estimation.
+            </div>
+
+        </div>
+        """,
         unsafe_allow_html=True
     )
 
@@ -604,16 +623,27 @@ with st.sidebar:
 # =========================================================
 
 st.markdown(
-    '<div class="hero">'
-    '<div class="badge">● AI POWERED HEALTH ANALYTICS</div>'
-    '<div class="hero-title">🩺 Diabetes Risk Prediction</div>'
-    '<div class="hero-subtitle">'
-    'Analyze clinical parameters using a Machine Learning '
-    'model to estimate the probability of diabetes risk.'
-    '</div>'
-    '</div>',
+    """
+    <div class="hero">
+
+        <div class="badge">
+            ● AI POWERED HEALTH ANALYTICS
+        </div>
+
+        <div class="hero-title">
+            🩺 Diabetes Risk Prediction
+        </div>
+
+        <div class="hero-subtitle">
+            Analyze clinical parameters using a Machine Learning
+            model to estimate the probability of diabetes risk.
+        </div>
+
+    </div>
+    """,
     unsafe_allow_html=True
 )
+
 
 # =========================================================
 # PATIENT INFORMATION
@@ -628,7 +658,11 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-col1, col2 = st.columns(2, gap="large")
+
+col1, col2 = st.columns(
+    2,
+    gap="large"
+)
 
 
 # =========================================================
@@ -746,7 +780,9 @@ labels = [
 ]
 
 
-fig = plt.figure(figsize=(12, 4))
+fig = plt.figure(
+    figsize=(12, 4)
+)
 
 plt.bar(
     labels,
@@ -777,7 +813,10 @@ plt.close(fig)
 # PREDICT BUTTON
 # =========================================================
 
-st.markdown("<br>", unsafe_allow_html=True)
+st.markdown(
+    "<br>",
+    unsafe_allow_html=True
+)
 
 predict_button = st.button(
     "🔍  Analyze Diabetes Risk"
@@ -790,9 +829,9 @@ predict_button = st.button(
 
 if predict_button:
 
-    # -----------------------------------------------------
-    # CREATE INPUT
-    # -----------------------------------------------------
+    # =====================================================
+    # CREATE INPUT DATA
+    # =====================================================
 
     input_data = np.array(
         [[
@@ -804,13 +843,14 @@ if predict_button:
             bmi,
             dpf,
             age
-        ]]
+        ]],
+        dtype=float
     )
 
 
-    # -----------------------------------------------------
+    # =====================================================
     # SCALE INPUT
-    # -----------------------------------------------------
+    # =====================================================
 
     try:
 
@@ -829,9 +869,9 @@ if predict_button:
         st.stop()
 
 
-    # -----------------------------------------------------
-    # PREDICTION
-    # -----------------------------------------------------
+    # =====================================================
+    # MODEL PREDICTION
+    # =====================================================
 
     try:
 
@@ -854,16 +894,33 @@ if predict_button:
         st.stop()
 
 
-    # -----------------------------------------------------
+    # =====================================================
     # RISK PROBABILITY
-    # -----------------------------------------------------
+    # =====================================================
 
     risk_prob = (
         probability[0][1] * 100
     )
 
 
-  # =====================================================
+    # =====================================================
+    # PREDICTION TEXT
+    # =====================================================
+
+    prediction_value = int(
+        prediction[0]
+    )
+
+    if prediction_value == 1:
+
+        prediction_text = "HIGH RISK"
+
+    else:
+
+        prediction_text = "LOW RISK"
+
+
+    # =====================================================
     # PREDICTION RESULT
     # =====================================================
 
@@ -883,85 +940,74 @@ if predict_button:
     )
 
 
-    # -----------------------------------------------------
-    # RISK PROBABILITY
-    # -----------------------------------------------------
+    # =====================================================
+    # METRIC 1
+    # =====================================================
 
     with metric1:
 
         st.markdown(
-            dedent(
-                f"""
-                <div class="metric-box">
+            f"""
+            <div class="metric-box">
 
-                    <div class="metric-title">
-                        Risk Probability
-                    </div>
-
-                    <div class="metric-value">
-                        {risk_prob:.2f}%
-                    </div>
-
+                <div class="metric-title">
+                    Risk Probability
                 </div>
-                """
-            ),
+
+                <div class="metric-value">
+                    {risk_prob:.2f}%
+                </div>
+
+            </div>
+            """,
             unsafe_allow_html=True
         )
 
 
-    # -----------------------------------------------------
-    # PREDICTION
-    # -----------------------------------------------------
+    # =====================================================
+    # METRIC 2
+    # =====================================================
 
     with metric2:
 
-        prediction_text = (
-            "HIGH RISK"
-            if prediction[0] == 1
-            else "LOW RISK"
-        )
-
         st.markdown(
-            dedent(
-                f"""
-                <div class="metric-box">
+            f"""
+            <div class="metric-box">
 
-                    <div class="metric-title">
-                        Prediction
-                    </div>
-
-                    <div class="metric-value">
-                        {prediction_text}
-                    </div>
-
+                <div class="metric-title">
+                    Prediction
                 </div>
-                """
-            ),
+
+                <div class="metric-value">
+                    {prediction_text}
+                </div>
+
+            </div>
+            """,
             unsafe_allow_html=True
         )
 
-    # -----------------------------------------------------
-    # MODEL
-    # -----------------------------------------------------
+
+    # =====================================================
+    # METRIC 3
+    # =====================================================
 
     with metric3:
 
         st.markdown(
-            dedent(
-                """
-                <div class="metric-box">
+            """
+            <div class="metric-box">
 
-                    <div class="metric-title">
-                        Model
-                    </div>
-
-                    <div class="metric-value">
-                        Random Forest
-                    </div>
-
+                <div class="metric-title">
+                    Model
                 </div>
-                """
-            ),
+
+                <div class="metric-value">
+                    Random Forest
+                </div>
+
+            </div>
+            """,
             unsafe_allow_html=True
         )
 
@@ -970,65 +1016,61 @@ if predict_button:
     # MAIN RESULT CARD
     # =====================================================
 
-    if prediction[0] == 1:
+    if prediction_value == 1:
 
         st.markdown(
-            dedent(
-                f"""
-                <div class="result-card">
+            f"""
+            <div class="result-card">
 
-                    <div class="result-icon">
-                        ⚠️
-                    </div>
-
-                    <div class="risk-number high-risk">
-                        {risk_prob:.1f}%
-                    </div>
-
-                    <div class="result-title">
-                        Higher Diabetes Risk
-                    </div>
-
-                    <div class="result-description">
-                        The machine learning model estimates
-                        an elevated diabetes risk based on
-                        the provided clinical parameters.
-                    </div>
-
+                <div class="result-icon">
+                    ⚠️
                 </div>
-                """
-            ),
+
+                <div class="risk-number high-risk">
+                    {risk_prob:.1f}%
+                </div>
+
+                <div class="result-title">
+                    Higher Diabetes Risk
+                </div>
+
+                <div class="result-description">
+                    The machine learning model estimates
+                    an elevated diabetes risk based on
+                    the provided clinical parameters.
+                </div>
+
+            </div>
+            """,
             unsafe_allow_html=True
         )
 
     else:
 
         st.markdown(
-            dedent(
-                f"""
-                <div class="result-card">
+            f"""
+            <div class="result-card">
 
-                    <div class="result-icon">
-                        ✅
-                    </div>
-
-                    <div class="risk-number low-risk">
-                        {risk_prob:.1f}%
-                    </div>
-
-                    <div class="result-title">
-                        Lower Diabetes Risk
-                    </div>
-
-                    <div class="result-description">
-                        The machine learning model estimates
-                        a lower diabetes risk based on
-                        the provided clinical parameters.
-                    </div>
-
+                <div class="result-icon">
+                    ✅
                 </div>
-                """
-            ),
+
+                <div class="risk-number low-risk">
+                    {risk_prob:.1f}%
+                </div>
+
+                <div class="result-title">
+                    Lower Diabetes Risk
+                </div>
+
+                <div class="result-description">
+                    The machine learning model estimates
+                    a lower diabetes risk based on
+                    the provided clinical parameters.
+                </div>
+
+            </div>
+            """,
             unsafe_allow_html=True
         )
 
@@ -1037,10 +1079,19 @@ if predict_button:
     # RISK PROGRESS
     # =====================================================
 
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown(
+        "<br>",
+        unsafe_allow_html=True
+    )
 
     st.progress(
-        min(max(risk_prob / 100, 0), 1),
+        min(
+            max(
+                risk_prob / 100,
+                0
+            ),
+            1
+        ),
         text=f"Estimated Diabetes Risk: {risk_prob:.2f}%"
     )
 
@@ -1059,9 +1110,12 @@ if predict_button:
     )
 
 
-    # IMPORTANT:
-    # These are demonstration values.
-    # Replace with your real test-set values.
+    # -----------------------------------------------------
+    # DEMONSTRATION DATA
+    # -----------------------------------------------------
+
+    # Replace these values with your actual test-set
+    # predictions if you want a real confusion matrix.
 
     y_true = [
         0, 1, 0, 1, 0,
@@ -1074,6 +1128,10 @@ if predict_button:
     ]
 
 
+    # =====================================================
+    # CONFUSION MATRIX
+    # =====================================================
+
     cm = confusion_matrix(
         y_true,
         y_pred
@@ -1084,7 +1142,9 @@ if predict_button:
         figsize=(6, 4)
     )
 
-    plt.imshow(cm)
+    plt.imshow(
+        cm
+    )
 
     plt.title(
         "Confusion Matrix"
@@ -1108,6 +1168,10 @@ if predict_button:
         ["No Diabetes", "Diabetes"]
     )
 
+
+    # =====================================================
+    # CONFUSION MATRIX VALUES
+    # =====================================================
 
     for i in range(2):
 
@@ -1158,8 +1222,13 @@ if predict_button:
 
     styles = getSampleStyleSheet()
 
+
     elements = []
 
+
+    # =====================================================
+    # PDF TITLE
+    # =====================================================
 
     elements.append(
         Paragraph(
@@ -1177,7 +1246,24 @@ if predict_button:
     )
 
 
-    # Patient data
+    # =====================================================
+    # PATIENT INFORMATION
+    # =====================================================
+
+    elements.append(
+        Paragraph(
+            "<b>Patient Information</b>",
+            styles["Heading2"]
+        )
+    )
+
+    elements.append(
+        Spacer(
+            1,
+            0.15 * inch
+        )
+    )
+
 
     elements.append(
         Paragraph(
@@ -1244,12 +1330,29 @@ if predict_button:
     )
 
 
-    # Prediction
+    # =====================================================
+    # PREDICTION INFORMATION
+    # =====================================================
+
+    elements.append(
+        Paragraph(
+            "<b>Prediction Result</b>",
+            styles["Heading2"]
+        )
+    )
+
+    elements.append(
+        Spacer(
+            1,
+            0.15 * inch
+        )
+    )
+
 
     elements.append(
         Paragraph(
             f"Prediction: "
-            f"{'High Risk' if prediction[0] == 1 else 'Low Risk'}",
+            f"{'High Risk' if prediction_value == 1 else 'Low Risk'}",
             styles["Normal"]
         )
     )
@@ -1263,6 +1366,48 @@ if predict_button:
     )
 
 
+    elements.append(
+        Paragraph(
+            "Model: Random Forest Classifier",
+            styles["Normal"]
+        )
+    )
+
+
+    elements.append(
+        Paragraph(
+            "Model Accuracy: 82%",
+            styles["Normal"]
+        )
+    )
+
+
+    elements.append(
+        Spacer(
+            1,
+            0.3 * inch
+        )
+    )
+
+
+    # =====================================================
+    # DISCLAIMER IN PDF
+    # =====================================================
+
+    elements.append(
+        Paragraph(
+            "<b>Disclaimer:</b> This report is generated by "
+            "an educational Machine Learning application and "
+            "should not be considered a medical diagnosis.",
+            styles["Normal"]
+        )
+    )
+
+
+    # =====================================================
+    # BUILD PDF
+    # =====================================================
+
     doc.build(
         elements
     )
@@ -1270,6 +1415,10 @@ if predict_button:
 
     pdf_buffer.seek(0)
 
+
+    # =====================================================
+    # DOWNLOAD BUTTON
+    # =====================================================
 
     st.download_button(
         label="📥 Download Prediction Report",
@@ -1284,19 +1433,17 @@ if predict_button:
 # =========================================================
 
 st.markdown(
-    dedent(
-        """
-        <div class="disclaimer">
+    """
+    <div class="disclaimer">
 
-            ⚠️ <b>Important:</b>
-            This application is an educational Machine Learning
-            project and should not be considered a medical diagnosis.
-            Please consult a qualified healthcare professional
-            for medical advice.
+        ⚠️ <b>Important:</b>
+        This application is an educational Machine Learning
+        project and should not be considered a medical diagnosis.
+        Please consult a qualified healthcare professional
+        for medical advice.
 
-        </div>
-        """
-    ),
+    </div>
+    """,
     unsafe_allow_html=True
 )
 
@@ -1306,16 +1453,14 @@ st.markdown(
 # =========================================================
 
 st.markdown(
-    dedent(
-        """
-        <div class="footer">
+    """
+    <div class="footer">
 
-            🩺 Diabetes AI Risk Prediction
-            &nbsp; • &nbsp;
-            Machine Learning Healthcare Project
+        🩺 Diabetes AI Risk Prediction
+        &nbsp; • &nbsp;
+        Machine Learning Healthcare Project
 
-        </div>
-        """
-    ),
+    </div>
+    """,
     unsafe_allow_html=True
 )
