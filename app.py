@@ -553,20 +553,174 @@ section[data-testid="stSidebar"] h3 {
         0 0 10px rgba(74,222,128,0.8);
 }
 
-/* Input cards */
 
-.input-card {
-    background: rgba(20,26,39,0.85);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 18px;
-    padding: 18px;
-    margin-bottom: 14px;
-    transition: 0.2s ease;
+/*CLINICAL INPUT PANEL*/
+.clinical-panel {
+
+    padding: 24px;
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15,23,42,0.65),
+            rgba(20,26,39,0.45)
+        );
+
+    border: 1px solid
+        rgba(255,255,255,0.06);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.16);
+
+    margin-bottom: 25px;
 }
 
-.input-card:hover {
-    border-color: rgba(96,165,250,0.45);
+
+
+/* ADVANCED INPUT AREA */
+
+div[data-testid="stNumberInput"],
+div[data-testid="stTextInput"],
+div[data-testid="stDateInput"] {
+
+    padding: 16px 18px 14px 18px;
+
+    margin-bottom: 14px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20,26,39,0.92),
+            rgba(15,23,42,0.88)
+        );
+
+    border: 1px solid
+        rgba(255,255,255,0.07);
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,0.14);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Hover */
+
+div[data-testid="stNumberInput"]:hover,
+div[data-testid="stTextInput"]:hover,
+div[data-testid="stDateInput"]:hover {
+
     transform: translateY(-2px);
+
+    border-color:
+        rgba(96,165,250,0.25);
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,0.22);
+}
+
+
+/* Labels */
+
+div[data-testid="stNumberInput"] label,
+div[data-testid="stTextInput"] label,
+div[data-testid="stDateInput"] label {
+
+    color: #cbd5e1 !important;
+
+    font-size: 13px !important;
+
+    font-weight: 600 !important;
+
+    margin-bottom: 8px !important;
+}
+
+
+/* Input */
+
+div[data-baseweb="input"] {
+
+    background:
+        rgba(15,23,42,0.95) !important;
+
+    border-radius: 12px !important;
+
+    border: 1px solid
+        rgba(255,255,255,0.08) !important;
+
+    min-height: 42px;
+}
+
+
+/* Input hover */
+
+div[data-baseweb="input"]:hover {
+
+    border-color:
+        rgba(96,165,250,0.35) !important;
+}
+
+
+/* Input focus */
+
+div[data-baseweb="input"]:focus-within {
+
+    border-color:
+        #3b82f6 !important;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(59,130,246,0.12) !important;
+}
+
+
+/* Input text */
+
+div[data-baseweb="input"] input {
+
+    color: #f8fafc !important;
+
+    font-size: 14px !important;
+
+    font-weight: 500 !important;
+}
+
+
+/* Placeholder */
+
+div[data-baseweb="input"] input::placeholder {
+
+    color: #64748b !important;
+}
+
+/* NUMBER INPUT CONTROL*/
+button[data-testid="stNumberInputStepDown"],
+button[data-testid="stNumberInputStepUp"] {
+
+    color: #94a3b8 !important;
+
+    background:
+        rgba(255,255,255,0.035) !important;
+
+    border: none !important;
+
+    transition: all 0.2s ease;
+}
+
+button[data-testid="stNumberInputStepDown"]:hover,
+button[data-testid="stNumberInputStepUp"]:hover {
+
+    color: #ffffff !important;
+
+    background:
+        rgba(59,130,246,0.15) !important;
 }
 
 
@@ -887,15 +1041,26 @@ with patient_col2:
 # =========================================================
 
 st.markdown(
+    '<div class="section-header">'
+    '<div class="section-header-left">'
+    '<div class="section-icon">'
+    '🧪'
+    '</div>'
+    '<div>'
     '<div class="section-title">'
-    '🧪 Clinical Parameters'
+    'Clinical Parameters'
+    '</div>'
+    '<div class="section-description">'
+    'Provide the clinical measurements required for risk analysis'
+    '</div>'
+    '</div>'
+    '</div>'
+    '<div class="section-status">'
+    '<span class="section-status-dot"></span>'
+    '8 Parameters'
+    '</div>'
     '</div>',
     unsafe_allow_html=True
-)
-
-col1, col2 = st.columns(
-    2,
-    gap="large"
 )
 
 
