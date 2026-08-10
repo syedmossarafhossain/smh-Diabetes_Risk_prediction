@@ -3,7 +3,6 @@ import numpy as np
 import pickle
 import os
 import matplotlib.pyplot as plt
-from sklearn.metrics import confusion_matrix
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
@@ -1041,28 +1040,34 @@ with patient_col2:
 # =========================================================
 
 st.markdown(
-    '<div class="section-header">'
-    '<div class="section-header-left">'
-    '<div class="section-icon">'
-    '🧪'
-    '</div>'
-    '<div>'
-    '<div class="section-title">'
-    'Clinical Parameters'
-    '</div>'
-    '<div class="section-description">'
-    'Provide the clinical measurements required for risk analysis'
-    '</div>'
-    '</div>'
-    '</div>'
-    '<div class="section-status">'
-    '<span class="section-status-dot"></span>'
-    '8 Parameters'
-    '</div>'
-    '</div>',
-    unsafe_allow_html=True
+'<div class="section-header">'
+'<div class="section-header-left">'
+'<div class="section-icon">'
+'🧪'
+'</div>'
+'<div>'
+'<div class="section-title">'
+'Clinical Parameters'
+'</div>'
+'<div class="section-description">'
+'Provide the clinical measurements required for risk analysis'
+'</div>'
+'</div>'
+'</div>'
+'<div class="section-status">'
+'<span class="section-status-dot"></span>'
+'8 Parameters'
+'</div>'
+'</div>',
+unsafe_allow_html=True
 )
 
+
+# CREATE TWO COLUMNS
+col1, col2 = st.columns(
+2,
+gap="large"
+)
 
 # =========================================================
 # LEFT INPUTS
@@ -1101,6 +1106,7 @@ with col1:
         step=1.0
     )
 
+# RIGHT INPUTS
 with col2:
 
     insulin = st.number_input(
