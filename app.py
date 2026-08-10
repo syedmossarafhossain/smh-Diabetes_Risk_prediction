@@ -1001,22 +1001,38 @@ button[data-testid="stNumberInputStepUp"]:hover {
 /* =========================================================
    PARAMETER CARDS
    ========================================================= */
+[data-testid="column"] { 
+   display: flex; 
+   flex-direction: column; 
+   align-items: stretch; 
+   justify-content: flex-start;
+   }
+   
+[data-testid="column"] > div { 
+width: 100%;
+}
+   
 .advanced-parameter-card {
-    min-height: 180px;
-    padding: 17px;
-    margin-bottom: 15px;
-    border-radius: 19px;
-    background:
-        linear-gradient(
-            145deg,
-            rgba(20,26,39,0.92),
-            rgba(15,23,42,0.78)
-        );
-    border: 1px solid rgba(255,255,255,0.07);
-    box-shadow:
-        0 12px 32px rgba(0,0,0,0.14);
-    transition:
-        all 0.25s ease;
+    width: 100%;
+    min-height: 240px;
+    box-sizing: border-box;
+
+    padding: 22px;
+    margin: 0;
+
+    background: linear-gradient(
+        145deg,
+        #121a2b,
+        #0e1525
+    );
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 24px;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
 }
 
 .advanced-parameter-card:hover {
@@ -1028,31 +1044,40 @@ button[data-testid="stNumberInputStepUp"]:hover {
 }
 
 .parameter-card-top {
+    width: 100%;
+
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 13px;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
 }
 
 .parameter-card-icon {
-    width: 39px;
-    height: 39px;
+    width: 48px;
+    height: 48px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 11px;
-    background:
-        rgba(59,130,246,0.09);
-    border:
-        1px solid rgba(96,165,250,0.13);
-    font-size: 17px;
+
+    background: #16233b;
+    border: 1px solid rgba(70, 130, 220, 0.25);
+    border-radius: 14px;
+
+    font-size: 24px;
 }
 
+
 .parameter-status {
-    padding: 5px 8px;
-    border-radius: 999px;
-    font-size: 8px;
-    font-weight: 800;
+    padding: 7px 13px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
@@ -1089,53 +1114,73 @@ button[data-testid="stNumberInputStepUp"]:hover {
 }
 
 .parameter-card-name {
-    color: #94a3b8;
-    font-size: 11px;
+    margin-bottom: 8px;
+
+    color: #8d99ae;
+
+    font-size: 13px;
     font-weight: 600;
 }
 
+
 .parameter-card-value {
-    margin-top: 4px;
-    color: #f8fafc;
-    font-size: 24px;
+    color: #f5f7fb;
+
+    font-size: 30px;
     font-weight: 800;
+
+    line-height: 1.2;
+
+    margin-bottom: 25px;
 }
 
 .parameter-card-unit {
     margin-left: 4px;
-    color: #64748b;
-    font-size: 9px;
+
+    color: #718096;
+
+    font-size: 11px;
     font-weight: 500;
 }
 
+
 .parameter-progress {
-    height: 6px;
-    margin-top: 16px;
+    width: 100%;
+    height: 8px;
+
+    margin-top: auto;
+    margin-bottom: 12px;
+
+    background: #202a3d;
+
+    border-radius: 10px;
+
     overflow: hidden;
-    border-radius: 999px;
-    background:
-        rgba(255,255,255,0.06);
 }
 
 .parameter-progress-fill {
     height: 100%;
-    border-radius: 999px;
-    background:
-        linear-gradient(
-            90deg,
-            #2563eb,
-            #7c3aed
-        );
-    box-shadow:
-        0 0 12px rgba(59,130,246,0.35);
-}
 
+    background: linear-gradient(
+        90deg,
+        #2563eb,
+        #7c3aed
+    );
+
+    border-radius: 10px;
+
+    transition: width 0.4s ease;
+}
 .parameter-card-footer {
+    width: 100%;
+
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    margin-top: 8px;
-    color: #475569;
-    font-size: 9px;
+
+    color: #56647a;
+
+    font-size: 10px;
 }
 
 
@@ -2055,52 +2100,60 @@ for i, (
     # -----------------------------------------
     # CARD
     # -----------------------------------------
-with parameter_columns[i % 4]:
+parameter_columns = st.columns(4, gap="large")
 
-    st.markdown(
-        '<div class="advanced-parameter-card">'
-        
-        '<div class="parameter-card-top">'
-        
-        '<div class="parameter-card-icon">'
-        f'{icon}'
-        '</div>'
-        
-        f'<div class="parameter-status {status_class}">'
-        f'{status}'
-        '</div>'
-        
-        '</div>'
-        
-        '<div class="parameter-card-name">'
-        f'{name}'
-        '</div>'
-        
-        '<div class="parameter-card-value">'
-        f'{display_value}'
-        '<span class="parameter-card-unit">'
-        f'{unit}'
-        '</span>'
-        '</div>'
-        
-        '<div class="parameter-progress">'
-        f'<div class="parameter-progress-fill" style="width: {percentage:.1f}%;"></div>'
-        '</div>'
-        
-        '<div class="parameter-card-footer">'
-        '<span>'
-        'Visualization'
-        '</span>'
-        
-        '<span>'
-        f'{percentage:.0f}%'
-        '</span>'
-        '</div>'
-        
-        '</div>',
-        
-        unsafe_allow_html=True
-    )
+for i, parameter in enumerate(parameters):
+
+    icon = parameter["icon"]
+    name = parameter["name"]
+    display_value = parameter["value"]
+    unit = parameter["unit"]
+    status = parameter["status"]
+    status_class = parameter["status_class"]
+    percentage = parameter["percentage"]
+
+    with parameter_columns[i % 4]:
+
+        st.markdown(
+            '<div class="advanced-parameter-card">'
+            
+            '<div class="parameter-card-top">'
+            
+            '<div class="parameter-card-icon">'
+            f'{icon}'
+            '</div>'
+            
+            f'<div class="parameter-status {status_class}">'
+            f'{status}'
+            '</div>'
+            
+            '</div>'
+            
+            '<div class="parameter-card-name">'
+            f'{name}'
+            '</div>'
+            
+            '<div class="parameter-card-value">'
+            f'{display_value}'
+            '<span class="parameter-card-unit">'
+            f'{unit}'
+            '</span>'
+            '</div>'
+            
+            '<div class="parameter-progress">'
+            f'<div class="parameter-progress-fill" '
+            f'style="width: {percentage:.1f}%;"></div>'
+            '</div>'
+            
+            '<div class="parameter-card-footer">'
+            '<span>Visualization</span>'
+            f'<span>{percentage:.0f}%</span>'
+            '</div>'
+            
+            '</div>',
+            
+            unsafe_allow_html=True
+        )
 
 
 
