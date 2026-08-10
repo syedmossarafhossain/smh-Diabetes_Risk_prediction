@@ -735,21 +735,45 @@ button[data-testid="stNumberInputStepUp"]:hover {
 }
 
 .clinical-dashboard-header {
+    width: 100%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    margin-top: 35px;
     margin-bottom: 22px;
+
+    padding: 18px 22px;
+
+    box-sizing: border-box;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15, 23, 42, 0.92),
+            rgba(17, 24, 39, 0.78)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.16);
 }
 
 .clinical-dashboard-title {
     display: flex;
     align-items: center;
     gap: 14px;
+    min-width: 0;
 }
 
 .clinical-dashboard-icon {
     width: 48px;
     height: 48px;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -757,32 +781,36 @@ button[data-testid="stNumberInputStepUp"]:hover {
     background:
         linear-gradient(
             135deg,
-            rgba(37,99,235,0.20),
-            rgba(124,58,237,0.20)
+            rgba(37, 99, 235, 0.20),
+            rgba(124, 58, 237, 0.20)
         );
-    border: 1px solid rgba(96,165,250,0.20);
+    border: 1px solid rgba(96, 165, 250, 0.20);
     font-size: 22px;
     box-shadow:
-        0 10px 30px rgba(37,99,235,0.12);
+        0 10px 30px rgba(37, 99, 235, 0.12);
 }
 
 .clinical-dashboard-heading {
+    margin: 0;
+    color: #f8fafc;
     font-size: 22px;
     font-weight: 800;
-    color: #f8fafc;
+    line-height: 1.2;
     letter-spacing: -0.5px;
 }
-
 .clinical-dashboard-subtitle {
-    margin-top: 4px;
+    margin-top: 5px;
     color: #64748b;
     font-size: 12px;
+    font-weight: 500;
+    line-height: 1.5;
 }
 
 .live-analysis {
     display: inline-flex;
     align-items: center;
     gap: 7px;
+    flex-shrink: 0;
     padding: 8px 13px;
     border-radius: 999px;
     background: rgba(34,197,94,0.08);
@@ -791,12 +819,15 @@ button[data-testid="stNumberInputStepUp"]:hover {
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.5px;
+    white-space: nowrap;
 }
 
 .live-dot {
     width: 7px;
     height: 7px;
     border-radius: 50%;
+    flex-shrink: 0;
+    display: inline-block;
     background: #4ade80;
     box-shadow:
         0 0 12px rgba(74,222,128,0.85);
@@ -1127,6 +1158,14 @@ button[data-testid="stNumberInputStepUp"]:hover {
 
     .clinical-dashboard-header {
         align-items: flex-start;
+         padding: 16px;
+    }
+    .clinical-dashboard-heading {
+        font-size: 18px;
+    }
+
+    .clinical-dashboard-subtitle {
+        font-size: 11px;
     }
 
     .live-analysis {
@@ -1138,6 +1177,19 @@ button[data-testid="stNumberInputStepUp"]:hover {
         align-items: flex-start;
         gap: 8px;
     }
+}
+
+@media (max-width: 520px) {
+
+    .clinical-dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .live-analysis {
+        align-self: flex-start;
+    }
+
 }
 
 
@@ -1564,39 +1616,31 @@ with col2:
 # ADVANCED CLINICAL INTELLIGENCE DASHBOARD
 st.markdown(
     """
-    <div class="clinical-dashboard">
+    <div class="clinical-dashboard-header">
 
-        <div class="clinical-dashboard-header">
+        <div class="clinical-dashboard-title">
 
-            <div class="clinical-dashboard-title">
+            <div class="clinical-dashboard-icon">
+                🧬
+            </div>
 
-                <div class="clinical-dashboard-icon">
-                    🧬
+            <div>
+
+                <div class="clinical-dashboard-heading">
+                    Clinical Intelligence Dashboard
                 </div>
 
-                <div>
-
-                    <div class="clinical-dashboard-heading">
-                        Clinical Intelligence Dashboard
-                    </div>
-
-                    <div class="clinical-dashboard-subtitle">
-                        Real-time visualization of entered clinical parameters
-                    </div>
-
+                <div class="clinical-dashboard-subtitle">
+                    Real-time visualization of entered clinical parameters
                 </div>
 
             </div>
 
+        </div>
 
-            <div class="live-analysis">
-
-                <span class="live-dot"></span>
-
-                LIVE ANALYSIS
-
-            </div>
-
+        <div class="live-analysis">
+            <span class="live-dot"></span>
+            <span>LIVE ANALYSIS</span>
         </div>
 
     </div>
