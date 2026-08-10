@@ -2100,61 +2100,51 @@ for i, (
     # -----------------------------------------
     # CARD
     # -----------------------------------------
-parameter_columns = st.columns(4, gap="large")
+with parameter_columns[i % 4]:
 
-for i, parameter in enumerate(parameters):
+    st.markdown(
+        '<div class="advanced-parameter-card">'
 
-    icon = parameter["icon"]
-    name = parameter["name"]
-    display_value = parameter["value"]
-    unit = parameter["unit"]
-    status = parameter["status"]
-    status_class = parameter["status_class"]
-    percentage = parameter["percentage"]
+        '<div class="parameter-card-top">'
 
-    with parameter_columns[i % 4]:
+        '<div class="parameter-card-icon">'
+        f'{icon}'
+        '</div>'
 
-        st.markdown(
-            '<div class="advanced-parameter-card">'
-            
-            '<div class="parameter-card-top">'
-            
-            '<div class="parameter-card-icon">'
-            f'{icon}'
-            '</div>'
-            
-            f'<div class="parameter-status {status_class}">'
-            f'{status}'
-            '</div>'
-            
-            '</div>'
-            
-            '<div class="parameter-card-name">'
-            f'{name}'
-            '</div>'
-            
-            '<div class="parameter-card-value">'
-            f'{display_value}'
-            '<span class="parameter-card-unit">'
-            f'{unit}'
-            '</span>'
-            '</div>'
-            
-            '<div class="parameter-progress">'
-            f'<div class="parameter-progress-fill" '
-            f'style="width: {percentage:.1f}%;"></div>'
-            '</div>'
-            
-            '<div class="parameter-card-footer">'
-            '<span>Visualization</span>'
-            f'<span>{percentage:.0f}%</span>'
-            '</div>'
-            
-            '</div>',
-            
-            unsafe_allow_html=True
-        )
+        f'<div class="parameter-status {status_class}">'
+        f'{status}'
+        '</div>'
 
+        '</div>'
+
+        '<div class="parameter-card-name">'
+        f'{name}'
+        '</div>'
+
+        '<div class="parameter-card-value">'
+        f'{display_value}'
+        '<span class="parameter-card-unit">'
+        f'{unit}'
+        '</span>'
+        '</div>'
+
+        '<div class="parameter-progress">'
+
+        '<div class="parameter-progress-fill" '
+        f'style="width: {percentage:.1f}%;">'
+        '</div>'
+
+        '</div>'
+
+        '<div class="parameter-card-footer">'
+        '<span>Visualization</span>'
+        f'<span>{percentage:.0f}%</span>'
+        '</div>'
+
+        '</div>',
+
+        unsafe_allow_html=True
+    )
 
 
 # =========================================================
