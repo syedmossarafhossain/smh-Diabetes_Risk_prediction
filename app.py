@@ -882,6 +882,7 @@ button[data-testid="stNumberInputStepUp"]:hover {
 .profile-index-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     color: #94a3b8;
     font-size: 10px;
     font-weight: 700;
@@ -909,6 +910,7 @@ button[data-testid="stNumberInputStepUp"]:hover {
         0 0 0 2px rgba(96,165,250,0.08),
         0 0 50px rgba(59,130,246,0.18),
         inset 0 0 40px rgba(59,130,246,0.08);
+    box-sizing: border-box;
 }
 
 .profile-index-value {
@@ -925,6 +927,7 @@ button[data-testid="stNumberInputStepUp"]:hover {
 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .profile-index-unit {
@@ -1721,7 +1724,7 @@ clinical_profile_index = max(
 # =========================================================
 
 profile_col, radar_col = st.columns(
-    [1, 2],
+    [1, 1.8],
     gap="large"
 )
 
@@ -1733,53 +1736,33 @@ profile_col, radar_col = st.columns(
 with profile_col:
 
     st.markdown(
-        f"""
-        <div class="profile-index-card">
-
-            <div class="profile-index-header">
-
-                <span>
-                    CLINICAL PROFILE INDEX
-                </span>
-
-                <span>
-                    📊
-                </span>
-
-            </div>
-
-
-            <div class="profile-index-circle">
-
-                <div class="profile-index-value">
-                    {clinical_profile_index:.0f}
-                </div>
-
-                <div class="profile-index-unit">
-                    / 100
-                </div>
-
-            </div>
-
-
-            <div class="profile-index-title">
-                Parameter Visualization Index
-            </div>
-
-
-            <div class="profile-index-description">
-
-                A normalized visualization score based
-                on the entered clinical parameters.
-
-                <br><br>
-
-                <b>Not a medical diagnosis.</b>
-
-            </div>
-
-        </div>
-        """,
+        '<div class="profile-index-card">'
+        '<div class="profile-index-header">'
+        '<span>'
+        'CLINICAL PROFILE INDEX'
+        '</span>'
+        '<span>'
+        '📊'
+        '</span>'
+        '</div>'
+        '<div class="profile-index-circle">'
+        '<div class="profile-index-value">'
+        f'{clinical_profile_index:.0f}'
+        '</div>'
+        '<div class="profile-index-unit">'
+        '/ 100'
+        '</div>'
+        '</div>'
+        '<div class="profile-index-title">'
+        'Parameter Visualization Index'
+        '</div>'
+        '<div class="profile-index-description">'
+        'A normalized visualization score based '
+        'on the entered clinical parameters.'
+        '<br><br>'
+        '<b>Not a medical diagnosis.</b>'    
+        '</div>'
+        '</div>',
         unsafe_allow_html=True
     )
 
@@ -1791,7 +1774,6 @@ with profile_col:
 with radar_col:
 
     radar_labels = [
-
         "Pregnancy",
         "Glucose",
         "Blood Pressure",
@@ -1800,12 +1782,9 @@ with radar_col:
         "BMI",
         "Pedigree",
         "Age"
-
     ]
 
-
     radar_values = [
-
         visual_values["Pregnancies"],
         visual_values["Glucose"],
         visual_values["Blood Pressure"],
@@ -1814,39 +1793,22 @@ with radar_col:
         visual_values["BMI"],
         visual_values["Diabetes Pedigree"],
         visual_values["Age"]
-
     ]
-
 
     fig_radar = go.Figure()
 
-
     fig_radar.add_trace(
-
         go.Scatterpolar(
-
-            r=radar_values + [
-                radar_values[0]
-            ],
-
-            theta=radar_labels + [
-                radar_labels[0]
-            ],
-
+            r=radar_values + [radar_values[0]],
+            theta=radar_labels + [radar_labels[0]],
             fill="toself",
-
             line=dict(
                 width=2
             ),
-
             opacity=0.85,
-
             name="Clinical Profile"
-
         )
-
     )
-
 
     fig_radar.update_layout(
 
@@ -1875,63 +1837,33 @@ with radar_col:
             bgcolor="rgba(15,23,42,0.35)",
 
             radialaxis=dict(
-
                 visible=True,
-
-                range=[
-                    0,
-                    100
-                ],
-
-                gridcolor=
-                    "rgba(255,255,255,0.07)",
-
-                linecolor=
-                    "rgba(255,255,255,0.08)",
-
+                range=[0, 100],
+                gridcolor="rgba(255,255,255,0.07)",
+                linecolor="rgba(255,255,255,0.08)",
                 tickfont=dict(
                     color="#64748b",
                     size=8
                 )
-
             ),
 
             angularaxis=dict(
-
-                gridcolor=
-                    "rgba(255,255,255,0.06)",
-
-                linecolor=
-                    "rgba(255,255,255,0.08)",
-
+                gridcolor="rgba(255,255,255,0.06)",
+                linecolor="rgba(255,255,255,0.08)",
                 tickfont=dict(
                     color="#cbd5e1",
                     size=10
                 )
-
             )
-
         )
-
     )
-
-
-    st.markdown(
-        '<div class="radar-card">',
-        unsafe_allow_html=True
-    )
-
 
     st.plotly_chart(
-
         fig_radar,
-
         use_container_width=True,
-
         config={
             "displayModeBar": False
         }
-
     )
 
 
