@@ -547,16 +547,17 @@ section[data-testid="stSidebar"] h3 {
 }
 
 .section-status-dot {
-    width: 6px;
-    height: 6px;
-
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
-
+    flex-shrink: 0;
+    display: inline-block;
     background: #4ade80;
-
     box-shadow:
-        0 0 10px rgba(74,222,128,0.8);
+        0 0 12px rgba(74,222,128,0.85);
+    animation: livePulse 1.8s infinite;
 }
+
 
 
 /*CLINICAL INPUT PANEL*/
