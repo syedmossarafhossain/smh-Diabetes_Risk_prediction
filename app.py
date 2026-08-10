@@ -884,7 +884,7 @@ button[data-testid="stNumberInputStepUp"]:hover {
     justify-content: space-between;
     align-items: center;
     color: #94a3b8;
-    font-size: 10px;
+    font-size: 17px;
     font-weight: 700;
     letter-spacing: 0.8px;
 }
@@ -938,7 +938,7 @@ button[data-testid="stNumberInputStepUp"]:hover {
 
 .profile-index-title {
     color: #cbd5e1;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
 }
 
@@ -946,7 +946,7 @@ button[data-testid="stNumberInputStepUp"]:hover {
     max-width: 300px;
     margin: 9px auto 0;
     color: #64748b;
-    font-size: 11px;
+    font-size: 13px;
     line-height: 1.6;
 }
 
@@ -1878,19 +1878,30 @@ with radar_col:
 # =========================================================
 
 st.markdown(
-    """
-    <div class="parameter-analysis-header">
-
-        <div class="parameter-analysis-title">
-            📊 Parameter Analysis
-        </div>
-
-        <div class="parameter-analysis-count">
-            8 PARAMETERS
-        </div>
-
-    </div>
-    """,
+    '<div class="section-header">'
+    '<div class="section-header-left">'
+    
+    '<div class="section-icon">'
+    '📊'
+    '</div>'
+    '<div>'
+    '<div class="section-title">'
+    'Parameter Analysis'
+    '</div>'
+    '<div class="section-description">'
+    'Detailed visualization of clinical parameter values'
+    '</div>'
+    
+    '</div>'
+    
+    '</div>'
+    '<div class="section-status">'
+    '<span class="section-status-dot"></span>'
+    '8 Parameters'
+    '</div>'
+    
+    '</div>',
+    
     unsafe_allow_html=True
 )
 
