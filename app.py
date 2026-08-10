@@ -74,55 +74,383 @@ section[data-testid="stSidebar"] h3 {
 
 /* Header */
 
-.block-container {
-    padding-top: 1rem;
-    padding-bottom: 3rem;
-    max-width: 1400px;
-}
-
 .hero {
-    padding: 35px 40px;
-    margin-top: 40px;
-    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
 
-    border-radius: 24px;
+    margin-top: 35px;
+    margin-bottom: 45px;
+
+    padding: 42px 48px;
+
+    min-height: 260px;
+
+    border-radius: 28px;
 
     background:
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(124, 58, 237, 0.28),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 15% 80%,
+            rgba(37, 99, 235, 0.20),
+            transparent 30%
+        ),
         linear-gradient(
             135deg,
-            rgba(37,99,235,0.22),
-            rgba(124,58,237,0.18)
+            rgba(15, 23, 42, 0.98),
+            rgba(17, 24, 39, 0.94)
         );
 
-    border: 1px solid rgba(255,255,255,0.10);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    border: 1px solid rgba(148, 163, 184, 0.14);
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+    backdrop-filter: blur(20px);
 }
 
-.hero-title {
-    font-size: 42px;
-    font-weight: 800;
-    letter-spacing: -1.5px;
-    margin: 0;
+
+/* Decorative glow */
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    right: -90px;
+    top: -120px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(99, 102, 241, 0.30),
+            transparent 70%
+        );
+
+    filter: blur(10px);
+
+    pointer-events: none;
 }
 
-.hero-subtitle {
-    margin-top: 10px;
-    font-size: 16px;
-    color: #aab4c5;
+
+/* Decorative grid */
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 32px 32px;
+
+    mask-image: linear-gradient(
+        to bottom right,
+        black,
+        transparent 70%
+    );
+
+    pointer-events: none;
 }
+
+
+/* Hero content */
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* Badge */
 
 .badge {
-    display: inline-block;
-    padding: 7px 14px;
-    border-radius: 50px;
-    background: rgba(59,130,246,0.15);
-    border: 1px solid rgba(59,130,246,0.35);
-    color: #60a5fa;
-    font-size: 13px;
-    font-weight: 600;
-    margin-bottom: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 14px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(59, 130, 246, 0.10);
+
+    border: 1px solid
+        rgba(96, 165, 250, 0.25);
+
+    color: #93c5fd;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 0.4px;
+
+    margin-bottom: 18px;
+
+    box-shadow:
+        0 8px 25px rgba(37, 99, 235, 0.12);
 }
 
+
+/* Badge dot */
+
+.badge-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #60a5fa;
+
+    box-shadow:
+        0 0 12px rgba(96, 165, 250, 0.8);
+}
+
+
+/* Hero title */
+
+.hero-title {
+    margin: 0;
+
+    max-width: 760px;
+
+    font-size: clamp(34px, 4vw, 54px);
+
+    line-height: 1.05;
+
+    font-weight: 800;
+
+    letter-spacing: -2px;
+
+    color: #f8fafc;
+}
+
+
+/* Gradient title */
+
+.hero-title span {
+    background:
+        linear-gradient(
+            90deg,
+            #60a5fa,
+            #818cf8,
+            #c084fc
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    background-clip: text;
+}
+
+
+/* Subtitle */
+
+.hero-subtitle {
+    margin-top: 18px;
+
+    max-width: 680px;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+
+    color: #94a3b8;
+}
+
+
+/* Hero bottom information */
+
+.hero-meta {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 26px;
+
+    flex-wrap: wrap;
+}
+
+
+/* Meta cards */
+
+.hero-meta-item {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 9px 13px;
+
+    border-radius: 10px;
+
+    background: rgba(255,255,255,0.035);
+
+    border: 1px solid
+        rgba(255,255,255,0.07);
+
+    color: #cbd5e1;
+
+    font-size: 12px;
+
+    font-weight: 500;
+}
+
+
+/* Right visual */
+
+.hero-visual {
+    position: absolute;
+
+    z-index: 2;
+
+    right: 48px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 210px;
+    height: 210px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* AI pulse circle */
+
+.hero-orb {
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            rgba(96,165,250,0.35),
+            rgba(124,58,237,0.12) 45%,
+            rgba(15,23,42,0.9) 70%
+        );
+
+    border: 1px solid
+        rgba(129,140,248,0.35);
+
+    box-shadow:
+        0 0 50px rgba(99,102,241,0.22),
+        inset 0 0 35px rgba(96,165,250,0.08);
+
+    animation: heroPulse 4s ease-in-out infinite;
+}
+
+
+/* Orb icon */
+
+.hero-orb-icon {
+    font-size: 58px;
+
+    filter:
+        drop-shadow(
+            0 0 18px rgba(96,165,250,0.45)
+        );
+}
+
+
+/* Orb animation */
+
+@keyframes heroPulse {
+
+    0%, 100% {
+        transform: scale(1);
+        box-shadow:
+            0 0 50px rgba(99,102,241,0.22),
+            inset 0 0 35px rgba(96,165,250,0.08);
+    }
+
+    50% {
+        transform: scale(1.05);
+        box-shadow:
+            0 0 75px rgba(99,102,241,0.35),
+            inset 0 0 45px rgba(96,165,250,0.12);
+    }
+}
+
+
+/* Responsive */
+
+@media (max-width: 900px) {
+
+    .hero {
+        padding: 34px 30px;
+    }
+
+    .hero-visual {
+        opacity: 0.25;
+        right: 15px;
+    }
+
+    .hero-title {
+        max-width: 650px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .hero {
+        margin-top: 20px;
+        padding: 28px 22px;
+        min-height: 300px;
+    }
+
+    .hero-title {
+        font-size: 34px;
+        letter-spacing: -1px;
+    }
+
+    .hero-subtitle {
+        font-size: 14px;
+    }
+
+    .hero-visual {
+        display: none;
+    }
+
+    .hero-meta {
+        gap: 8px;
+    }
+}
 
 /* Section title */
 
@@ -356,13 +684,58 @@ with st.sidebar:
 
 st.markdown(
     '<div class="hero">'
-    '<div class="badge">● AI POWERED HEALTH ANALYTICS</div>'
-    '<div class="hero-title">🩺 Diabetes Risk Prediction</div>'
-    '<div class="hero-subtitle">'
-    'Analyze clinical parameters using a Machine Learning '
-    'model to estimate the probability of diabetes risk.'
+    
+    '<div class="hero-content">'
+    
+    '<div class="badge">'
+    '<span class="badge-dot"></span>'
+    'AI-POWERED HEALTH ANALYTICS'
     '</div>'
+    
+    '<div class="hero-title">'
+    'Diabetes Risk '
+    '<span>Prediction</span>'
+    '</div>'
+    
+    '<div class="hero-subtitle">'
+    'Analyze clinical health parameters with a '
+    'machine learning model and receive an '
+    'instant diabetes risk assessment.'
+    '</div>'
+    
+    '<div class="hero-meta">'
+    
+    '<div class="hero-meta-item">'
+    '🤖 Random Forest'
+    '</div>'
+    
+    '<div class="hero-meta-item">'
+    '⚡ Instant Prediction'
+    '</div>'
+    
+    '<div class="hero-meta-item">'
+    '🔒 Secure Analysis'
+    '</div>'
+    
+    '</div>'
+    
+    '</div>'
+    
+    
+    '<div class="hero-visual">'
+    
+    '<div class="hero-orb">'
+    
+    '<div class="hero-orb-icon">'
+    '🧬'
+    '</div>'
+    
+    '</div>'
+    
+    '</div>'
+    
     '</div>',
+    
     unsafe_allow_html=True
 )
 
