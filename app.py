@@ -3,12 +3,16 @@ import numpy as np
 import pickle
 import os
 import matplotlib.pyplot as plt
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+import plotly.graph_objects as go
+
+from reportlab.platypus import (
+    SimpleDocTemplate,
+    Paragraph,
+    Spacer
+)
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
 from io import BytesIO
-import matplotlib.pyplot as plt
-import plotly.graph_objects as go
 
 
 # =========================================================
@@ -837,7 +841,7 @@ button[data-testid="stNumberInputStepUp"]:hover {
             rgba(17,24,39,0.82)
         );
 
-    border: 1px solid rgba(255,255,255,0.08)
+    border: 1px solid rgba(255,255,255,0.08);
     box-shadow:
         0 20px 60px rgba(0,0,0,0.20);
     text-align: center;
