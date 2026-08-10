@@ -761,6 +761,29 @@ if predict_button:
 # =========================================================
 # PDF REPORT
 # =========================================================
+if predict_button:
+
+    # prediction code
+    input_data = np.array([[
+        pregnancies,
+        glucose,
+        bp,
+        skin,
+        insulin,
+        bmi,
+        dpf,
+        age
+    ]])
+
+    scaled_data = scaler.transform(input_data)
+
+    prediction = model.predict(scaled_data)
+    probability = model.predict_proba(scaled_data)
+
+    risk_prob = probability[0][1] * 100
+
+
+
 
 st.markdown(
     '<div class="section-title">'
@@ -783,26 +806,6 @@ elements = []
 # =========================================================
 # PDF TITLE
 # =========================================================
-if predict_button:
-
-    # prediction code
-    input_data = np.array([[
-        pregnancies,
-        glucose,
-        bp,
-        skin,
-        insulin,
-        bmi,
-        dpf,
-        age
-    ]])
-
-    scaled_data = scaler.transform(input_data)
-
-    prediction = model.predict(scaled_data)
-    probability = model.predict_proba(scaled_data)
-
-    risk_prob = probability[0][1] * 100
 
 elements.append(
     Paragraph(
