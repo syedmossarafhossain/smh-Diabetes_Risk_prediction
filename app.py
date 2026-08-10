@@ -74,18 +74,28 @@ section[data-testid="stSidebar"] h3 {
 
 /* Header */
 
+.block-container {
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    max-width: 1400px;
+}
+
 .hero {
     padding: 35px 40px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+
     border-radius: 24px;
+
     background:
         linear-gradient(
             135deg,
             rgba(37,99,235,0.22),
             rgba(124,58,237,0.18)
         );
+
     border: 1px solid rgba(255,255,255,0.10);
     box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-    margin-bottom: 30px;
 }
 
 .hero-title {
