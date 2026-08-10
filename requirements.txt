@@ -1,8 +1,7 @@
 streamlit>=1.32
-pandas
 numpy
+pandas
 scikit-learn
 matplotlib
-seaborn
-joblib
+plotly
 reportlab
