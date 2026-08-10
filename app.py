@@ -7,6 +7,8 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
 from io import BytesIO
+import matplotlib.pyplot as plt
+import plotly.graph_objects as go
 
 
 # =========================================================
@@ -722,6 +724,419 @@ button[data-testid="stNumberInputStepUp"]:hover {
         rgba(59,130,246,0.15) !important;
 }
 
+/* CLINICAL INTELLIGENCE DASHBOARD */
+.clinical-dashboard {
+    margin-top: 35px;
+    margin-bottom: 30px;
+}
+
+.clinical-dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.clinical-dashboard-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.clinical-dashboard-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(37,99,235,0.20),
+            rgba(124,58,237,0.20)
+        );
+    border: 1px solid rgba(96,165,250,0.20);
+    font-size: 22px;
+    box-shadow:
+        0 10px 30px rgba(37,99,235,0.12);
+}
+
+.clinical-dashboard-heading {
+    font-size: 22px;
+    font-weight: 800;
+    color: #f8fafc;
+    letter-spacing: -0.5px;
+}
+
+.clinical-dashboard-subtitle {
+    margin-top: 4px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.live-analysis {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 13px;
+    border-radius: 999px;
+    background: rgba(34,197,94,0.08);
+    border: 1px solid rgba(34,197,94,0.18);
+    color: #86efac;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #4ade80;
+    box-shadow:
+        0 0 12px rgba(74,222,128,0.85);
+    animation: livePulse 1.8s infinite;
+}
+
+@keyframes livePulse {
+
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.45;
+        transform: scale(0.75);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================================
+   PROFILE INDEX
+   ========================================================= */
+.profile-index-card {
+    min-height: 390px;
+    padding: 26px;
+    border-radius: 24px;
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(59,130,246,0.12),
+            transparent 45%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(15,23,42,0.96),
+            rgba(17,24,39,0.82)
+        );
+
+    border: 1px solid rgba(255,255,255,0.08)
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.20);
+    text-align: center;
+}
+
+.profile-index-header {
+    display: flex;
+    justify-content: space-between;
+    color: #94a3b8;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+}
+
+.profile-index-circle {
+    width: 205px;
+    height: 205px;
+    margin: 25px auto 18px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background:
+        radial-gradient(
+            circle,
+            #0f172a 58%,
+            transparent 59%
+        );
+
+    border: 8px solid rgba(59,130,246,0.18);
+    box-shadow:
+        0 0 0 2px rgba(96,165,250,0.08),
+        0 0 50px rgba(59,130,246,0.18),
+        inset 0 0 40px rgba(59,130,246,0.08);
+}
+
+.profile-index-value {
+    font-size: 58px;
+    font-weight: 800;
+    line-height: 1;
+    background:
+        linear-gradient(
+            135deg,
+            #60a5fa,
+            #818cf8,
+            #c084fc
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.profile-index-unit {
+    margin-top: 6px;
+    color: #64748b;
+    font-size: 11px;
+}
+
+.profile-index-title {
+    color: #cbd5e1;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.profile-index-description {
+    max-width: 300px;
+    margin: 9px auto 0;
+    color: #64748b;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+/* =========================================================
+   RADAR CONTAINER
+   ========================================================= */
+.radar-card {
+    min-height: 390px;
+    padding: 10px 15px;
+    border-radius: 24px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15,23,42,0.92),
+            rgba(17,24,39,0.75)
+        );
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.18);
+}
+
+/* =========================================================
+   PARAMETER HEADER
+   ========================================================= */
+.parameter-analysis-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 28px 0 16px;
+}
+
+.parameter-analysis-title {
+    font-size: 17px;
+    font-weight: 800;
+    color: #f8fafc;
+}
+
+.parameter-analysis-count {
+    padding: 6px 10px;
+    border-radius: 999px;
+    background:
+        rgba(96,165,250,0.08);
+    border:
+        1px solid rgba(96,165,250,0.15);
+    color: #93c5fd;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   PARAMETER CARDS
+   ========================================================= */
+.advanced-parameter-card {
+    min-height: 180px;
+    padding: 17px;
+    margin-bottom: 15px;
+    border-radius: 19px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20,26,39,0.92),
+            rgba(15,23,42,0.78)
+        );
+    border: 1px solid rgba(255,255,255,0.07);
+    box-shadow:
+        0 12px 32px rgba(0,0,0,0.14);
+    transition:
+        all 0.25s ease;
+}
+
+.advanced-parameter-card:hover {
+    transform: translateY(-4px);
+    border-color:
+        rgba(96,165,250,0.25);
+    box-shadow:
+        0 18px 40px rgba(0,0,0,0.25);
+}
+
+.parameter-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 13px;
+}
+
+.parameter-card-icon {
+    width: 39px;
+    height: 39px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    background:
+        rgba(59,130,246,0.09);
+    border:
+        1px solid rgba(96,165,250,0.13);
+    font-size: 17px;
+}
+
+.parameter-status {
+    padding: 5px 8px;
+    border-radius: 999px;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.status-low {
+    color: #93c5fd;
+    background:
+        rgba(59,130,246,0.08);
+    border:
+        1px solid rgba(59,130,246,0.15);
+}
+
+.status-normal {
+    color: #86efac;
+    background:
+        rgba(34,197,94,0.08);
+    border:
+        1px solid rgba(34,197,94,0.15);
+}
+
+.status-moderate {
+    color: #fde68a;
+    background:
+        rgba(245,158,11,0.08);
+    border:
+        1px solid rgba(245,158,11,0.15);
+}
+
+.status-elevated {
+    color: #fca5a5;
+    background:
+        rgba(239,68,68,0.08);
+    border:
+        1px solid rgba(239,68,68,0.15);
+}
+
+.parameter-card-name {
+    color: #94a3b8;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.parameter-card-value {
+    margin-top: 4px;
+    color: #f8fafc;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.parameter-card-unit {
+    margin-left: 4px;
+    color: #64748b;
+    font-size: 9px;
+    font-weight: 500;
+}
+
+.parameter-progress {
+    height: 6px;
+    margin-top: 16px;
+    overflow: hidden;
+    border-radius: 999px;
+    background:
+        rgba(255,255,255,0.06);
+}
+
+.parameter-progress-fill {
+    height: 100%;
+    border-radius: 999px;
+    background:
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #7c3aed
+        );
+    box-shadow:
+        0 0 12px rgba(59,130,246,0.35);
+}
+
+.parameter-card-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    color: #475569;
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   DASHBOARD STATUS FOOTER
+   ========================================================= */
+
+.clinical-dashboard-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4px;
+    padding: 15px 18px;
+    border-radius: 15px;
+    background:
+        rgba(255,255,255,0.025);
+    border:
+        1px solid rgba(255,255,255,0.05);
+    color: #64748b;
+    font-size: 10px;
+}
+
+@media (max-width: 700px) {
+
+    .clinical-dashboard-header {
+        align-items: flex-start;
+    }
+
+    .live-analysis {
+        display: none;
+    }
+
+    .clinical-dashboard-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+
+
 
 /* Streamlit input */
 
@@ -1140,6 +1555,621 @@ with col2:
         value=30,
         step=1
     )
+
+
+# ADVANCED CLINICAL INTELLIGENCE DASHBOARD
+st.markdown(
+    """
+    <div class="clinical-dashboard">
+
+        <div class="clinical-dashboard-header">
+
+            <div class="clinical-dashboard-title">
+
+                <div class="clinical-dashboard-icon">
+                    🧬
+                </div>
+
+                <div>
+
+                    <div class="clinical-dashboard-heading">
+                        Clinical Intelligence Dashboard
+                    </div>
+
+                    <div class="clinical-dashboard-subtitle">
+                        Real-time visualization of entered clinical parameters
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="live-analysis">
+
+                <span class="live-dot"></span>
+
+                LIVE ANALYSIS
+
+            </div>
+
+        </div>
+
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+
+# =========================================================
+# CLINICAL DATA
+# =========================================================
+
+clinical_data = {
+
+    "Pregnancies": pregnancies,
+
+    "Glucose": glucose,
+
+    "Blood Pressure": bp,
+
+    "Skin Thickness": skin,
+
+    "Insulin": insulin,
+
+    "BMI": bmi,
+
+    "Diabetes Pedigree": dpf,
+
+    "Age": age
+
+}
+
+
+# =========================================================
+# NORMALIZATION FOR VISUALIZATION
+# =========================================================
+
+visual_values = {
+
+    "Pregnancies":
+        min((pregnancies / 20) * 100, 100),
+
+    "Glucose":
+        min((glucose / 300) * 100, 100),
+
+    "Blood Pressure":
+        min((bp / 200) * 100, 100),
+
+    "Skin Thickness":
+        min((skin / 100) * 100, 100),
+
+    "Insulin":
+        min((insulin / 900) * 100, 100),
+
+    "BMI":
+        min((bmi / 70) * 100, 100),
+
+    "Diabetes Pedigree":
+        min((dpf / 3) * 100, 100),
+
+    "Age":
+        min((age / 120) * 100, 100)
+
+}
+
+
+# =========================================================
+# PROFILE INDEX
+# =========================================================
+
+clinical_profile_index = (
+    np.mean(
+        list(visual_values.values())
+    )
+)
+
+clinical_profile_index = max(
+    0,
+    min(
+        100,
+        clinical_profile_index
+    )
+)
+
+
+# =========================================================
+# TOP DASHBOARD
+# =========================================================
+
+profile_col, radar_col = st.columns(
+    [1, 2],
+    gap="large"
+)
+
+
+# =========================================================
+# PROFILE INDEX CARD
+# =========================================================
+
+with profile_col:
+
+    st.markdown(
+        f"""
+        <div class="profile-index-card">
+
+            <div class="profile-index-header">
+
+                <span>
+                    CLINICAL PROFILE INDEX
+                </span>
+
+                <span>
+                    📊
+                </span>
+
+            </div>
+
+
+            <div class="profile-index-circle">
+
+                <div class="profile-index-value">
+                    {clinical_profile_index:.0f}
+                </div>
+
+                <div class="profile-index-unit">
+                    / 100
+                </div>
+
+            </div>
+
+
+            <div class="profile-index-title">
+                Parameter Visualization Index
+            </div>
+
+
+            <div class="profile-index-description">
+
+                A normalized visualization score based
+                on the entered clinical parameters.
+
+                <br><br>
+
+                <b>Not a medical diagnosis.</b>
+
+            </div>
+
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+
+# =========================================================
+# RADAR CHART
+# =========================================================
+
+with radar_col:
+
+    radar_labels = [
+
+        "Pregnancy",
+        "Glucose",
+        "Blood Pressure",
+        "Skin",
+        "Insulin",
+        "BMI",
+        "Pedigree",
+        "Age"
+
+    ]
+
+
+    radar_values = [
+
+        visual_values["Pregnancies"],
+        visual_values["Glucose"],
+        visual_values["Blood Pressure"],
+        visual_values["Skin Thickness"],
+        visual_values["Insulin"],
+        visual_values["BMI"],
+        visual_values["Diabetes Pedigree"],
+        visual_values["Age"]
+
+    ]
+
+
+    fig_radar = go.Figure()
+
+
+    fig_radar.add_trace(
+
+        go.Scatterpolar(
+
+            r=radar_values + [
+                radar_values[0]
+            ],
+
+            theta=radar_labels + [
+                radar_labels[0]
+            ],
+
+            fill="toself",
+
+            line=dict(
+                width=2
+            ),
+
+            opacity=0.85,
+
+            name="Clinical Profile"
+
+        )
+
+    )
+
+
+    fig_radar.update_layout(
+
+        height=390,
+
+        margin=dict(
+            l=45,
+            r=45,
+            t=25,
+            b=25
+        ),
+
+        paper_bgcolor="rgba(0,0,0,0)",
+
+        plot_bgcolor="rgba(0,0,0,0)",
+
+        showlegend=False,
+
+        font=dict(
+            color="#cbd5e1",
+            size=10
+        ),
+
+        polar=dict(
+
+            bgcolor="rgba(15,23,42,0.35)",
+
+            radialaxis=dict(
+
+                visible=True,
+
+                range=[
+                    0,
+                    100
+                ],
+
+                gridcolor=
+                    "rgba(255,255,255,0.07)",
+
+                linecolor=
+                    "rgba(255,255,255,0.08)",
+
+                tickfont=dict(
+                    color="#64748b",
+                    size=8
+                )
+
+            ),
+
+            angularaxis=dict(
+
+                gridcolor=
+                    "rgba(255,255,255,0.06)",
+
+                linecolor=
+                    "rgba(255,255,255,0.08)",
+
+                tickfont=dict(
+                    color="#cbd5e1",
+                    size=10
+                )
+
+            )
+
+        )
+
+    )
+
+
+    st.markdown(
+        '<div class="radar-card">',
+        unsafe_allow_html=True
+    )
+
+
+    st.plotly_chart(
+
+        fig_radar,
+
+        use_container_width=True,
+
+        config={
+            "displayModeBar": False
+        }
+
+    )
+
+
+    st.markdown(
+        '</div>',
+        unsafe_allow_html=True
+    )
+
+
+# =========================================================
+# PARAMETER ANALYSIS HEADER
+# =========================================================
+
+st.markdown(
+    """
+    <div class="parameter-analysis-header">
+
+        <div class="parameter-analysis-title">
+            📊 Parameter Analysis
+        </div>
+
+        <div class="parameter-analysis-count">
+            8 PARAMETERS
+        </div>
+
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+
+# =========================================================
+# PARAMETER CARD DATA
+# =========================================================
+
+parameter_cards = [
+
+    (
+        "🤰",
+        "Pregnancies",
+        pregnancies,
+        "count",
+        20
+    ),
+
+    (
+        "🧪",
+        "Glucose",
+        glucose,
+        "mg/dL",
+        300
+    ),
+
+    (
+        "❤️",
+        "Blood Pressure",
+        bp,
+        "mmHg",
+        200
+    ),
+
+    (
+        "📏",
+        "Skin Thickness",
+        skin,
+        "mm",
+        100
+    ),
+
+    (
+        "💉",
+        "Insulin",
+        insulin,
+        "μU/mL",
+        900
+    ),
+
+    (
+        "⚖️",
+        "BMI",
+        bmi,
+        "kg/m²",
+        70
+    ),
+
+    (
+        "🧬",
+        "Diabetes Pedigree",
+        dpf,
+        "index",
+        3
+    ),
+
+    (
+        "🎂",
+        "Age",
+        age,
+        "years",
+        120
+    )
+
+]
+
+
+# =========================================================
+# PARAMETER CARDS
+# =========================================================
+
+parameter_columns = st.columns(
+    4,
+    gap="medium"
+)
+
+
+for i, (
+    icon,
+    name,
+    value,
+    unit,
+    max_value
+) in enumerate(parameter_cards):
+
+
+    percentage = min(
+
+        max(
+            (value / max_value) * 100,
+            0
+        ),
+
+        100
+
+    )
+
+
+    # -----------------------------------------
+    # UI STATUS
+    # -----------------------------------------
+
+    if percentage < 30:
+
+        status = "LOW"
+        status_class = "status-low"
+
+    elif percentage < 50:
+
+        status = "NORMAL"
+        status_class = "status-normal"
+
+    elif percentage < 70:
+
+        status = "MODERATE"
+        status_class = "status-moderate"
+
+    else:
+
+        status = "ELEVATED"
+        status_class = "status-elevated"
+
+
+    # -----------------------------------------
+    # FORMAT VALUE
+    # -----------------------------------------
+
+    if name == "BMI":
+
+        display_value = f"{value:.1f}"
+
+    elif name == "Diabetes Pedigree":
+
+        display_value = f"{value:.2f}"
+
+    else:
+
+        display_value = f"{value:.0f}"
+
+
+    # -----------------------------------------
+    # CARD
+    # -----------------------------------------
+
+    with parameter_columns[i % 4]:
+
+        st.markdown(
+
+            f"""
+            <div class="advanced-parameter-card">
+
+                <div class="parameter-card-top">
+
+                    <div class="parameter-card-icon">
+                        {icon}
+                    </div>
+
+                    <div class="
+                        parameter-status
+                        {status_class}
+                    ">
+                        {status}
+                    </div>
+
+                </div>
+
+
+                <div class="parameter-card-name">
+                    {name}
+                </div>
+
+
+                <div class="parameter-card-value">
+
+                    {display_value}
+
+                    <span class="parameter-card-unit">
+                        {unit}
+                    </span>
+
+                </div>
+
+
+                <div class="parameter-progress">
+
+                    <div
+                        class="parameter-progress-fill"
+                        style="width:{percentage:.1f}%;">
+                    </div>
+
+                </div>
+
+
+                <div class="parameter-card-footer">
+
+                    <span>
+                        Visualization
+                    </span>
+
+                    <span>
+                        {percentage:.0f}%
+                    </span>
+
+                </div>
+
+            </div>
+            """,
+
+            unsafe_allow_html=True
+
+        )
+
+
+# =========================================================
+# DASHBOARD FOOTER
+# =========================================================
+
+st.markdown(
+    """
+    <div class="clinical-dashboard-footer">
+
+        <div>
+            🧠 <b>8</b> clinical parameters visualized
+        </div>
+
+        <div>
+            ⚡ Ready for machine learning prediction
+        </div>
+
+        <div>
+            🔒 Application-level data processing
+        </div>
+
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+
 
 # =========================================================
 # FEATURE OVERVIEW
