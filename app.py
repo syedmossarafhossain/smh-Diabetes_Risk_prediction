@@ -998,27 +998,40 @@ button[data-testid="stNumberInputStepUp"]:hover {
 }
 
 
+
+/* =========================================================
+   PARAMETER GRID
+   ========================================================= */
+
+[data-testid="stHorizontalBlock"] {
+    width: 100%;
+    column-gap: 24px !important;
+    row-gap: 0 !important;
+}
+
+
+/* Streamlit columns */
+
+[data-testid="column"] {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+
+    min-width: 0;
+}
+
 /* =========================================================
    PARAMETER CARDS
    ========================================================= */
-[data-testid="column"] { 
-   display: flex; 
-   flex-direction: column; 
-   align-items: stretch; 
-   justify-content: flex-start;
-   }
-   
-[data-testid="column"] > div { 
-width: 100%;
-}
    
 .advanced-parameter-card {
     width: 100%;
-    min-height: 240px;
+    min-height: 300px;
     box-sizing: border-box;
 
-    padding: 22px;
-    margin: 0;
+    padding: 24px;
+    margin:  0 0 24px 0;
 
     background: linear-gradient(
         145deg,
@@ -1033,6 +1046,10 @@ width: 100%;
     flex-direction: column;
 
     overflow: hidden;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .advanced-parameter-card:hover {
@@ -1050,7 +1067,7 @@ width: 100%;
     align-items: center;
     justify-content: space-between;
 
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 
 .parameter-card-icon {
@@ -1079,6 +1096,7 @@ width: 100%;
 
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    white-space: nowrap
 }
 
 .status-low {
@@ -1114,7 +1132,7 @@ width: 100%;
 }
 
 .parameter-card-name {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 
     color: #8d99ae;
 
@@ -1135,7 +1153,7 @@ width: 100%;
 }
 
 .parameter-card-unit {
-    margin-left: 4px;
+    margin-left: 5px;
 
     color: #718096;
 
@@ -1183,6 +1201,37 @@ width: 100%;
     font-size: 10px;
 }
 
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    [data-testid="stHorizontalBlock"] {
+        column-gap: 18px !important;
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    [data-testid="stHorizontalBlock"] {
+        column-gap: 14px !important;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .advanced-parameter-card {
+        min-height: 280px;
+        padding: 20px;
+        margin-bottom: 18px;
+    }
+
+}
 
 /* =========================================================
    DASHBOARD STATUS FOOTER
@@ -2030,7 +2079,7 @@ parameter_cards = [
 
 parameter_columns = st.columns(
     4,
-    gap="large"
+    gap="medium"
 )
 
 
