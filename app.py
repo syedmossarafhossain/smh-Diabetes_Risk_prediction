@@ -454,13 +454,104 @@ section[data-testid="stSidebar"] h3 {
 
 /* Section title */
 
-.section-title {
-    font-size: 23px;
-    font-weight: 700;
-    margin-top: 10px;
-    margin-bottom: 18px;
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 34px;
+    margin-bottom: 22px;
+
+    padding: 0 4px;
 }
 
+.section-header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.section-icon {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(37,99,235,0.18),
+            rgba(124,58,237,0.18)
+        );
+
+    border: 1px solid
+        rgba(96,165,250,0.20);
+
+    font-size: 20px;
+
+    box-shadow:
+        0 8px 25px rgba(37,99,235,0.10);
+}
+
+.section-title {
+    margin: 0;
+
+    font-size: 21px;
+    font-weight: 750;
+
+    letter-spacing: -0.4px;
+
+    color: #f8fafc;
+}
+
+.section-description {
+    margin-top: 4px;
+
+    font-size: 12px;
+
+    color: #64748b;
+
+    line-height: 1.5;
+}
+
+.section-status {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 7px 11px;
+
+    border-radius: 999px;
+
+    background: rgba(34,197,94,0.08);
+
+    border: 1px solid
+        rgba(34,197,94,0.18);
+
+    color: #86efac;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+.section-status-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #4ade80;
+
+    box-shadow:
+        0 0 10px rgba(74,222,128,0.8);
+}
 
 /* Input cards */
 
@@ -748,7 +839,26 @@ st.markdown(
 # =========================================================
 
 st.markdown(
-    '<div class="section-title">📋 Patient Information</div>',
+    '<div class="section-header">'
+    '<div class="section-header-left">'
+    '<div class="section-icon">'
+    '👤'
+    '</div>'
+    '<div>'
+    '<div class="section-title">'
+    'Patient Information'
+    '</div>'
+    '<div class="section-description">'
+    'Enter basic patient details for the assessment'
+    '</div>'
+    '</div>'
+    '</div>'
+    '<div class="section-status">'
+    '<span class="section-status-dot"></span>'
+    'Ready'
+    '</div>'
+    '</div>',
+    
     unsafe_allow_html=True
 )
 
