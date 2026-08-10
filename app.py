@@ -2055,74 +2055,53 @@ for i, (
     # -----------------------------------------
     # CARD
     # -----------------------------------------
+with parameter_columns[i % 4]:
 
-    with parameter_columns[i % 4]:
+    st.markdown(
+        '<div class="advanced-parameter-card">'
+        
+        '<div class="parameter-card-top">'
+        
+        '<div class="parameter-card-icon">'
+        f'{icon}'
+        '</div>'
+        
+        f'<div class="parameter-status {status_class}">'
+        f'{status}'
+        '</div>'
+        
+        '</div>'
+        
+        '<div class="parameter-card-name">'
+        f'{name}'
+        '</div>'
+        
+        '<div class="parameter-card-value">'
+        f'{display_value}'
+        '<span class="parameter-card-unit">'
+        f'{unit}'
+        '</span>'
+        '</div>'
+        
+        '<div class="parameter-progress">'
+        f'<div class="parameter-progress-fill" style="width: {percentage:.1f}%;"></div>'
+        '</div>'
+        
+        '<div class="parameter-card-footer">'
+        '<span>'
+        'Visualization'
+        '</span>'
+        
+        '<span>'
+        f'{percentage:.0f}%'
+        '</span>'
+        '</div>'
+        
+        '</div>',
+        
+        unsafe_allow_html=True
+    )
 
-        st.markdown(
-
-            f"""
-            <div class="advanced-parameter-card">
-
-                <div class="parameter-card-top">
-
-                    <div class="parameter-card-icon">
-                        {icon}
-                    </div>
-
-                    <div class="
-                        parameter-status
-                        {status_class}
-                    ">
-                        {status}
-                    </div>
-
-                </div>
-
-
-                <div class="parameter-card-name">
-                    {name}
-                </div>
-
-
-                <div class="parameter-card-value">
-
-                    {display_value}
-
-                    <span class="parameter-card-unit">
-                        {unit}
-                    </span>
-
-                </div>
-
-
-                <div class="parameter-progress">
-
-                    <div
-                        class="parameter-progress-fill"
-                        style="width:{percentage:.1f}%;">
-                    </div>
-
-                </div>
-
-
-                <div class="parameter-card-footer">
-
-                    <span>
-                        Visualization
-                    </span>
-
-                    <span>
-                        {percentage:.0f}%
-                    </span>
-
-                </div>
-
-            </div>
-            """,
-
-            unsafe_allow_html=True
-
-        )
 
 
 # =========================================================
