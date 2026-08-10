@@ -409,8 +409,6 @@ col1, col2 = st.columns(
 # =========================================================
 # LEFT INPUTS
 # =========================================================
-
-
 with col1:
 
     pregnancies = st.number_input(
@@ -445,9 +443,6 @@ with col1:
         step=1.0
     )
 
-    st.markdown('</div>', unsafe_allow_html=True)
-
-
 with col2:
 
     insulin = st.number_input(
@@ -481,9 +476,6 @@ with col2:
         value=30,
         step=1
     )
-
-    st.markdown('</div>', unsafe_allow_html=True)
-
 
 # =========================================================
 # FEATURE OVERVIEW
