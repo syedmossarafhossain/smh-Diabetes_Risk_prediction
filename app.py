@@ -78,7 +78,7 @@ section[data-testid="stSidebar"] h3 {
     position: relative;
     overflow: hidden;
 
-    margin-top: 35px;
+    margin-top: 50px;
     margin-bottom: 45px;
 
     padding: 42px 48px;
