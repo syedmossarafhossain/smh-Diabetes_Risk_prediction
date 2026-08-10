@@ -2030,7 +2030,7 @@ parameter_cards = [
 
 parameter_columns = st.columns(
     4,
-    gap="medium"
+    gap="large"
 )
 
 
@@ -2042,18 +2042,17 @@ for i, (
     max_value
 ) in enumerate(parameter_cards):
 
+    # -----------------------------------------
+    # CALCULATE PERCENTAGE
+    # -----------------------------------------
 
     percentage = min(
-
         max(
-            (value / max_value) * 100,
+            (float(value) / max_value) * 100,
             0
         ),
-
         100
-
     )
-
 
     # -----------------------------------------
     # UI STATUS
@@ -2079,73 +2078,71 @@ for i, (
         status = "ELEVATED"
         status_class = "status-elevated"
 
-
     # -----------------------------------------
     # FORMAT VALUE
     # -----------------------------------------
 
     if name == "BMI":
 
-        display_value = f"{value:.1f}"
+        display_value = f"{float(value):.1f}"
 
     elif name == "Diabetes Pedigree":
 
-        display_value = f"{value:.2f}"
+        display_value = f"{float(value):.2f}"
 
     else:
 
-        display_value = f"{value:.0f}"
-
+        display_value = f"{float(value):.0f}"
 
     # -----------------------------------------
     # CARD
     # -----------------------------------------
-with parameter_columns[i % 4]:
 
-    st.markdown(
-        '<div class="advanced-parameter-card">'
+    with parameter_columns[i % 4]:
 
-        '<div class="parameter-card-top">'
+        st.markdown(
+            '<div class="advanced-parameter-card">'
 
-        '<div class="parameter-card-icon">'
-        f'{icon}'
-        '</div>'
+            '<div class="parameter-card-top">'
 
-        f'<div class="parameter-status {status_class}">'
-        f'{status}'
-        '</div>'
+            '<div class="parameter-card-icon">'
+            f'{icon}'
+            '</div>'
 
-        '</div>'
+            f'<div class="parameter-status {status_class}">'
+            f'{status}'
+            '</div>'
 
-        '<div class="parameter-card-name">'
-        f'{name}'
-        '</div>'
+            '</div>'
 
-        '<div class="parameter-card-value">'
-        f'{display_value}'
-        '<span class="parameter-card-unit">'
-        f'{unit}'
-        '</span>'
-        '</div>'
+            '<div class="parameter-card-name">'
+            f'{name}'
+            '</div>'
 
-        '<div class="parameter-progress">'
+            '<div class="parameter-card-value">'
+            f'{display_value}'
+            '<span class="parameter-card-unit">'
+            f'{unit}'
+            '</span>'
+            '</div>'
 
-        '<div class="parameter-progress-fill" '
-        f'style="width: {percentage:.1f}%;">'
-        '</div>'
+            '<div class="parameter-progress">'
 
-        '</div>'
+            '<div class="parameter-progress-fill" '
+            f'style="width: {percentage:.1f}%;">'
+            '</div>'
 
-        '<div class="parameter-card-footer">'
-        '<span>Visualization</span>'
-        f'<span>{percentage:.0f}%</span>'
-        '</div>'
+            '</div>'
 
-        '</div>',
+            '<div class="parameter-card-footer">'
+            '<span>Visualization</span>'
+            f'<span>{percentage:.0f}%</span>'
+            '</div>'
 
-        unsafe_allow_html=True
-    )
+            '</div>',
 
+            unsafe_allow_html=True
+        )
 
 # =========================================================
 # DASHBOARD FOOTER
