@@ -1615,36 +1615,25 @@ with col2:
 
 # ADVANCED CLINICAL INTELLIGENCE DASHBOARD
 st.markdown(
-    """
-    <div class="clinical-dashboard-header">
-
-        <div class="clinical-dashboard-title">
-
-            <div class="clinical-dashboard-icon">
-                🧬
-            </div>
-
-            <div>
-
-                <div class="clinical-dashboard-heading">
-                    Clinical Intelligence Dashboard
-                </div>
-
-                <div class="clinical-dashboard-subtitle">
-                    Real-time visualization of entered clinical parameters
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="live-analysis">
-            <span class="live-dot"></span>
-            <span>LIVE ANALYSIS</span>
-        </div>
-
-    </div>
-    """,
+    '<div class="clinical-dashboard-header">'
+    '<div class="clinical-dashboard-title">'
+    '<div class="clinical-dashboard-icon">'
+    '🧬'
+    '</div>'
+    '<div>'
+    '<div class="clinical-dashboard-heading">'
+    'Clinical Intelligence Dashboard'
+    '</div>'
+    '<div class="clinical-dashboard-subtitle">'
+    'Real-time visualization of entered clinical parameters'
+    '</div>'
+    '</div>'
+    '</div>'
+    '<div class="live-analysis">'
+    '<span class="live-dot"></span>'
+    'LIVE ANALYSIS'
+    '</div>'
+    '</div>',
     unsafe_allow_html=True
 )
 
