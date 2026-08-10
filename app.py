@@ -450,8 +450,6 @@ with col1:
 
 with col2:
 
-    st.markdown('<div class="input-card">', unsafe_allow_html=True)
-
     insulin = st.number_input(
         "💉 Insulin Level",
         min_value=0.0,
