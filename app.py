@@ -2106,112 +2106,126 @@ with profile_col:
 
 with radar_col:
 
-    st.markdown(
-        '<div class="radar-card">'
-        '<div class="radar-card-header">'
-        '<div class="radar-card-title">'
-        'Clinical Parameter Profile'
-        '</div>'
-        '<div class="radar-card-badge">'
-        '8 PARAMETERS'
-        '</div>'
-        '</div>',
-        unsafe_allow_html=True
-    )
+    with st.container():
 
-    radar_labels = [
-        "Pregnancy",
-        "Glucose",
-        "Blood Pressure",
-        "Skin",
-        "Insulin",
-        "BMI",
-        "Pedigree",
-        "Age"
-    ]
+        st.markdown(
+            '<div class="radar-card-header">'
 
-    radar_values = [
-        visual_values["Pregnancies"],
-        visual_values["Glucose"],
-        visual_values["Blood Pressure"],
-        visual_values["Skin Thickness"],
-        visual_values["Insulin"],
-        visual_values["BMI"],
-        visual_values["Diabetes Pedigree"],
-        visual_values["Age"]
-    ]
+            '<div class="radar-card-title">'
+            'Clinical Parameter Profile'
+            '</div>'
 
-    fig_radar = go.Figure()
+            '<div class="radar-card-badge">'
+            '8 PARAMETERS'
+            '</div>'
 
-    fig_radar.add_trace(
-        go.Scatterpolar(
-            r=radar_values + [radar_values[0]],
-            theta=radar_labels + [radar_labels[0]],
-            fill="toself",
-            line=dict(
-                width=2
-            ),
-            opacity=0.85,
-            name="Clinical Profile"
+            '</div>',
+
+            unsafe_allow_html=True
         )
-    )
 
-    fig_radar.update_layout(
-        height=285,
+        radar_labels = [
+            "Pregnancy",
+            "Glucose",
+            "Blood Pressure",
+            "Skin",
+            "Insulin",
+            "BMI",
+            "Pedigree",
+            "Age"
+        ]
 
-        margin=dict(
-            l=25,
-            r=25,
-            t=5,
-            b=5
-        ),
+        radar_values = [
+            visual_values["Pregnancies"],
+            visual_values["Glucose"],
+            visual_values["Blood Pressure"],
+            visual_values["Skin Thickness"],
+            visual_values["Insulin"],
+            visual_values["BMI"],
+            visual_values["Diabetes Pedigree"],
+            visual_values["Age"]
+        ]
 
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
+        fig_radar = go.Figure()
 
-        showlegend=False,
+        fig_radar.add_trace(
+            go.Scatterpolar(
+                r=radar_values + [radar_values[0]],
+                theta=radar_labels + [radar_labels[0]],
 
-        font=dict(
-            color="#cbd5e1",
-            size=10
-        ),
+                fill="toself",
 
-        polar=dict(
-            bgcolor="rgba(15,23,42,0.20)",
+                line=dict(
+                    width=2
+                ),
 
-            radialaxis=dict(
-                visible=True,
-                range=[0, 100],
+                opacity=0.85,
 
-                gridcolor="rgba(148,163,184,0.14)",
-                linecolor="rgba(148,163,184,0.10)",
+                name="Clinical Profile"
+            )
+        )
 
-                tickfont=dict(
-                    color="#64748b",
-                    size=7
-                )
+        fig_radar.update_layout(
+
+            height=410,
+
+            margin=dict(
+                l=40,
+                r=40,
+                t=10,
+                b=10
             ),
 
-            angularaxis=dict(
-                gridcolor="rgba(148,163,184,0.12)",
-                linecolor="rgba(148,163,184,0.10)",
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)",
 
-                tickfont=dict(
-                    color="#cbd5e1",
-                    size=11
+            showlegend=False,
+
+            font=dict(
+                color="#cbd5e1",
+                size=10
+            ),
+
+            polar=dict(
+
+                bgcolor="rgba(15,23,42,0.15)",
+
+                radialaxis=dict(
+                    visible=True,
+                    range=[0, 100],
+
+                    gridcolor="rgba(148,163,184,0.14)",
+
+                    linecolor="rgba(148,163,184,0.10)",
+
+                    tickfont=dict(
+                        color="#64748b",
+                        size=8
+                    )
+                ),
+
+                angularaxis=dict(
+
+                    gridcolor="rgba(148,163,184,0.12)",
+
+                    linecolor="rgba(148,163,184,0.10)",
+
+                    tickfont=dict(
+                        color="#cbd5e1",
+                        size=10
+                    )
                 )
             )
         )
-    )
 
-    st.plotly_chart(
-        fig_radar,
-        use_container_width=True,
-        config={
-            "displayModeBar": False,
-            "responsive": True
-        }
-    )
+        st.plotly_chart(
+            fig_radar,
+            use_container_width=True,
+            config={
+                "displayModeBar": False,
+                "responsive": True
+            }
+        )
 
     st.markdown(
         '</div>',
