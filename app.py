@@ -1274,20 +1274,137 @@ button[data-testid="stNumberInputStepUp"]:hover {
    ========================================================= */
 
 .clinical-dashboard-footer {
+    width: 100%;
+    min-height: 72px;
+
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-top: 4px;
-    padding: 15px 18px;
-    border-radius: 15px;
+    justify-content: space-between;
+
+    box-sizing: border-box;
+
+    margin-top: 18px;
+    margin-bottom: 28px;
+
+    padding: 16px 22px;
+
+    border-radius: 18px;
+
     background:
-        rgba(255,255,255,0.025);
-    border:
-        1px solid rgba(255,255,255,0.05);
-    color: #64748b;
-    font-size: 10px;
+        linear-gradient(
+            145deg,
+            rgba(15, 23, 42, 0.95),
+            rgba(17, 24, 39, 0.82)
+        );
+
+    border: 1px solid rgba(148, 163, 184, 0.14);
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.03);
+
+    position: relative;
+    overflow: hidden;
 }
 
+
+/* Subtle background glow */
+
+.clinical-dashboard-footer::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    right: -80px;
+    top: -100px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(99, 102, 241, 0.10),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+
+/* Footer items */
+
+.clinical-dashboard-footer .footer-item {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    position: relative;
+    z-index: 2;
+
+    color: #64748b;
+
+    font-size: 11px;
+    font-weight: 500;
+
+    white-space: nowrap;
+}
+
+
+/* Footer icon */
+
+.clinical-dashboard-footer .footer-icon {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(37, 99, 235, 0.12),
+            rgba(124, 58, 237, 0.12)
+        );
+
+    border: 1px solid rgba(96, 165, 250, 0.15);
+
+    font-size: 14px;
+}
+
+
+/* Bold number */
+
+.clinical-dashboard-footer b {
+    color: #cbd5e1;
+    font-weight: 700;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .clinical-dashboard-footer {
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 12px;
+
+        padding: 16px 18px;
+    }
+
+    .clinical-dashboard-footer .footer-item {
+        white-space: normal;
+    }
+
+}
 @media (max-width: 700px) {
 
     .clinical-dashboard-header {
@@ -2235,16 +2352,24 @@ for i, (
 
 st.markdown(
     '<div class="clinical-dashboard-footer">'
-    '<div>'
-    '🧠 <b>8</b> clinical parameters visualized'
+
+    '<div class="footer-item">'
+    '<span class="footer-icon">🧠</span>'
+    '<span><b>8</b> clinical parameters visualized</span>'
     '</div>'
-    '<div>'
-    '⚡ Ready for machine learning prediction'
+
+    '<div class="footer-item">'
+    '<span class="footer-icon">⚡</span>'
+    '<span>Ready for machine learning prediction</span>'
     '</div>'
-    '<div>'
-    '🔒 Application-level data processing'
+
+    '<div class="footer-item">'
+    '<span class="footer-icon">🔒</span>'
+    '<span>Application-level data processing</span>'
     '</div>'
+
     '</div>',
+
     unsafe_allow_html=True
 )
 
