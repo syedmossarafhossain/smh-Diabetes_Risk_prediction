@@ -460,104 +460,140 @@ section[data-testid="stSidebar"] h3 {
 /* Section title */
 
 .section-header {
+    width: 100%;
+    min-height: 90px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    box-sizing: border-box;
+    margin-top: 35px;
+    margin-bottom: 24px;
+    padding: 18px 24px;
+    border-radius: 18px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15, 23, 42, 0.95),
+            rgba(17, 24, 39, 0.82)
+        );
 
-    margin-top: 34px;
-    margin-bottom: 22px;
-
-    padding: 0 4px;
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    position: relative;
+    overflow: hidden;
 }
 
+
+/* Subtle glow inside the box */
+
+.section-header::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    right: -80px;
+    top: -100px;
+    border-radius: 50%;
+    background:
+        radial-gradient(
+            circle,
+            rgba(99, 102, 241, 0.12),
+            transparent 70%
+        );
+    pointer-events: none;
+}
+
+/* Left side */
 .section-header-left {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
+    position: relative;
+    z-index: 2;
 }
 
-.section-icon {
-    width: 44px;
-    height: 44px;
 
+/* Icon box */
+.section-icon {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    border-radius: 13px;
-
+    border-radius: 14px;
     background:
         linear-gradient(
             135deg,
-            rgba(37,99,235,0.18),
-            rgba(124,58,237,0.18)
+            rgba(37, 99, 235, 0.20),
+            rgba(124, 58, 237, 0.20)
         );
 
-    border: 1px solid
-        rgba(96,165,250,0.20);
-
-    font-size: 20px;
-
+    border: 1px solid rgba(96, 165, 250, 0.22);
+    font-size: 23px;
     box-shadow:
-        0 8px 25px rgba(37,99,235,0.10);
+        0 8px 25px rgba(37, 99, 235, 0.12);
 }
+
+
+/* Title */
 
 .section-title {
     margin: 0;
-
-    font-size: 21px;
-    font-weight: 750;
-
-    letter-spacing: -0.4px;
-
     color: #f8fafc;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
 }
 
+
+/* Description */
+
 .section-description {
-    margin-top: 4px;
-
-    font-size: 12px;
-
+    margin-top: 6px;
     color: #64748b;
-
+    font-size: 13px;
+    font-weight: 500;
     line-height: 1.5;
 }
 
+
+/* Status badge */
+
 .section-status {
     display: inline-flex;
-
     align-items: center;
-
-    gap: 7px;
-
-    padding: 7px 11px;
-
+    gap: 8px;
+    flex-shrink: 0;
+    padding: 9px 14px;
     border-radius: 999px;
-
-    background: rgba(34,197,94,0.08);
-
-    border: 1px solid
-        rgba(34,197,94,0.18);
-
+    background: rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(34, 197, 94, 0.18);
     color: #86efac;
-
     font-size: 11px;
-
-    font-weight: 600;
+    font-weight: 700;
+    white-space: nowrap;
+    position: relative;
+    z-index: 2;
 }
+
+
+/* Green status dot */
 
 .section-status-dot {
     width: 7px;
     height: 7px;
-    border-radius: 50%;
     flex-shrink: 0;
     display: inline-block;
+    border-radius: 50%;
     background: #4ade80;
     box-shadow:
-        0 0 12px rgba(74,222,128,0.85);
+        0 0 12px rgba(74, 222, 128, 0.85);
     animation: livePulse 1.8s infinite;
 }
-
 
 
 /*CLINICAL INPUT PANEL*/
