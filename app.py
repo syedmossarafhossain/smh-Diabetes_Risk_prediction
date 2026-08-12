@@ -986,22 +986,103 @@ button[data-testid="stNumberInputStepUp"]:hover {
     line-height: 1.6;
 }
 
+
+/* =========================================================
+   TOP DASHBOARD COLUMNS
+   ========================================================= */
+
+[data-testid="stHorizontalBlock"] {
+    align-items: stretch !important;
+}
+
+[data-testid="column"] {
+    min-width: 0 !important;
+    display: flex;
+    flex-direction: column;
+}
+
+[data-testid="column"] > div {
+    width: 100%;
+}
 /* =========================================================
    RADAR CONTAINER
    ========================================================= */
 .radar-card {
-    min-height: 390px;
-    padding: 10px 15px;
+    width: 100%;
+    min-height: 450px;
+
+    box-sizing: border-box;
+
+    padding: 20px 18px 10px;
+
     border-radius: 24px;
+
     background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(59,130,246,0.08),
+            transparent 48%
+        ),
         linear-gradient(
             145deg,
-            rgba(15,23,42,0.92),
-            rgba(17,24,39,0.75)
+            rgba(15,23,42,0.96),
+            rgba(17,24,39,0.82)
         );
-    border: 1px solid rgba(255,255,255,0.08);
+
+    border: 1px solid rgba(148,163,184,0.14);
+
     box-shadow:
-        0 20px 60px rgba(0,0,0,0.18);
+        0 20px 60px rgba(0,0,0,0.20),
+        inset 0 1px 0 rgba(255,255,255,0.03);
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   RADAR HEADER
+   ========================================================= */
+
+.radar-card-header {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 2px 6px 8px;
+
+    box-sizing: border-box;
+}
+
+
+.radar-card-title {
+    color: #f8fafc;
+
+    font-size: 16px;
+    font-weight: 750;
+
+    letter-spacing: -0.3px;
+}
+
+
+.radar-card-badge {
+    padding: 6px 10px;
+
+    border-radius: 999px;
+
+    background: rgba(96,165,250,0.08);
+
+    border: 1px solid rgba(96,165,250,0.16);
+
+    color: #93c5fd;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
 }
 
 /* =========================================================
@@ -1971,11 +2052,9 @@ clinical_profile_index = max(
 # =========================================================
 
 profile_col, radar_col = st.columns(
-    [1, 1.8],
-    gap="large"
+    [1, 1.65],
+    gap="medium"
 )
-
-
 # =========================================================
 # PROFILE INDEX CARD
 # =========================================================
@@ -2020,6 +2099,19 @@ with profile_col:
 
 with radar_col:
 
+    st.markdown(
+        '<div class="radar-card">'
+        '<div class="radar-card-header">'
+        '<div class="radar-card-title">'
+        'Clinical Parameter Profile'
+        '</div>'
+        '<div class="radar-card-badge">'
+        '8 PARAMETERS'
+        '</div>'
+        '</div>',
+        unsafe_allow_html=True
+    )
+
     radar_labels = [
         "Pregnancy",
         "Glucose",
@@ -2059,17 +2151,16 @@ with radar_col:
 
     fig_radar.update_layout(
 
-        height=390,
+        height=400,
 
         margin=dict(
             l=45,
             r=45,
-            t=25,
-            b=25
+            t=35,
+            b=35
         ),
 
         paper_bgcolor="rgba(0,0,0,0)",
-
         plot_bgcolor="rgba(0,0,0,0)",
 
         showlegend=False,
@@ -2081,13 +2172,15 @@ with radar_col:
 
         polar=dict(
 
-            bgcolor="rgba(15,23,42,0.35)",
+            bgcolor="rgba(15,23,42,0.20)",
 
             radialaxis=dict(
                 visible=True,
                 range=[0, 100],
-                gridcolor="rgba(255,255,255,0.07)",
-                linecolor="rgba(255,255,255,0.08)",
+
+                gridcolor="rgba(148,163,184,0.14)",
+                linecolor="rgba(148,163,184,0.10)",
+
                 tickfont=dict(
                     color="#64748b",
                     size=8
@@ -2095,8 +2188,10 @@ with radar_col:
             ),
 
             angularaxis=dict(
-                gridcolor="rgba(255,255,255,0.06)",
-                linecolor="rgba(255,255,255,0.08)",
+
+                gridcolor="rgba(148,163,184,0.12)",
+                linecolor="rgba(148,163,184,0.10)",
+
                 tickfont=dict(
                     color="#cbd5e1",
                     size=10
@@ -2109,16 +2204,15 @@ with radar_col:
         fig_radar,
         use_container_width=True,
         config={
-            "displayModeBar": False
+            "displayModeBar": False,
+            "responsive": True
         }
     )
-
 
     st.markdown(
         '</div>',
         unsafe_allow_html=True
     )
-
 
 # =========================================================
 # PARAMETER ANALYSIS HEADER
