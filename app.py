@@ -2106,7 +2106,7 @@ with profile_col:
 
 with radar_col:
 
-    with st.container():
+    with st.container(key="radar_card"):
 
         st.markdown(
             '<div class="radar-card-header">'
@@ -2170,8 +2170,8 @@ with radar_col:
             height=410,
 
             margin=dict(
-                l=40,
-                r=40,
+                l=45,
+                r=45,
                 t=10,
                 b=10
             ),
@@ -2195,7 +2195,6 @@ with radar_col:
                     range=[0, 100],
 
                     gridcolor="rgba(148,163,184,0.14)",
-
                     linecolor="rgba(148,163,184,0.10)",
 
                     tickfont=dict(
@@ -2205,9 +2204,7 @@ with radar_col:
                 ),
 
                 angularaxis=dict(
-
                     gridcolor="rgba(148,163,184,0.12)",
-
                     linecolor="rgba(148,163,184,0.10)",
 
                     tickfont=dict(
