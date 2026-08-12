@@ -1004,42 +1004,6 @@ button[data-testid="stNumberInputStepUp"]:hover {
 [data-testid="column"] > div {
     width: 100%;
 }
-/* =========================================================
-   RADAR CONTAINER
-   ========================================================= */
-.radar-card {
-    width: 100%;
-    min-height: 450px;
-
-    box-sizing: border-box;
-
-    padding: 20px 18px 10px;
-
-    border-radius: 24px;
-
-    background:
-        radial-gradient(
-            circle at 50% 45%,
-            rgba(59,130,246,0.08),
-            transparent 48%
-        ),
-        linear-gradient(
-            145deg,
-            rgba(15,23,42,0.96),
-            rgba(17,24,39,0.82)
-        );
-
-    border: 1px solid rgba(148,163,184,0.14);
-
-    box-shadow:
-        0 20px 60px rgba(0,0,0,0.20),
-        inset 0 1px 0 rgba(255,255,255,0.03);
-
-    position: relative;
-
-    overflow: hidden;
-}
-
 
 /* =========================================================
    RADAR HEADER
@@ -1048,7 +1012,9 @@ button[data-testid="stNumberInputStepUp"]:hover {
 .st-key-radar_card {
     width: 100% !important;
 
-    min-height: 430px !important;
+    height: 390px !important;
+    min-height: 390px !important;
+    max-height: 390px !important;
 
     box-sizing: border-box !important;
 
@@ -1076,7 +1042,6 @@ button[data-testid="stNumberInputStepUp"]:hover {
 
     overflow: hidden !important;
 }
-
 
 /* =========================================================
    RADAR HEADER
@@ -2202,13 +2167,13 @@ with radar_col:
 
         fig_radar.update_layout(
 
-            height=410,
+            height=300,
 
             margin=dict(
                 l=45,
                 r=45,
-                t=10,
-                b=10
+                t=5,
+                b=5
             ),
 
             paper_bgcolor="rgba(0,0,0,0)",
@@ -2234,7 +2199,7 @@ with radar_col:
 
                     tickfont=dict(
                         color="#64748b",
-                        size=8
+                        size=9
                     )
                 ),
 
@@ -2244,7 +2209,7 @@ with radar_col:
 
                     tickfont=dict(
                         color="#cbd5e1",
-                        size=10
+                        size=13
                     )
                 )
             )
