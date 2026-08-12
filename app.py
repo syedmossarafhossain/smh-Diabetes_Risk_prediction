@@ -2167,13 +2167,13 @@ with radar_col:
 
         fig_radar.update_layout(
 
-            height=410,
+            height=260,
 
             margin=dict(
-                l=45,
-                r=45,
-                t=10,
-                b=10
+                l=25,
+                r=25,
+                t=5,
+                b=5
             ),
 
             paper_bgcolor="rgba(0,0,0,0)",
