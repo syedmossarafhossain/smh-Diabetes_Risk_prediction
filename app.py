@@ -988,25 +988,8 @@ button[data-testid="stNumberInputStepUp"]:hover {
 
 
 /* =========================================================
-   TOP DASHBOARD COLUMNS
-   ========================================================= */
-
-[data-testid="stHorizontalBlock"] {
-    align-items: stretch !important;
-}
-
-[data-testid="column"] {
-    min-width: 0 !important;
-    display: flex;
-    flex-direction: column;
-}
-
-[data-testid="column"] > div {
-    width: 100%;
-}
-
-/* =========================================================
-   RADAR HEADER
+   CLINICAL PARAMETER PROFILE
+   EXACTLY 390px HEIGHT
    ========================================================= */
 
 .st-key-radar_card {
@@ -1018,13 +1001,15 @@ button[data-testid="stNumberInputStepUp"]:hover {
 
     box-sizing: border-box !important;
 
-    padding: 18px 18px 8px !important;
+    padding: 14px 18px 0 !important;
+
+    margin: 0 !important;
 
     border-radius: 24px !important;
 
     background:
         radial-gradient(
-            circle at 50% 45%,
+            circle at 50% 35%,
             rgba(59,130,246,0.08),
             transparent 48%
         ),
@@ -1043,51 +1028,68 @@ button[data-testid="stNumberInputStepUp"]:hover {
     overflow: hidden !important;
 }
 
+
+/* Prevent Streamlit children from increasing card height */
+
+.st-key-radar_card > div {
+    max-height: 100% !important;
+    min-height: 0 !important;
+}
+
+
 /* =========================================================
    RADAR HEADER
    ========================================================= */
 
-.radar-card-header {
-    width: 100%;
+.st-key-radar_card .radar-card-header {
+    width: 100% !important;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    height: 34px !important;
 
-    box-sizing: border-box;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
 
-    padding: 2px 4px 0;
+    box-sizing: border-box !important;
+
+    padding: 0 4px !important;
+
+    margin: 0 !important;
 }
 
 
-.radar-card-title {
-    color: #f8fafc;
+/* =========================================================
+   RADAR GRAPH AREA
+   ========================================================= */
 
-    font-size: 16px;
-    font-weight: 750;
+.st-key-radar_card
+[data-testid="stPlotlyChart"] {
 
-    letter-spacing: -0.3px;
+    height: 300px !important;
+
+    max-height: 300px !important;
+
+    min-height: 0 !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    overflow: hidden !important;
 }
 
 
-.radar-card-badge {
-    padding: 6px 10px;
+/* Plotly iframe/container */
 
-    border-radius: 999px;
+.st-key-radar_card
+[data-testid="stPlotlyChart"] iframe {
 
-    background: rgba(96,165,250,0.08);
+    height: 300px !important;
 
-    border: 1px solid rgba(96,165,250,0.16);
-
-    color: #93c5fd;
-
-    font-size: 9px;
-    font-weight: 700;
-
-    letter-spacing: 0.5px;
-
-    white-space: nowrap;
+    max-height: 300px !important;
 }
+
+
 /* =========================================================
    PARAMETER HEADER
    ========================================================= */
@@ -2110,17 +2112,13 @@ with radar_col:
 
         st.markdown(
             '<div class="radar-card-header">'
-
             '<div class="radar-card-title">'
             'Clinical Parameter Profile'
             '</div>'
-
             '<div class="radar-card-badge">'
             '8 PARAMETERS'
             '</div>'
-
             '</div>',
-
             unsafe_allow_html=True
         )
 
@@ -2167,13 +2165,13 @@ with radar_col:
 
         fig_radar.update_layout(
 
-            height=260,
+            height=285,
 
             margin=dict(
-                l=25,
-                r=25,
-                t=5,
-                b=5
+                l=20,
+                r=20,
+                t=0,
+                b=0
             ),
 
             paper_bgcolor="rgba(0,0,0,0)",
