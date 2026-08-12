@@ -2234,23 +2234,17 @@ for i, (
 # =========================================================
 
 st.markdown(
-    """
-    <div class="clinical-dashboard-footer">
-
-        <div>
-            🧠 <b>8</b> clinical parameters visualized
-        </div>
-
-        <div>
-            ⚡ Ready for machine learning prediction
-        </div>
-
-        <div>
-            🔒 Application-level data processing
-        </div>
-
-    </div>
-    """,
+    '<div class="clinical-dashboard-footer">'
+    '<div>'
+    '🧠 <b>8</b> clinical parameters visualized'
+    '</div>'
+    '<div>'
+    '⚡ Ready for machine learning prediction'
+    '</div>'
+    '<div>'
+    '🔒 Application-level data processing'
+    '</div>'
+    '</div>',
     unsafe_allow_html=True
 )
 
