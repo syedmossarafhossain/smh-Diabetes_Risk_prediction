@@ -996,7 +996,8 @@ button[data-testid="stNumberInputStepUp"]:hover {
    EXACTLY 390px HEIGHT
    ========================================================= */
 
- width: 100% !important;
+ .st-key-radar_card {
+    width: 100% !important;
 
     height: 390px !important;
     min-height: 390px !important;
@@ -1009,7 +1010,9 @@ button[data-testid="stNumberInputStepUp"]:hover {
 
     border-radius: 24px !important;
 
-    radial-gradient(
+    /* SAME BACKGROUND AS PROFILE INDEX */
+    background:
+        radial-gradient(
             circle at 50% 30%,
             rgba(59,130,246,0.12),
             transparent 45%
