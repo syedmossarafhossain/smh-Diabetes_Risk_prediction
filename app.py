@@ -996,7 +996,7 @@ button[data-testid="stNumberInputStepUp"]:hover {
    EXACTLY 390px HEIGHT
    ========================================================= */
 
- .st-key-radar_card {
+.st-key-radar_card {
     width: 100% !important;
 
     height: 390px !important;
@@ -1005,12 +1005,11 @@ button[data-testid="stNumberInputStepUp"]:hover {
 
     box-sizing: border-box !important;
 
-    padding: 14px 18px 0 !important;
+    padding: 0 18px !important;
     margin: 0 !important;
 
     border-radius: 24px !important;
 
-    /* SAME BACKGROUND AS PROFILE INDEX */
     background:
         radial-gradient(
             circle at 50% 30%,
@@ -1037,12 +1036,9 @@ button[data-testid="stNumberInputStepUp"]:hover {
 
 .st-key-radar_card > div {
     width: 100% !important;
-
     min-height: 0 !important;
-
     box-sizing: border-box !important;
-
-    overflow: hidden !important;
+    overflow: visible !important;
 }
 
 
@@ -1068,6 +1064,7 @@ button[data-testid="stNumberInputStepUp"]:hover {
     margin: 0 !important;
 
     flex-shrink: 0 !important;
+}
 
     /* ========================================================= 
     RADAR GRAPH AREA 
@@ -1076,10 +1073,29 @@ button[data-testid="stNumberInputStepUp"]:hover {
 
 /* Plotly chart */
 
+.st-key-radar_card [data-testid="stPlotlyChart"] {
+    width: 100% !important;
+
+    height: 320px !important;
+    min-height: 320px !important;
+    max-height: 320px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: visible !important;
+
+    flex-shrink: 0 !important;
+}
+
+/* Plotly internal wrapper */
+
 .st-key-radar_card [data-testid="stPlotlyChart"] > div {
-    height: 270px !important;
-    min-height: 270px !important;
-    max-height: 270px !important;
+    width: 100% !important;
+
+    height: 320px !important;
+    min-height: 320px !important;
+    max-height: 320px !important;
 }
 
 
@@ -1089,9 +1105,9 @@ button[data-testid="stNumberInputStepUp"]:hover {
 .st-key-radar_card [data-testid="stPlotlyChart"] iframe {
     width: 100% !important;
 
-    height: 270px !important;
-    min-height: 270px !important;
-    max-height: 270px !important;
+    height: 320px !important;
+    min-height: 320px !important;
+    max-height: 320px !important;
 
     display: block !important;
 }
@@ -2173,63 +2189,61 @@ with radar_col:
         )
 
         fig_radar.update_layout(
+    height=320,
 
-            height=270,
+    margin=dict(
+        l=45,
+        r=45,
+        t=35,
+        b=35
+    ),
 
-            margin=dict(
-                l=20,
-                r=20,
-                t=0,
-                b=0
-            ),
+    paper_bgcolor="rgba(0,0,0,0)",
+    plot_bgcolor="rgba(0,0,0,0)",
 
-            paper_bgcolor="rgba(0,0,0,0)",
-            plot_bgcolor="rgba(0,0,0,0)",
+    showlegend=False,
 
-            showlegend=False,
+    font=dict(
+        color="#cbd5e1",
+        size=10
+    ),
 
-            font=dict(
+    polar=dict(
+        bgcolor="rgba(15,23,42,0.15)",
+
+        radialaxis=dict(
+            visible=True,
+            range=[0, 100],
+
+            gridcolor="rgba(148,163,184,0.14)",
+            linecolor="rgba(148,163,184,0.10)",
+
+            tickfont=dict(
+                color="#64748b",
+                size=8
+            )
+        ),
+
+        angularaxis=dict(
+            gridcolor="rgba(148,163,184,0.12)",
+            linecolor="rgba(148,163,184,0.10)",
+
+            tickfont=dict(
                 color="#cbd5e1",
                 size=10
-            ),
-
-            polar=dict(
-
-                bgcolor="rgba(15,23,42,0.15)",
-
-                radialaxis=dict(
-                    visible=True,
-                    range=[0, 100],
-
-                    gridcolor="rgba(148,163,184,0.14)",
-                    linecolor="rgba(148,163,184,0.10)",
-
-                    tickfont=dict(
-                        color="#64748b",
-                        size=8
-                    )
-                ),
-
-                angularaxis=dict(
-                    gridcolor="rgba(148,163,184,0.12)",
-                    linecolor="rgba(148,163,184,0.10)",
-
-                    tickfont=dict(
-                        color="#cbd5e1",
-                        size=10
-                    )
-                )
             )
         )
+    )
+)
 
-        st.plotly_chart(
-            fig_radar,
-            use_container_width=True,
-            config={
-                "displayModeBar": False,
-                "responsive": True
-            }
-        )
+       st.plotly_chart(
+    fig_radar,
+    use_container_width=True,
+    config={
+        "displayModeBar": False,
+        "responsive": True
+    }
+)
 
     st.markdown(
         '</div>',
