@@ -1002,7 +1002,6 @@ button[data-testid="stNumberInputStepUp"]:hover {
     box-sizing: border-box !important;
 
     padding: 14px 18px 0 !important;
-
     margin: 0 !important;
 
     border-radius: 24px !important;
@@ -1026,14 +1025,23 @@ button[data-testid="stNumberInputStepUp"]:hover {
         inset 0 1px 0 rgba(255,255,255,0.03) !important;
 
     overflow: hidden !important;
+
+    flex: none !important;
 }
 
 
-/* Prevent Streamlit children from increasing card height */
+/* Force Streamlit's internal wrapper to stay inside 390px */
 
 .st-key-radar_card > div {
-    max-height: 100% !important;
+    width: 100% !important;
+    height: 100% !important;
+
     min-height: 0 !important;
+    max-height: 100% !important;
+
+    box-sizing: border-box !important;
+
+    overflow: hidden !important;
 }
 
 
@@ -1062,31 +1070,54 @@ button[data-testid="stNumberInputStepUp"]:hover {
    RADAR GRAPH AREA
    ========================================================= */
 
-.st-key-radar_card
-[data-testid="stPlotlyChart"] {
+.st-key-radar_card .radar-card-header {
+    width: 100% !important;
 
-    height: 300px !important;
+    height: 34px !important;
+    min-height: 34px !important;
+    max-height: 34px !important;
 
-    max-height: 300px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
 
-    min-height: 0 !important;
+    box-sizing: border-box !important;
 
+    padding: 0 4px !important;
     margin: 0 !important;
 
-    padding: 0 !important;
-
-    overflow: hidden !important;
+    flex-shrink: 0 !important;
 }
 
 
-/* Plotly iframe/container */
+/* Plotly chart */
 
-.st-key-radar_card
-[data-testid="stPlotlyChart"] iframe {
+.st-key-radar_card [data-testid="stPlotlyChart"] {
+    width: 100% !important;
 
     height: 300px !important;
-
+    min-height: 300px !important;
     max-height: 300px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: hidden !important;
+
+    flex-shrink: 0 !important;
+}
+
+
+/* Plotly iframe */
+
+.st-key-radar_card [data-testid="stPlotlyChart"] iframe {
+    width: 100% !important;
+
+    height: 300px !important;
+    min-height: 300px !important;
+    max-height: 300px !important;
+
+    display: block !important;
 }
 
 
@@ -2165,7 +2196,7 @@ with radar_col:
 
         fig_radar.update_layout(
 
-            height=285,
+            height=300,
 
             margin=dict(
                 l=20,
