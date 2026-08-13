@@ -894,8 +894,13 @@ button[data-testid="stNumberInputStepUp"]:hover {
    PROFILE INDEX
    ========================================================= */
 .profile-index-card {
+    width: 100%;
+    height: 390px;
     min-height: 390px;
+    max-height: 390px;
     padding: 26px;
+    margin: 0;
+    box-sizing: border-box;
     border-radius: 24px;
     background:
         radial-gradient(
@@ -908,11 +913,11 @@ button[data-testid="stNumberInputStepUp"]:hover {
             rgba(15,23,42,0.96),
             rgba(17,24,39,0.82)
         );
-
     border: 1px solid rgba(255,255,255,0.08);
     box-shadow:
         0 20px 60px rgba(0,0,0,0.20);
     text-align: center;
+    overflow: hidden;
 }
 
 .profile-index-header {
@@ -940,12 +945,12 @@ button[data-testid="stNumberInputStepUp"]:hover {
             #0f172a 58%,
             transparent 59%
         );
-
     border: 8px solid rgba(59,130,246,0.18);
     box-shadow:
         0 0 0 2px rgba(96,165,250,0.08),
         0 0 50px rgba(59,130,246,0.18),
         inset 0 0 40px rgba(59,130,246,0.08);
+
     box-sizing: border-box;
 }
 
@@ -960,7 +965,6 @@ button[data-testid="stNumberInputStepUp"]:hover {
             #818cf8,
             #c084fc
         );
-
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -992,8 +996,16 @@ button[data-testid="stNumberInputStepUp"]:hover {
    EXACTLY 390px HEIGHT
    ========================================================= */
 
-.st-key-radar_card {
-    width: 100% !important;
+ width: 100% !important;
+
+    height: 390px !important;
+    min-height: 390px !important;
+    max-height: 390px !important;
+
+    box-sizing: border-box !important;
+
+    padding: 14px 18px 0 !important;
+    margin: 0 !important;
 
     border-radius: 24px !important;
 
@@ -1016,15 +1028,16 @@ button[data-testid="stNumberInputStepUp"]:hover {
         inset 0 1px 0 rgba(255,255,255,0.03) !important;
 
     overflow: hidden !important;
-}
 
+    flex: none !important;
+}
 
 /* Force Streamlit's internal wrapper to stay inside 390px */
 
 .st-key-radar_card > div {
     width: 100% !important;
-    height: 100% !important;
 
+    height: 100% !important;
     min-height: 0 !important;
     max-height: 100% !important;
 
@@ -1036,24 +1049,6 @@ button[data-testid="stNumberInputStepUp"]:hover {
 
 /* =========================================================
    RADAR HEADER
-   ========================================================= */
-
-.st-key-radar_card .radar-card-header {
-    width: 100% !important;
-    height: 34px !important;
-
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-
-    box-sizing: border-box !important;
-
-    padding: 0 4px !important;
-    margin: 0 !important;
-}
-
-/* =========================================================
-   RADAR GRAPH AREA
    ========================================================= */
 
 .st-key-radar_card .radar-card-header {
@@ -1073,7 +1068,6 @@ button[data-testid="stNumberInputStepUp"]:hover {
     margin: 0 !important;
 
     flex-shrink: 0 !important;
-}
 
 
 /* Plotly chart */
@@ -1089,6 +1083,8 @@ button[data-testid="stNumberInputStepUp"]:hover {
     padding: 0 !important;
 
     overflow: hidden !important;
+
+    flex-shrink: 0 !important;
 }
 
 
@@ -1097,9 +1093,9 @@ button[data-testid="stNumberInputStepUp"]:hover {
 .st-key-radar_card [data-testid="stPlotlyChart"] iframe {
     width: 100% !important;
 
-    height: 300px !important;
-    min-height: 300px !important;
-    max-height: 300px !important;
+    height: 285px !important;
+    min-height: 285px !important;
+    max-height: 285px !important;
 
     display: block !important;
 }
