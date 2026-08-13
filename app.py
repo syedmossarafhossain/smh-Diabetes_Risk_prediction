@@ -1102,14 +1102,16 @@ button[data-testid="stNumberInputStepUp"]:hover {
     ========================================================= */
 
 
-/* Plotly chart */
+/* =========================================================
+   PLOTLY CHART
+   ========================================================= */
 
 .st-key-radar_card [data-testid="stPlotlyChart"] {
     width: 100% !important;
 
-    height: 270px !important;
-    min-height: 270px !important;
-    max-height: 270px !important;
+    height: 320px !important;
+    min-height: 320px !important;
+    max-height: 320px !important;
 
     margin: 0 auto !important;
     padding: 0 !important;
@@ -1119,31 +1121,33 @@ button[data-testid="stNumberInputStepUp"]:hover {
     flex-shrink: 0 !important;
 }
 
-/* Plotly internal wrapper */
+
+/* =========================================================
+   PLOTLY INTERNAL WRAPPER
+   ========================================================= */
 
 .st-key-radar_card [data-testid="stPlotlyChart"] > div {
     width: 100% !important;
 
-    height: 270px !important;
-    min-height: 270px !important;
-    max-height: 270px !important;
+    height: 320px !important;
+    min-height: 320px !important;
+    max-height: 320px !important;
 }
 
 
-
-
-/* Plotly iframe */
+/* =========================================================
+   PLOTLY IFRAME
+   ========================================================= */
 
 .st-key-radar_card [data-testid="stPlotlyChart"] iframe {
     width: 100% !important;
 
-    height: 270px !important;
-    min-height: 270px !important;
-    max-height: 270px !important;
+    height: 320px !important;
+    min-height: 320px !important;
+    max-height: 320px !important;
 
     display: block !important;
 }
-
 /* =========================================================
    PARAMETER HEADER
    ========================================================= */
@@ -2222,7 +2226,7 @@ with radar_col:
 
         fig_radar.update_layout(
 
-            height=270,
+            height=320,
 
             margin=dict(
                 l=35,
@@ -2264,7 +2268,7 @@ with radar_col:
 
                     tickfont=dict(
                         color="#cbd5e1",
-                        size=10
+                        size=13
                     )
                 )
             )
