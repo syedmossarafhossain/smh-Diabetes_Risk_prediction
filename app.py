@@ -1030,7 +1030,7 @@ button[data-testid="stNumberInputStepUp"]:hover {
 
     overflow: hidden !important;
 
-    flex: none !important;
+    flex: 0 0 390px !important;
 }
 
 /* Force Streamlit's internal wrapper to stay inside 390px */
@@ -1038,14 +1038,13 @@ button[data-testid="stNumberInputStepUp"]:hover {
 .st-key-radar_card > div {
     width: 100% !important;
 
-    height: 100% !important;
     min-height: 0 !important;
-    max-height: 100% !important;
 
     box-sizing: border-box !important;
 
     overflow: hidden !important;
 }
+
 
 
 /* =========================================================
@@ -1077,20 +1076,12 @@ button[data-testid="stNumberInputStepUp"]:hover {
 
 /* Plotly chart */
 
-.st-key-radar_card [data-testid="stPlotlyChart"] {
-    width: 100% !important;
-
-    height: 285px !important;
-    min-height: 285px !important;
-    max-height: 285px !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    overflow: hidden !important;
-
-    flex-shrink: 0 !important;
+.st-key-radar_card [data-testid="stPlotlyChart"] > div {
+    height: 270px !important;
+    min-height: 270px !important;
+    max-height: 270px !important;
 }
+
 
 
 /* Plotly iframe */
@@ -1098,13 +1089,12 @@ button[data-testid="stNumberInputStepUp"]:hover {
 .st-key-radar_card [data-testid="stPlotlyChart"] iframe {
     width: 100% !important;
 
-    height: 285px !important;
-    min-height: 285px !important;
-    max-height: 285px !important;
+    height: 270px !important;
+    min-height: 270px !important;
+    max-height: 270px !important;
 
     display: block !important;
 }
-
 
 /* =========================================================
    PARAMETER HEADER
