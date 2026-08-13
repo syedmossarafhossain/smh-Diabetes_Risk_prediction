@@ -1009,11 +1009,10 @@ button[data-testid="stNumberInputStepUp"]:hover {
 
     border-radius: 24px !important;
 
-    background:
-        radial-gradient(
-            circle at 50% 35%,
-            rgba(59,130,246,0.08),
-            transparent 48%
+    radial-gradient(
+            circle at 50% 30%,
+            rgba(59,130,246,0.12),
+            transparent 45%
         ),
         linear-gradient(
             145deg,
@@ -1021,11 +1020,10 @@ button[data-testid="stNumberInputStepUp"]:hover {
             rgba(17,24,39,0.82)
         ) !important;
 
-    border: 1px solid rgba(148,163,184,0.14) !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
 
     box-shadow:
-        0 20px 60px rgba(0,0,0,0.20),
-        inset 0 1px 0 rgba(255,255,255,0.03) !important;
+        0 20px 60px rgba(0,0,0,0.20) !important;
 
     overflow: hidden !important;
 
@@ -1068,6 +1066,10 @@ button[data-testid="stNumberInputStepUp"]:hover {
     margin: 0 !important;
 
     flex-shrink: 0 !important;
+
+    /* ========================================================= 
+    RADAR GRAPH AREA 
+    ========================================================= */
 
 
 /* Plotly chart */
