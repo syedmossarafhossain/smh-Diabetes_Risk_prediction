@@ -2189,61 +2189,63 @@ with radar_col:
         )
 
         fig_radar.update_layout(
-    height=320,
 
-    margin=dict(
-        l=45,
-        r=45,
-        t=35,
-        b=35
-    ),
+            height=320,
 
-    paper_bgcolor="rgba(0,0,0,0)",
-    plot_bgcolor="rgba(0,0,0,0)",
+            margin=dict(
+                l=45,
+                r=45,
+                t=35,
+                b=35
+            ),
 
-    showlegend=False,
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)",
 
-    font=dict(
-        color="#cbd5e1",
-        size=10
-    ),
+            showlegend=False,
 
-    polar=dict(
-        bgcolor="rgba(15,23,42,0.15)",
-
-        radialaxis=dict(
-            visible=True,
-            range=[0, 100],
-
-            gridcolor="rgba(148,163,184,0.14)",
-            linecolor="rgba(148,163,184,0.10)",
-
-            tickfont=dict(
-                color="#64748b",
-                size=8
-            )
-        ),
-
-        angularaxis=dict(
-            gridcolor="rgba(148,163,184,0.12)",
-            linecolor="rgba(148,163,184,0.10)",
-
-            tickfont=dict(
+            font=dict(
                 color="#cbd5e1",
                 size=10
+            ),
+
+            polar=dict(
+
+                bgcolor="rgba(15,23,42,0.15)",
+
+                radialaxis=dict(
+                    visible=True,
+                    range=[0, 100],
+
+                    gridcolor="rgba(148,163,184,0.14)",
+                    linecolor="rgba(148,163,184,0.10)",
+
+                    tickfont=dict(
+                        color="#64748b",
+                        size=8
+                    )
+                ),
+
+                angularaxis=dict(
+                    gridcolor="rgba(148,163,184,0.12)",
+                    linecolor="rgba(148,163,184,0.10)",
+
+                    tickfont=dict(
+                        color="#cbd5e1",
+                        size=10
+                    )
+                )
             )
         )
-    )
-)
 
-       st.plotly_chart(
-    fig_radar,
-    use_container_width=True,
-    config={
-        "displayModeBar": False,
-        "responsive": True
-    }
-)
+        st.plotly_chart(
+            fig_radar,
+            use_container_width=True,
+            config={
+                "displayModeBar": False,
+                "responsive": True
+            }
+        )
 
     st.markdown(
         '</div>',
