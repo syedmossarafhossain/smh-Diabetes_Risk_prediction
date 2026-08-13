@@ -1005,7 +1005,7 @@ button[data-testid="stNumberInputStepUp"]:hover {
 
     box-sizing: border-box !important;
 
-    padding: 0 18px !important;
+    padding: 0 26px !important;
     margin: 0 !important;
 
     border-radius: 24px !important;
@@ -1032,13 +1032,17 @@ button[data-testid="stNumberInputStepUp"]:hover {
     flex: 0 0 390px !important;
 }
 
+
 /* Force Streamlit's internal wrapper to stay inside 390px */
 
 .st-key-radar_card > div {
     width: 100% !important;
+
     min-height: 0 !important;
+
     box-sizing: border-box !important;
-    overflow: visible !important;
+
+    overflow: hidden !important;
 }
 
 
@@ -1050,9 +1054,9 @@ button[data-testid="stNumberInputStepUp"]:hover {
 .st-key-radar_card .radar-card-header {
     width: 100% !important;
 
-    height: 34px !important;
-    min-height: 34px !important;
-    max-height: 34px !important;
+    height: 58px !important;
+    min-height: 58px !important;
+    max-height: 58px !important;
 
     display: flex !important;
     align-items: center !important;
@@ -1060,10 +1064,37 @@ button[data-testid="stNumberInputStepUp"]:hover {
 
     box-sizing: border-box !important;
 
-    padding: 0 4px !important;
+    padding: 0 0 !important;
     margin: 0 !important;
 
     flex-shrink: 0 !important;
+}
+
+/* Clinical Parameter Profile */
+
+.st-key-radar_card .radar-card-title {
+    color: #94a3b8 !important;
+
+    font-size: 17px !important;
+    font-weight: 700 !important;
+
+    letter-spacing: 0.8px !important;
+
+    line-height: 1.2 !important;
+}
+
+
+/* 8 PARAMETERS */
+
+.st-key-radar_card .radar-card-badge {
+    color: #94a3b8 !important;
+
+    font-size: 17px !important;
+    font-weight: 700 !important;
+
+    letter-spacing: 0.8px !important;
+
+    line-height: 1.2 !important;
 }
 
     /* ========================================================= 
@@ -1076,14 +1107,14 @@ button[data-testid="stNumberInputStepUp"]:hover {
 .st-key-radar_card [data-testid="stPlotlyChart"] {
     width: 100% !important;
 
-    height: 320px !important;
-    min-height: 320px !important;
-    max-height: 320px !important;
+    height: 270px !important;
+    min-height: 270px !important;
+    max-height: 270px !important;
 
-    margin: 0 !important;
+    margin: 0 auto !important;
     padding: 0 !important;
 
-    overflow: visible !important;
+    overflow: hidden !important;
 
     flex-shrink: 0 !important;
 }
@@ -1093,10 +1124,11 @@ button[data-testid="stNumberInputStepUp"]:hover {
 .st-key-radar_card [data-testid="stPlotlyChart"] > div {
     width: 100% !important;
 
-    height: 320px !important;
-    min-height: 320px !important;
-    max-height: 320px !important;
+    height: 270px !important;
+    min-height: 270px !important;
+    max-height: 270px !important;
 }
+
 
 
 
@@ -1105,9 +1137,9 @@ button[data-testid="stNumberInputStepUp"]:hover {
 .st-key-radar_card [data-testid="stPlotlyChart"] iframe {
     width: 100% !important;
 
-    height: 320px !important;
-    min-height: 320px !important;
-    max-height: 320px !important;
+    height: 270px !important;
+    min-height: 270px !important;
+    max-height: 270px !important;
 
     display: block !important;
 }
@@ -2193,10 +2225,10 @@ with radar_col:
             height=270,
 
             margin=dict(
-                l=45,
-                r=45,
-                t=35,
-                b=35
+                l=35,
+                r=35,
+                t=25,
+                b=25
             ),
 
             paper_bgcolor="rgba(0,0,0,0)",
