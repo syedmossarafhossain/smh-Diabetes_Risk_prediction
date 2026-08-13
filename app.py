@@ -2190,7 +2190,7 @@ with radar_col:
 
         fig_radar.update_layout(
 
-            height=320,
+            height=270,
 
             margin=dict(
                 l=45,
