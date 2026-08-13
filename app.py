@@ -995,15 +995,6 @@ button[data-testid="stNumberInputStepUp"]:hover {
 .st-key-radar_card {
     width: 100% !important;
 
-    height: 390px !important;
-    min-height: 390px !important;
-    max-height: 390px !important;
-
-    box-sizing: border-box !important;
-
-    padding: 14px 18px 0 !important;
-    margin: 0 !important;
-
     border-radius: 24px !important;
 
     background:
@@ -1025,8 +1016,6 @@ button[data-testid="stNumberInputStepUp"]:hover {
         inset 0 1px 0 rgba(255,255,255,0.03) !important;
 
     overflow: hidden !important;
-
-    flex: none !important;
 }
 
 
@@ -1051,7 +1040,6 @@ button[data-testid="stNumberInputStepUp"]:hover {
 
 .st-key-radar_card .radar-card-header {
     width: 100% !important;
-
     height: 34px !important;
 
     display: flex !important;
@@ -1061,10 +1049,8 @@ button[data-testid="stNumberInputStepUp"]:hover {
     box-sizing: border-box !important;
 
     padding: 0 4px !important;
-
     margin: 0 !important;
 }
-
 
 /* =========================================================
    RADAR GRAPH AREA
@@ -1095,16 +1081,14 @@ button[data-testid="stNumberInputStepUp"]:hover {
 .st-key-radar_card [data-testid="stPlotlyChart"] {
     width: 100% !important;
 
-    height: 300px !important;
-    min-height: 300px !important;
-    max-height: 300px !important;
+    height: 285px !important;
+    min-height: 285px !important;
+    max-height: 285px !important;
 
     margin: 0 !important;
     padding: 0 !important;
 
     overflow: hidden !important;
-
-    flex-shrink: 0 !important;
 }
 
 
@@ -2139,7 +2123,10 @@ with profile_col:
 
 with radar_col:
 
-    with st.container(key="radar_card"):
+    with st.container(
+        height=390,
+        key="radar_card"
+    ):
 
         st.markdown(
             '<div class="radar-card-header">'
@@ -2196,7 +2183,7 @@ with radar_col:
 
         fig_radar.update_layout(
 
-            height=300,
+            height=285,
 
             margin=dict(
                 l=20,
