@@ -1489,9 +1489,9 @@ button[data-testid="stNumberInputStepUp"]:hover {
     position: relative;
     z-index: 2;
 
-    color: #64748b;
+    color: #b2b4b6;
 
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 500;
 
     white-space: nowrap;
