@@ -1376,9 +1376,9 @@ button[data-testid="stNumberInputStepUp"]:hover {
     align-items: center;
     justify-content: space-between;
 
-    color: #657082;
+    color: #7c7f84;
 
-    font-size: 11px;
+    font-size: 12px;
 }
 
 /* =========================================================
