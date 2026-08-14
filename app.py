@@ -1314,7 +1314,7 @@ button[data-testid="stNumberInputStepUp"]:hover {
 .parameter-card-name {
     margin-bottom: 10px;
 
-    color: #8d99ae;
+    color: #959eae;
 
     font-size: 13px;
     font-weight: 600;
@@ -1335,9 +1335,9 @@ button[data-testid="stNumberInputStepUp"]:hover {
 .parameter-card-unit {
     margin-left: 5px;
 
-    color: #718096;
+    color: #748194;
 
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
 }
 
@@ -1376,9 +1376,9 @@ button[data-testid="stNumberInputStepUp"]:hover {
     align-items: center;
     justify-content: space-between;
 
-    color: #56647a;
+    color: #657082;
 
-    font-size: 10px;
+    font-size: 11px;
 }
 
 /* =========================================================
