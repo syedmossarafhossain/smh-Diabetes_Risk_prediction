@@ -2956,40 +2956,21 @@ if predict_button:
     # =====================================================
 
     st.markdown(
-    '<div class="prediction-result-header">'
-    
-    '<div class="prediction-result-title">'
-    
-    '<div class="prediction-result-icon">'
-    '🎯'
-    '</div>'
-    
-    '<div>'
-    
-    '<div class="prediction-result-heading">'
-    'Prediction Result'
-    '</div>'
-    
-    '<div class="prediction-result-subtitle">'
-    'AI-generated diabetes risk assessment'
-    '</div>'
-    
-    '</div>'
-    
-    '</div>'
-    
-    '</div>',
-    unsafe_allow_html=True
-)
+        '<div class="section-title">'
+        '🎯 Prediction Result'
+        '</div>',
+        unsafe_allow_html=True
+    )
 
     # =====================================================
     # METRIC COLUMNS
     # =====================================================
 
     metric1, metric2, metric3 = st.columns(
-    3,
-    gap="medium"
-)
+        3,
+        gap="medium"
+    )
+
 
     # =====================================================
     # RISK PROBABILITY
