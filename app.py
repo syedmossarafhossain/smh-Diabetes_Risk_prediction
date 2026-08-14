@@ -1207,7 +1207,7 @@ button[data-testid="stNumberInputStepUp"]:hover {
    
 .advanced-parameter-card {
     width: 100%;
-    min-height: 300px;
+    min-height: 270px;
     box-sizing: border-box;
 
     padding: 24px;
@@ -1234,8 +1234,7 @@ button[data-testid="stNumberInputStepUp"]:hover {
 
 .advanced-parameter-card:hover {
     transform: translateY(-4px);
-    border-color:
-        rgba(96,165,250,0.25);
+    border-color: 2px solid rgba(96,165,250,0.25);
     box-shadow:
         0 18px 40px rgba(0,0,0,0.25);
 }
