@@ -1109,9 +1109,9 @@ button[data-testid="stNumberInputStepUp"]:hover {
 .st-key-radar_card [data-testid="stPlotlyChart"] {
     width: 100% !important;
 
-    height: 320px !important;
-    min-height: 320px !important;
-    max-height: 320px !important;
+    height: 300px !important;
+    min-height: 300px !important;
+    max-height: 300px !important;
 
     margin: 0 auto !important;
     padding: 0 !important;
@@ -1129,9 +1129,9 @@ button[data-testid="stNumberInputStepUp"]:hover {
 .st-key-radar_card [data-testid="stPlotlyChart"] > div {
     width: 100% !important;
 
-    height: 320px !important;
-    min-height: 320px !important;
-    max-height: 320px !important;
+    height: 300px !important;
+    min-height: 300px !important;
+    max-height: 300px !important;
 }
 
 
@@ -1142,9 +1142,9 @@ button[data-testid="stNumberInputStepUp"]:hover {
 .st-key-radar_card [data-testid="stPlotlyChart"] iframe {
     width: 100% !important;
 
-    height: 320px !important;
-    min-height: 320px !important;
-    max-height: 320px !important;
+    height: 300px !important;
+    min-height: 300px !important;
+    max-height: 300px !important;
 
     display: block !important;
 }
@@ -2226,7 +2226,7 @@ with radar_col:
 
         fig_radar.update_layout(
 
-            height=320,
+            height=300,
 
             margin=dict(
                 l=35,
