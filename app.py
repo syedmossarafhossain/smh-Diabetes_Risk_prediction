@@ -1640,7 +1640,7 @@ div[data-baseweb="input"]:focus-within {
     );
     border: 1px solid rgba(255,255,255,0.10);
     text-align: center;
-    margin-top: 20px;
+    margin-top: 50px;
 }
 
 .risk-number {
