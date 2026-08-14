@@ -1628,7 +1628,7 @@ div[data-baseweb="input"]:focus-within {
 }
 
 
-/* Prediction card */
+/* PREDICTION RESULT - ADVANCED */
 
 .result-card {
     padding: 30px;
@@ -1673,6 +1673,302 @@ div[data-baseweb="input"]:focus-within {
     font-size: 25px;
     font-weight: 700;
     margin-top: 5px;
+}
+
+
+/* =========================================================
+   PREDICTION RESULT - ADVANCED
+   ========================================================= */
+
+.prediction-result-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 45px;
+    margin-bottom: 22px;
+}
+
+.prediction-result-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.prediction-result-icon {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 13px;
+    background: linear-gradient(
+        135deg,
+        rgba(37,99,235,0.18),
+        rgba(124,58,237,0.18)
+    );
+    border: 1px solid rgba(96,165,250,0.20);
+    font-size: 22px;
+}
+
+.prediction-result-heading {
+    color: #f8fafc;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.prediction-result-subtitle {
+    margin-top: 4px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+/* Result cards */
+
+.prediction-card {
+    min-height: 155px;
+    padding: 24px;
+    box-sizing: border-box;
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15,23,42,0.96),
+            rgba(20,27,42,0.88)
+        );
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,0.20);
+
+    transition: all 0.2s ease;
+}
+
+.prediction-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(96,165,250,0.25);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.28);
+}
+
+.prediction-card-label {
+    color: #94a3b8;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+}
+
+.prediction-card-value {
+    margin-top: 13px;
+    color: #f8fafc;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.prediction-card-description {
+    margin-top: 10px;
+    color: #64748b;
+    font-size: 11px;
+}
+
+/* Risk colors */
+
+.risk-low {
+    color: #34d399 !important;
+}
+
+.risk-high {
+    color: #f87171 !important;
+}
+
+/* Risk bar */
+
+.risk-analysis-card {
+    margin-top: 22px;
+    padding: 22px 24px;
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15,23,42,0.94),
+            rgba(17,24,39,0.82)
+        );
+
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.risk-analysis-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.risk-analysis-label {
+    color: #cbd5e1;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.risk-analysis-value {
+    color: #f8fafc;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.risk-bar {
+    width: 100%;
+    height: 10px;
+    background: #202938;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.risk-bar-fill {
+    height: 100%;
+    border-radius: 20px;
+    background: linear-gradient(
+        90deg,
+        #2563eb,
+        #7c3aed
+    );
+}
+
+.risk-note {
+    margin-top: 10px;
+    color: #64748b;
+    font-size: 11px;
+}
+
+/* =========================================================
+   PREDICTION REPORT
+   ========================================================= */
+
+.report-section {
+    margin-top: 30px;
+}
+
+.report-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.report-icon {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(37,99,235,0.18),
+            rgba(124,58,237,0.18)
+        );
+
+    border: 1px solid rgba(96,165,250,0.20);
+
+    font-size: 22px;
+}
+
+.report-title {
+    color: #f8fafc;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.report-subtitle {
+    margin-top: 4px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.report-card {
+    padding: 24px;
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15,23,42,0.95),
+            rgba(17,24,39,0.82)
+        );
+
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.report-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.report-info-item {
+    padding: 14px 16px;
+    border-radius: 13px;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.report-info-label {
+    color: #64748b;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.report-info-value {
+    margin-top: 5px;
+    color: #e2e8f0;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.report-disclaimer {
+    padding: 13px 16px;
+    margin-top: 16px;
+    border-radius: 13px;
+
+    background: rgba(245,158,11,0.07);
+    border: 1px solid rgba(245,158,11,0.15);
+
+    color: #cbd5e1;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+/* Download button */
+
+.report-download {
+    margin-top: 18px;
+}
+
+.report-download button {
+    height: 50px !important;
+    border-radius: 13px !important;
+    font-weight: 700 !important;
+}
+
+@media (max-width: 700px) {
+
+    .report-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .prediction-result-heading,
+    .report-title {
+        font-size: 19px;
+    }
+
 }
 
 
@@ -2660,38 +2956,65 @@ if predict_button:
     # =====================================================
 
     st.markdown(
-        '<div class="section-title">'
-        '🎯 Prediction Result'
-        '</div>',
-        unsafe_allow_html=True
-    )
+    '<div class="prediction-result-header">'
+    
+    '<div class="prediction-result-title">'
+    
+    '<div class="prediction-result-icon">'
+    '🎯'
+    '</div>'
+    
+    '<div>'
+    
+    '<div class="prediction-result-heading">'
+    'Prediction Result'
+    '</div>'
+    
+    '<div class="prediction-result-subtitle">'
+    'AI-generated diabetes risk assessment'
+    '</div>'
+    
+    '</div>'
+    
+    '</div>'
+    
+    '</div>',
+    unsafe_allow_html=True
+)
 
     # =====================================================
     # METRIC COLUMNS
     # =====================================================
 
     metric1, metric2, metric3 = st.columns(
-        3,
-        gap="medium"
-    )
+    3,
+    gap="medium"
+)
 
     # =====================================================
     # RISK PROBABILITY
     # =====================================================
 
-    with metric1:
+   with metric1:
 
-        st.markdown(
-            '<div class="metric-card">'
-            '<div class="metric-title">'
-            'RISK PROBABILITY'
-            '</div>'
-            f'<div class="metric-value">'
-            f'{risk_prob:.2f}%'
-            '</div>'
-            '</div>',
-            unsafe_allow_html=True
-        )
+    st.markdown(
+        '<div class="prediction-card">'
+
+        '<div class="prediction-card-label">'
+        'Risk Probability'
+        '</div>'
+
+        '<div class="prediction-card-value">'
+        f'{risk_prob:.2f}%'
+        '</div>'
+
+        '<div class="prediction-card-description">'
+        'Estimated probability of diabetes risk'
+        '</div>'
+
+        '</div>',
+        unsafe_allow_html=True
+    )
 
     # =====================================================
     # PREDICTION
@@ -2699,18 +3022,37 @@ if predict_button:
 
     with metric2:
 
-        st.markdown(
-            '<div class="metric-card">'
-            '<div class="metric-title">'
-            'PREDICTION'
-            '</div>'
-            f'<div class="metric-value" '
-            f'style="color:{prediction_color};">'
-            f'{prediction_text}'
-            '</div>'
-            '</div>',
-            unsafe_allow_html=True
-        )
+    risk_class = (
+        "risk-high"
+        if int(prediction[0]) == 1
+        else "risk-low"
+    )
+
+    risk_icon = (
+        "⚠️"
+        if int(prediction[0]) == 1
+        else "✓"
+    )
+
+    st.markdown(
+        '<div class="prediction-card">'
+
+        '<div class="prediction-card-label">'
+        'Prediction'
+        '</div>'
+
+        f'<div class="prediction-card-value {risk_class}">'
+        f'{risk_icon} {prediction_text}'
+        '</div>'
+
+        '<div class="prediction-card-description">'
+        'Based on the trained Random Forest model'
+        '</div>'
+
+        '</div>',
+        unsafe_allow_html=True
+    )
+
 
     # =====================================================
     # MODEL
@@ -2718,88 +3060,203 @@ if predict_button:
 
     with metric3:
 
-        st.markdown(
-            '<div class="metric-card">'
-            '<div class="metric-title">'
-            'MODEL'
-            '</div>'
-            '<div class="metric-value">'
-            'Random Forest'
-            '</div>'
-            '</div>',
-            unsafe_allow_html=True
-        )
+    st.markdown(
+        '<div class="prediction-card">'
+
+        '<div class="prediction-card-label">'
+        'Model'
+        '</div>'
+
+        '<div class="prediction-card-value">'
+        'Random Forest'
+        '</div>'
+
+        '<div class="prediction-card-description">'
+        'Machine learning classification model'
+        '</div>'
+
+        '</div>',
+        unsafe_allow_html=True
+    )
 
     # =====================================================
     # PROBABILITY BAR
     # =====================================================
 
-    st.markdown(
-        "<br>",
-        unsafe_allow_html=True
+    safe_risk = min(
+    max(float(risk_prob), 0.0),
+    100.0
     )
 
-    st.progress(
-        min(max(risk_prob / 100, 0.0), 1.0),
-        text=f"Estimated Risk: {risk_prob:.2f}%"
+st.markdown(
+    '<div class="risk-analysis-card">'
+
+    '<div class="risk-analysis-top">'
+
+    '<span class="risk-analysis-label">'
+    'Estimated Risk Level'
+    '</span>'
+
+    '<span class="risk-analysis-value">'
+    f'{safe_risk:.2f}%'
+    '</span>'
+
+    '</div>'
+
+    '<div class="risk-bar">'
+
+    '<div '
+    f'style="width:{safe_risk:.2f}%;" '
+    'class="risk-bar-fill">'
+    '</div>'
+
+    '</div>'
+
+    '<div class="risk-note">'
+    'This probability is generated by the trained machine '
+    'learning model and is not a medical diagnosis.'
+    '</div>'
+
+    '</div>',
+    unsafe_allow_html=True
     )
 
     # =====================================================
-    # PDF REPORT
+    # PREDICTION REPORT HEADER
     # =====================================================
 
     st.markdown(
-        '<div class="section-title">'
-        '📄 Prediction Report'
+    '<div class="report-section">'
+
+    '<div class="report-header">'
+
+    '<div class="report-icon">'
+    '📄'
+    '</div>'
+
+    '<div>'
+
+    '<div class="report-title">'
+    'Prediction Report'
+    '</div>'
+
+    '<div class="report-subtitle">'
+    'Download a detailed PDF containing the assessment '
+    'information and clinical parameters'
+    '</div>'
+
+    '</div>'
+
+    '</div>'
+
+    '</div>',
+    unsafe_allow_html=True
+    )
+
+    # =====================================================
+    # REPORT SUMMARY CARD
+    # =====================================================
+
+    patient_display = (
+    patient_name.strip()
+    if patient_name and patient_name.strip()
+    else "Not Provided"
+    )
+    
+    st.markdown(
+        '<div class="report-card">'
+    
+        '<div class="report-info-grid">'
+    
+        '<div class="report-info-item">'
+    
+        '<div class="report-info-label">'
+        'Patient'
+        '</div>'
+    
+        '<div class="report-info-value">'
+        f'{patient_display}'
+        '</div>'
+    
+        '</div>'
+    
+        '<div class="report-info-item">'
+    
+        '<div class="report-info-label">'
+        'Assessment Date'
+        '</div>'
+    
+        '<div class="report-info-value">'
+        f'{prediction_date}'
+        '</div>'
+    
+        '</div>'
+    
+        '<div class="report-info-item">'
+    
+        '<div class="report-info-label">'
+        'Prediction'
+        '</div>'
+    
+        '<div class="report-info-value">'
+        f'{prediction_text}'
+        '</div>'
+    
+        '</div>'
+    
+        '<div class="report-info-item">'
+    
+        '<div class="report-info-label">'
+        'Risk Probability'
+        '</div>'
+    
+        '<div class="report-info-value">'
+        f'{risk_prob:.2f}%'
+        '</div>'
+    
+        '</div>'
+    
+        '</div>'
+    
+        '<div class="report-disclaimer">'
+    
+        '<b>Important:</b> '
+        'This report is generated by an educational machine '
+        'learning application. It should not be used as a '
+        'substitute for professional medical advice, '
+        'diagnosis, or treatment.'
+    
+        '</div>'
+    
         '</div>',
         unsafe_allow_html=True
     )
 
-    # Create PDF buffer
+    # =====================================================
+    # CREATE PROFESSIONAL PDF
+    # =====================================================
+
     pdf_buffer = BytesIO()
 
     doc = SimpleDocTemplate(
-        pdf_buffer
+    pdf_buffer,
+    rightMargin=45,
+    leftMargin=45,
+    topMargin=45,
+    bottomMargin=45
     )
 
     styles = getSampleStyleSheet()
-
+    
     elements = []
-
     # =====================================================
     # PDF TITLE
     # =====================================================
 
     elements.append(
-        Paragraph(
-            "<b>Diabetes Risk Prediction Report</b>",
-            styles["Title"]
-        )
-    )
-
-    elements.append(
-        Spacer(
-            1,
-            0.4 * inch
-        )
-    )
-
-    # =====================================================
-    # PATIENT INFORMATION
-    # =====================================================
-
-    elements.append(
-        Paragraph(
-            f"<b>Patient Name:</b> "
-            f"{patient_name if patient_name else 'Not Provided'}",
-            styles["Normal"]
-        )
-    )
-
-    elements.append(
-        Paragraph(
-            f"<b>Assessment Date:</b> {prediction_date}",
-            styles["Normal"]
+    Paragraph(
+        "<b>Diabetes Risk Prediction Report</b>",
+        styles["Title"]
         )
     )
 
@@ -2811,103 +3268,147 @@ if predict_button:
     )
 
     # =====================================================
-    # CLINICAL INFORMATION
+    # PATIENT INFORMATION
     # =====================================================
 
     elements.append(
-        Paragraph(
-            f"Pregnancies: {pregnancies}",
-            styles["Normal"]
-        )
-    )
-
-    elements.append(
-        Paragraph(
-            f"Glucose Level: {glucose}",
-            styles["Normal"]
-        )
-    )
-
-    elements.append(
-        Paragraph(
-            f"Blood Pressure: {bp}",
-            styles["Normal"]
-        )
-    )
-
-    elements.append(
-        Paragraph(
-            f"Skin Thickness: {skin}",
-            styles["Normal"]
-        )
-    )
-
-    elements.append(
-        Paragraph(
-            f"Insulin Level: {insulin}",
-            styles["Normal"]
-        )
-    )
-
-    elements.append(
-        Paragraph(
-            f"BMI: {bmi}",
-            styles["Normal"]
-        )
-    )
-
-    elements.append(
-        Paragraph(
-            f"Diabetes Pedigree Function: {dpf}",
-            styles["Normal"]
-        )
-    )
-
-    elements.append(
-        Paragraph(
-            f"Age: {age}",
-            styles["Normal"]
+    Paragraph(
+        "<b>Patient Information</b>",
+        styles["Heading2"]
         )
     )
 
     elements.append(
         Spacer(
             1,
-            0.3 * inch
+            0.12 * inch
+        )
+    )
+    
+    elements.append(
+        Paragraph(
+            f"<b>Patient Name:</b> {patient_display}",
+            styles["Normal"]
+        )
+    )
+    
+    elements.append(
+        Paragraph(
+            f"<b>Assessment Date:</b> {prediction_date}",
+            styles["Normal"]
+        )
+    )
+    
+    elements.append(
+        Spacer(
+            1,
+            0.25 * inch
         )
     )
 
     # =====================================================
-    # PREDICTION
+    # CLINICAL PARAMETERS
     # =====================================================
 
     elements.append(
-        Paragraph(
-            f"<b>Prediction:</b> "
-            f"{prediction_text}",
-            styles["Normal"]
-        )
-    )
-
-    elements.append(
-        Paragraph(
-            f"<b>Risk Probability:</b> "
-            f"{risk_prob:.2f}%",
-            styles["Normal"]
-        )
-    )
-
-    elements.append(
-        Paragraph(
-            "<b>Model:</b> Random Forest",
-            styles["Normal"]
+    Paragraph(
+        "<b>Clinical Parameters</b>",
+        styles["Heading2"]
         )
     )
 
     elements.append(
         Spacer(
             1,
-            0.3 * inch
+            0.12 * inch
+        )
+    )
+    
+    clinical_report = [
+        f"Pregnancies: {pregnancies}",
+        f"Glucose Level: {glucose} mg/dL",
+        f"Blood Pressure: {bp} mmHg",
+        f"Skin Thickness: {skin} mm",
+        f"Insulin Level: {insulin} μU/mL",
+        f"BMI: {bmi} kg/m²",
+        f"Diabetes Pedigree Function: {dpf}",
+        f"Age: {age} years"
+    ]
+    
+    for item in clinical_report:
+    
+        elements.append(
+            Paragraph(
+                item,
+                styles["Normal"]
+            )
+        )
+    
+        elements.append(
+            Spacer(
+                1,
+                0.06 * inch
+            )
+        )
+    
+    
+    elements.append(
+        Spacer(
+            1,
+            0.22 * inch
+        )
+    )
+
+    # =====================================================
+    # PREDICTION SUMMARY
+    # =====================================================
+
+    elements.append(
+    Paragraph(
+        "<b>Prediction Summary</b>",
+        styles["Heading2"]
+        )
+    )
+
+    elements.append(
+        Spacer(
+            1,
+            0.12 * inch
+        )
+    )
+    
+    elements.append(
+        Paragraph(
+            f"<b>Prediction:</b> {prediction_text}",
+            styles["Normal"]
+        )
+    )
+    
+    elements.append(
+        Paragraph(
+            f"<b>Risk Probability:</b> {risk_prob:.2f}%",
+            styles["Normal"]
+        )
+    )
+    
+    elements.append(
+        Paragraph(
+            "<b>Model:</b> Random Forest Classifier",
+            styles["Normal"]
+        )
+    )
+    
+    elements.append(
+        Paragraph(
+            "<b>Model Accuracy:</b> 82%",
+            styles["Normal"]
+        )
+    )
+    
+    elements.append(
+        Spacer(
+            1,
+            0.25 * inch
         )
     )
 
@@ -2916,34 +3417,46 @@ if predict_button:
     # =====================================================
 
     elements.append(
-        Paragraph(
-            "<b>Disclaimer:</b> This report is generated by an "
-            "educational Machine Learning application and should "
-            "not be considered a medical diagnosis.",
-            styles["Normal"]
+    Paragraph(
+        "<b>Disclaimer:</b> This report is generated by an "
+        "educational Machine Learning application. The result "
+        "is an algorithmic risk estimate and should not be "
+        "considered a medical diagnosis. Please consult a "
+        "qualified healthcare professional for medical advice.",
+        styles["Normal"]
         )
     )
 
-    # =====================================================
-    # BUILD PDF
-    # =====================================================
+# =========================================================
+# BUILD PDF
+# =========================================================
 
-    doc.build(
-        elements
-    )
+doc.build(elements)
 
-    pdf_buffer.seek(0)
+pdf_buffer.seek(0)
 
-    # =====================================================
-    # DOWNLOAD BUTTON
-    # =====================================================
+# =========================================================
+# DOWNLOAD BUTTON
+# =========================================================
 
-    st.download_button(
-        label="📥 Download Prediction Report",
-        data=pdf_buffer,
-        file_name="Diabetes_Prediction_Report.pdf",
-        mime="application/pdf"
-    )
+st.markdown(
+    '<div class="report-download">',
+    unsafe_allow_html=True
+)
+
+st.download_button(
+    label="📥  Download Prediction Report",
+    data=pdf_buffer,
+    file_name="Diabetes_Prediction_Report.pdf",
+    mime="application/pdf",
+    use_container_width=True
+)
+
+st.markdown(
+    '</div>',
+    unsafe_allow_html=True
+)
+
 # =========================================================
 # FOOTER
 # =========================================================
