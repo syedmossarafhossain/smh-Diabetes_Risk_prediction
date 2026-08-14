@@ -2971,31 +2971,30 @@ if predict_button:
         gap="medium"
     )
 
-
     # =====================================================
     # RISK PROBABILITY
     # =====================================================
 
-   with metric1:
+    with metric1:
 
-    st.markdown(
-        '<div class="prediction-card">'
+        st.markdown(
+            '<div class="prediction-card">'
 
-        '<div class="prediction-card-label">'
-        'Risk Probability'
-        '</div>'
+            '<div class="prediction-card-label">'
+            'Risk Probability'
+            '</div>'
 
-        '<div class="prediction-card-value">'
-        f'{risk_prob:.2f}%'
-        '</div>'
+            '<div class="prediction-card-value">'
+            f'{risk_prob:.2f}%'
+            '</div>'
 
-        '<div class="prediction-card-description">'
-        'Estimated probability of diabetes risk'
-        '</div>'
+            '<div class="prediction-card-description">'
+            'Estimated probability of diabetes risk'
+            '</div>'
 
-        '</div>',
-        unsafe_allow_html=True
-    )
+            '</div>',
+            unsafe_allow_html=True
+        )
 
     # =====================================================
     # PREDICTION
@@ -3003,37 +3002,36 @@ if predict_button:
 
     with metric2:
 
-    risk_class = (
-        "risk-high"
-        if int(prediction[0]) == 1
-        else "risk-low"
-    )
+        risk_class = (
+            "risk-high"
+            if int(prediction[0]) == 1
+            else "risk-low"
+        )
 
-    risk_icon = (
-        "⚠️"
-        if int(prediction[0]) == 1
-        else "✓"
-    )
+        risk_icon = (
+            "⚠️"
+            if int(prediction[0]) == 1
+            else "✓"
+        )
 
-    st.markdown(
-        '<div class="prediction-card">'
+        st.markdown(
+            '<div class="prediction-card">'
 
-        '<div class="prediction-card-label">'
-        'Prediction'
-        '</div>'
+            '<div class="prediction-card-label">'
+            'Prediction'
+            '</div>'
 
-        f'<div class="prediction-card-value {risk_class}">'
-        f'{risk_icon} {prediction_text}'
-        '</div>'
+            f'<div class="prediction-card-value {risk_class}">'
+            f'{risk_icon} {prediction_text}'
+            '</div>'
 
-        '<div class="prediction-card-description">'
-        'Based on the trained Random Forest model'
-        '</div>'
+            '<div class="prediction-card-description">'
+            'Based on the trained Random Forest model'
+            '</div>'
 
-        '</div>',
-        unsafe_allow_html=True
-    )
-
+            '</div>',
+            unsafe_allow_html=True
+        )
 
     # =====================================================
     # MODEL
@@ -3041,24 +3039,24 @@ if predict_button:
 
     with metric3:
 
-    st.markdown(
-        '<div class="prediction-card">'
+        st.markdown(
+            '<div class="prediction-card">'
 
-        '<div class="prediction-card-label">'
-        'Model'
-        '</div>'
+            '<div class="prediction-card-label">'
+            'Model'
+            '</div>'
 
-        '<div class="prediction-card-value">'
-        'Random Forest'
-        '</div>'
+            '<div class="prediction-card-value">'
+            'Random Forest'
+            '</div>'
 
-        '<div class="prediction-card-description">'
-        'Machine learning classification model'
-        '</div>'
+            '<div class="prediction-card-description">'
+            'Machine learning classification model'
+            '</div>'
 
-        '</div>',
-        unsafe_allow_html=True
-    )
+            '</div>',
+            unsafe_allow_html=True
+        )
 
     # =====================================================
     # PROBABILITY BAR
