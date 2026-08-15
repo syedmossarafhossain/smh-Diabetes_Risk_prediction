@@ -2051,32 +2051,35 @@ with st.sidebar:
     # APP TITLE
     # -----------------------------------------------------
 
-    st.markdown(
+       st.markdown(
         """
         <div style="
-            text-align:center;
-            margin-top:-5px;
-            margin-bottom:20px;
+            text-align: center;
+            margin-top: -5px;
+            margin-bottom: 20px;
         ">
             <div style="
-                font-size:20px;
-                font-weight:800;
-                color:#f8fafc;
+                font-size: 21px;
+                font-weight: 800;
+                color: #f8fafc;
+                line-height: 1.3;
             ">
                 🩺 Diabetes AI
             </div>
-
+    
             <div style="
-                color:#64748b;
-                font-size:11px;
-                margin-top:4px;
+                margin-top: 5px;
+                color: #64748b;
+                font-size: 11px;
+                font-weight: 500;
             ">
-                AI Risk Prediction
+                AI-Powered Risk Prediction
             </div>
         </div>
         """,
         unsafe_allow_html=True
     )
+
     st.markdown(
         """
         <div style="
