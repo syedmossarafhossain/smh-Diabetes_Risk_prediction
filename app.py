@@ -3404,36 +3404,35 @@ if predict_button:
         )
     )
 
-# =========================================================
-# BUILD PDF
-# =========================================================
+    # =========================================================
+    # BUILD PDF
+    # =========================================================
 
-doc.build(elements)
+    doc.build(elements)
 
-pdf_buffer.seek(0)
+    pdf_buffer.seek(0)
 
 # =========================================================
 # DOWNLOAD BUTTON
 # =========================================================
 
-st.markdown(
-    '<div class="report-download">',
-    unsafe_allow_html=True
-)
+   st.markdown(
+        '<div class="report-download">',
+        unsafe_allow_html=True
+    )
 
-st.download_button(
-    label="📥  Download Prediction Report",
-    data=pdf_buffer,
-    file_name="Diabetes_Prediction_Report.pdf",
-    mime="application/pdf",
-    use_container_width=True
-)
+    st.download_button(
+        label="📥 Download Prediction Report",
+        data=pdf_buffer,
+        file_name="Diabetes_Prediction_Report.pdf",
+        mime="application/pdf",
+        use_container_width=True
+    )
 
-st.markdown(
-    '</div>',
-    unsafe_allow_html=True
-)
-
+    st.markdown(
+        '</div>',
+        unsafe_allow_html=True
+    )
 # =========================================================
 # FOOTER
 # =========================================================
