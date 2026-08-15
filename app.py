@@ -2030,55 +2030,8 @@ with open(scaler_path, "rb") as f:
 # =========================================================
 
 with st.sidebar:
-
-    # -----------------------------------------------------
-    # LOGO
-    # -----------------------------------------------------
-
-    logo_path = os.path.join(
-        BASE_DIR,
-        "logo.png"
-    )
-
-    if os.path.exists(logo_path):
-
-        st.image(
-            logo_path,
-            width=150
-        )
-
-    # -----------------------------------------------------
-    # APP TITLE
-    # -----------------------------------------------------
-
-       st.markdown(
-        """
-        <div style="
-            text-align: center;
-            margin-top: -5px;
-            margin-bottom: 20px;
-        ">
-            <div style="
-                font-size: 21px;
-                font-weight: 800;
-                color: #f8fafc;
-                line-height: 1.3;
-            ">
-                🩺 Diabetes AI
-            </div>
     
-            <div style="
-                margin-top: 5px;
-                color: #64748b;
-                font-size: 11px;
-                font-weight: 500;
-            ">
-                AI-Powered Risk Prediction
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown("## 🩺 Diabetes AI")
 
     st.markdown(
         """
